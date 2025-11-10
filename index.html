@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -40,7 +43,7 @@
     .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s ease, border-color .15s ease}
     .card:hover{transform:translateY(-3px);border-color:#2b3140}
-    .gallery{columns:1;column-gap:16px}
+    .gallery{columns:1;column-gap:16px} @media (min-width:720px){.gallery{columns:2}} @media (min-width:1040px){.gallery{columns:3}} .gallery figure{break-inside:avoid;margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden} .gallery figcaption{padding:10px 12px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)} .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px} .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .15s ease,border-color .15s ease} .tile:hover{transform:translateY(-3px);border-color:#2b3140} .tile img{width:100%;height:100%;object-fit:cover;display:block}
     @media (min-width:720px){.gallery{columns:2}}
     @media (min-width:1040px){.gallery{columns:3}}
     .gallery figure{break-inside:avoid;margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -86,19 +89,34 @@
 
     <section id="schilderijen">
       <h2 class="section">Schilderijen</h2>
-      <p class="muted">Een selectie van persoonlijke werken, gemaakt in verschillende stijlen en technieken.</p>
-      <div class="gallery" id="gallery">
-        <figure><img src="/asset1/paintings_1/DSC01863.jpg" alt="Schilderij 1"/></figure>
-        <figure><img src="/asset1/paintings_1/DSC01865.jpg" alt="Schilderij 2"/></figure>
-        <figure><img src="/asset1/paintings_1/DSC01859.jpg" alt="Schilderij 3"/></figure>
-        <figure><img src="/asset2/paintings_2/DSC01858.jpg" alt="Schilderij 4"/></figure>
-        <figure><img src="/asset2/paintings_2/DA68314B.jpg" alt="Schilderij 5"/></figure>
+      <p class="muted">De onderstaande selectie wordt automatisch gevuld uit de mappen <code>asset1</code> en <code>asset2</code>. Er kunnen later meer werken worden toegevoegd.</p>
+      <div class="tiles" id="tiles-paintings">
+        {% assign allimgs = site.static_files | where_exp: "f", "f.path contains '/asset1/' or f.path contains '/asset2/'" %}
+        {% for f in allimgs %}
+          {% assign ext = f.extname | downcase %}
+          {% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.webp' %}
+            <div class="tile">
+              <img loading="lazy" src="{{ f.path | relative_url }}" alt="{{ f.name | replace: '_',' ' | replace: '-',' ' | split: '.' | first }}" />
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </section>
 
     <section id="sieraden">
       <h2 class="section">Sieraden</h2>
-      <p class="muted">Binnenkort volgt hier een kleine verzameling sieraden, gemaakt met dezelfde creatieve aandacht als de schilderijen.</p>
+      <p class="muted">Hieronder een groeiende verzameling. Er komen in de toekomst nog meer stukken bij.</p>
+      <div class="tiles" id="tiles-jewels">
+        {% assign jewels = site.static_files | where_exp: "f", "f.path contains '/sieraden/'" %}
+        {% for f in jewels %}
+          {% assign ext = f.extname | downcase %}
+          {% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.webp' %}
+            <div class="tile">
+              <img loading="lazy" src="{{ f.path | relative_url }}" alt="{{ f.name | replace: '_',' ' | replace: '-',' ' | split: '.' | first }}" />
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     </section>
 
     <section id="over">
@@ -137,8 +155,18 @@
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightboxImg');
     function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
-    const g=document.getElementById('gallery'); if(g){g.addEventListener('click', e=>{const img=e.target.closest('img');if(!img)return;toggleLightbox(true,img.currentSrc||img.src);});}
+    // Lightbox handlers
     lb.addEventListener('click', e=>{if(e.target===lb)toggleLightbox(false)});
-  </script>
-</body>
-</html>
+
+    // Lightbox click binding for any grid
+    function bindLightbox(containerId){
+      const el = document.getElementById(containerId);
+      if(!el) return;
+      el.addEventListener('click', e => {
+        const img = e.target.closest('img');
+        if(!img) return;
+        toggleLightbox(true, img.currentSrc || img.src);
+      });
+    }
+    bindLightbox('tiles-paintings');
+    bindLightbox('tiles-jewels');
