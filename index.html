@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KunstLilia – Portfolio van Lilia Guseva Dosti</title>
-  <meta name="description" content="Schilderijen en handgemaakte sieraden door Lilia Guseva Dosti. Bekijk de collectie, lees over de maker en neem contact op voor opdrachten of verkoop." />
+  <meta name="description" content="Portfolio van Lilia Guseva Dosti. Bekijk schilderijen en sieraden, en neem contact op voor meer informatie of interesse." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -31,7 +31,10 @@
     .hero p{color:var(--muted);font-size:18px;margin:0 0 18px}
     .badges{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
     .badge{background:#101216;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
-    .cover{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)} .cover .hero-image{position:relative} .cover .hero-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));pointer-events:none} .cover img{width:100%;height:100%;object-fit:cover;filter:brightness(1.18) contrast(1.03) saturate(1.08);} 
+    .cover{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+    .cover .hero-image{position:relative}
+    .cover .hero-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));pointer-events:none}
+    .cover img{width:100%;height:100%;object-fit:cover;filter:brightness(1.18) contrast(1.03) saturate(1.08);}
     h2.section{font-size:28px;margin:34px 0 14px}
     .muted{color:var(--muted)}
     .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -42,9 +45,7 @@
     @media (min-width:1040px){.gallery{columns:3}}
     .gallery figure{break-inside:avoid;margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
     .gallery figcaption{padding:10px 12px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
-    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted)}
     footer{margin:48px 0 20px;color:var(--muted);font-size:14px}
-    /* Lightbox */
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:20px}
     .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px}
     .lightbox.active{display:flex}
@@ -63,136 +64,61 @@
           <a href="#sieraden">Sieraden</a>
           <a href="#over">Over</a>
           <a href="#contact">Contact</a>
-          <a class="btn" href="#contact">Werk kopen / opdracht</a>
         </div>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <!-- HERO -->
     <section class="hero">
       <div class="hero-card">
         <h1>Schilderijen & sieraden<br/>door <span style="color:var(--brand)">Lilia Guseva Dosti</span></h1>
-        <p>Welkom! Dit is mijn portfolio waar ik een selectie van mijn werk toon. Interesse in een specifiek kunstwerk of aankoop? Bekijk de collectie of neem contact op.</p>
+        <p>Welkom op mijn portfolio. Deze website toont een persoonlijke selectie van werk — zonder commercieel doel — enkel ter inspiratie en kennismaking.</p>
         <div class="badges">
-          <span class="badge">✓ Origineel handgemaakt</span>
-          <span class="badge">✓ Verkoop beschikbaar</span>
-          <a class="pill" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+          <span class="badge">✓ Origineel werk</span>
+          <span class="badge">✓ Persoonlijke stijl</span>
         </div>
       </div>
       <div class="cover">
-        <!-- HERO: probeer eerst WebP uit asset1, anders jpg uit asset1, anders fallback afbeelding -->
         <div class="hero-image"><img src="/asset1/homepic.png" alt="KunstLilia hero"/></div>
       </div>
     </section>
 
-    <!-- SCHILDER COLLECTIE -->
     <section id="schilderijen">
-      <h2 class="section">Uitgelichte schilderijen</h2>
-      <p class="muted">Klik op een werk om te vergroten. (Afbeeldingen worden geladen uit <code>/asset1</code> en <code>/asset2</code>.)</p>
-
+      <h2 class="section">Schilderijen</h2>
+      <p class="muted">Een selectie van persoonlijke werken, gemaakt in verschillende stijlen en technieken.</p>
       <div class="gallery" id="gallery">
-        <!-- Voorbeelden: vervang bestandsnamen door jouw uploads -->
-        <figure>
-          <picture>
-            <source srcset="/asset1/paintings_1/DSC01863.webp" type="image/webp" />
-            <img src="/asset1/paintings_1/DSC01863.jpg" alt="Schilderij 1" data-cap="Acryl op doek · 40×50 cm"/>
-          </picture>
-          <figcaption>Acryl op doek · 40×50 cm</figcaption>
-        </figure>
-
-        <figure>
-          <picture>
-            <source srcset="/asset1/paintings_1/DSC01865.webp" type="image/webp" />
-            <img src="/asset1/paintings_1/DSC01865.jpg" alt="Schilderij 2" data-cap="Olie op doek · 60×80 cm"/>
-          </picture>
-          <figcaption>Olie op doek · 60×80 cm</figcaption>
-        </figure>
-
-        <figure>
-          <picture>
-            <source srcset="/asset1/paintings_1/DSC01859.webp" type="image/webp" />
-            <img src="/asset1/paintings_1/DSC01859.jpg" alt="Schilderij 3" data-cap="Gemengde techniek · 50×70 cm"/>
-          </picture>
-          <figcaption>Gemengde techniek · 50×70 cm</figcaption>
-        </figure>
-
-        <figure>
-          <picture>
-            <source srcset="/asset2/paintings_2/DSC01858.webp" type="image/webp" />
-            <img src="/asset2/paintings_2/DSC01858.jpg" alt="Schilderij 4" data-cap="Aquarel · 30×40 cm"/>
-          </picture>
-          <figcaption>Aquarel · 30×40 cm</figcaption>
-        </figure>
-
-        <figure>
-          <picture>
-            <source srcset="/asset2/paintings_2/DA68314B.webp" type="image/webp" />
-            <img src="/asset2/paintings_2/DA68314B.jpg" alt="Schilderij 5" data-cap="Acryl op doek · 40×50 cm"/>
-          </picture>
-          <figcaption>Acryl op doek · 40×50 cm</figcaption>
-        </figure>
+        <figure><img src="/asset1/paintings_1/DSC01863.jpg" alt="Schilderij 1"/></figure>
+        <figure><img src="/asset1/paintings_1/DSC01865.jpg" alt="Schilderij 2"/></figure>
+        <figure><img src="/asset1/paintings_1/DSC01859.jpg" alt="Schilderij 3"/></figure>
+        <figure><img src="/asset2/paintings_2/DSC01858.jpg" alt="Schilderij 4"/></figure>
+        <figure><img src="/asset2/paintings_2/DA68314B.jpg" alt="Schilderij 5"/></figure>
       </div>
-
-      <p style="margin-top:10px" class="muted">Meer zien? Stuur gerust een bericht met de gewenste afmeting/techniek.</p>
     </section>
 
-    <!-- SIERADEN -->
     <section id="sieraden">
       <h2 class="section">Sieraden</h2>
-      <div class="gallery">
-        <!-- Voorbeeld-items uit map /sieraden -->
-        <figure>
-          <picture>
-            <source srcset="/sieraden/ketting1.webp" type="image/webp" />
-            <img src="/sieraden/ketting1.jpg" alt="Ketting 1"/>
-          </picture>
-          <figcaption>Zilverkleurige ketting — handgemaakt</figcaption>
-        </figure>
-        <figure>
-          <picture>
-            <source srcset="/sieraden/oorbel1.webp" type="image/webp" />
-            <img src="/sieraden/oorbel1.jpg" alt="Oorbellen 1"/>
-          </picture>
-          <figcaption>Oorbellen — limited</figcaption>
-        </figure>
-      </div>
+      <p class="muted">Binnenkort volgt hier een kleine verzameling sieraden, gemaakt met dezelfde creatieve aandacht als de schilderijen.</p>
     </section>
 
-    <!-- OVER -->
     <section id="over">
-      <h2 class="section">Over Lilia</h2>
+      <h2 class="section">Over</h2>
       <div class="grid-2">
         <div class="card">
-          <p>Als kunstenares en voormalig schilder-docent bij Piezo ben ik altijd nieuwsgierig geweest naar de diepte van ware kunst. In mijn vrije tijd werk ik met verschillende technieken en materialen om gevoel en textuur tot leven te brengen. Op deze pagina toon ik een selectie van mijn schilderijen en sieraden.</p>
-          <ul class="muted" style="margin:10px 0 0;padding-left:18px">
-            <li>Technieken: acryl, olie, aquarel, mixed media</li>
-            <li>Formaten: klein (20×30) tot groot (80×100)</li>
-            <li>Beschikbaar: verkoop & exposities</li>
-          </ul>
+          <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
         </div>
         <div class="card">
-          <h3 style="margin:8px 0 6px">Tentoonstellingen & mijlpalen</h3>
-          <ul class="muted" style="margin:0;padding-left:18px">
-            <li>2025 · Portfolio gelanceerd</li>
-            <li>2019–2024 · Diverse privéopdrachten</li>
-            <li>— Vul hier je hoogtepunten aan —</li>
-          </ul>
+          <h3 style="margin:8px 0 6px">Inspiratie & achtergrond</h3>
+          <p class="muted">Ik werk met acryl, olie en aquarel. Elk werk is een momentopname van emotie en kleur. Kunst is voor mij geen product, maar een vorm van verbinding.</p>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
       <h2 class="section">Contact</h2>
       <div class="card">
-        <p class="muted">Neem gerust contact op voor aankoop, prijsindicatie of een opdracht op maat.</p>
-        <p>
-          <a class="btn" href="mailto:info@kunstlilia.nl?subject=Vraag%20over%20kunstwerk">Mail direct</a>
-          <span style="margin:0 8px">of</span>
-          <a class="btn ghost" href="#" aria-disabled="true">WhatsApp-link</a>
-        </p>
+        <p class="muted">Voor vragen, samenwerkingen of gewoon om gedachten over kunst te delen, kunt u contact opnemen via e-mail. Reacties worden persoonlijk gelezen.</p>
+        <p><a class="btn" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
       </div>
     </section>
 
@@ -201,7 +127,6 @@
     </footer>
   </main>
 
-  <!-- Lightbox minimal -->
   <div class="lightbox" id="lightbox">
     <button class="btn close" onclick="toggleLightbox(false)">Sluiten</button>
     <img id="lightboxImg" alt="Vergrote weergave"/>
@@ -211,19 +136,9 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightboxImg');
-    function toggleLightbox(open, src){
-      lb.classList.toggle('active', !!open);
-      if(open && src) lbImg.src = src;
-    }
-    const g = document.getElementById('gallery');
-    if(g){
-      g.addEventListener('click', e => {
-        const img = e.target.closest('img');
-        if(!img) return;
-        toggleLightbox(true, img.currentSrc || img.src);
-      });
-    }
-    lb.addEventListener('click', e => { if(e.target === lb) toggleLightbox(false) });
+    function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
+    const g=document.getElementById('gallery'); if(g){g.addEventListener('click', e=>{const img=e.target.closest('img');if(!img)return;toggleLightbox(true,img.currentSrc||img.src);});}
+    lb.addEventListener('click', e=>{if(e.target===lb)toggleLightbox(false)});
   </script>
 </body>
 </html>
