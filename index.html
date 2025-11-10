@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KunstLilia – Portfolio van Lilia Guseva Dosti</title>
+  <meta name="description" content="Schilderijen en handgemaakte sieraden door Lilia Guseva Dosti. Bekijk de collectie, lees over de maker en neem contact op voor opdrachten of verkoop." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e0f12; --card:#14161b; --text:#eef1f6; --muted:#9aa3b2; --brand:#d6b27d; --brand-2:#6ee7b7; --line:#222633;
+      --radius:18px; --shadow:0 10px 28px rgba(0,0,0,.35)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:var(--brand-2);text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:20px}
+    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(14,15,18,.9),rgba(14,15,18,.5));backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid var(--line)}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+    .brand .mark{width:24px;height:24px;border-radius:6px;background:conic-gradient(from 140deg, #caa96e, #f5e3b5 40%, #caa96e 70%, #8b6b36 100%);box-shadow:0 0 20px rgba(198,165,102,.5)}
+    .navlinks{display:flex;gap:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:var(--brand);color:#231b0d;font-weight:700;box-shadow:var(--shadow);border:1px solid #b39159}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:center;padding:36px 0}
+    .hero-card{background:linear-gradient(180deg,#171a20,#121419);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+    .hero h1{font-size:48px;line-height:1.08;margin:0 0 10px}
+    .hero p{color:var(--muted);font-size:18px;margin:0 0 18px}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+    .badge{background:#101216;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
+    .cover{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+    h2.section{font-size:28px;margin:34px 0 14px}
+    .muted{color:var(--muted)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s ease, border-color .15s ease}
+    .card:hover{transform:translateY(-3px);border-color:#2b3140}
+    .thumb{aspect-ratio:4/3;background:#0b0d11;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .gallery{columns:1;column-gap:16px}
+    @media (min-width:720px){.gallery{columns:2}}
+    @media (min-width:1040px){.gallery{columns:3}}
+    .gallery figure{break-inside:avoid;margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    .gallery figcaption{padding:10px 12px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted)}
+    footer{margin:48px 0 20px;color:var(--muted);font-size:14px}
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:20px}
+    .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px}
+    .lightbox.active{display:flex}
+    .close{position:absolute;top:16px;right:16px}
+    @media (max-width:980px){.hero{grid-template-columns:1fr}}
+    @media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}.hero h1{font-size:36px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand"><span class="mark"></span> <span>KunstLilia</span></div>
+        <div class="navlinks">
+          <a href="#schilderijen">Schilder collectie</a>
+          <a href="#sieraden">Sieraden</a>
+          <a href="#over">Over</a>
+          <a href="#contact">Contact</a>
+          <a class="btn" href="#contact">Werk kopen / opdracht</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Schilderijen & sieraden<br/>door <span style="color:var(--brand)">Lilia Guseva Dosti</span></h1>
+        <p>Welkom! Dit is mijn gloednieuwe portfolio waar ik een selectie van mijn werk toon. Interesse in een specifiek kunstwerk of een opdracht op maat? Bekijk de collectie of neem contact op.</p>
+        <div class="badges">
+          <span class="badge">✓ Origineel handgemaakt</span>
+          <span class="badge">✓ In opdracht mogelijk</span>
+          <a class="pill" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="cover">
+        <!-- Plaats jouw hero-afbeelding in /assets/hero.jpg -->
+        <img src="/assets/hero.jpg" alt="Hoogwaardige foto van een schilderij van KunstLilia" onerror="this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop'"/>
+      </div>
+    </section>
+
+    <!-- SCHILDER COLLECTIE -->
+    <section id="schilderijen">
+      <h2 class="section">Uitgelichte schilderijen</h2>
+      <p class="muted">Vervang de placeholders door je echte werken. Klik om te vergroten.</p>
+      <div class="gallery" id="gallery">
+        <figure>
+          <img src="/assets/paintings/DSC01863.jpg" alt="Schilderij 1" data-cap="Acryl op doek · 40×50 cm"/>
+          <figcaption>Acryl op doek · 40×50 cm</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/paintings/DSC01865.jpg" alt="Schilderij 2" data-cap="Olie op doek · 60×80 cm"/>
+          <figcaption>Olie op doek · 60×80 cm</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/paintings/DSC01859.jpg" alt="Schilderij 3" data-cap="Gemengde techniek · 50×70 cm"/>
+          <figcaption>Gemengde techniek · 50×70 cm</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/paintings/DSC01858.jpg" alt="Schilderij 4" data-cap="Aquarel · 30×40 cm"/>
+          <figcaption>Aquarel · 30×40 cm</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/paintings/DA68314B.jpg" alt="Schilderij 5" data-cap="Acryl op doek · 40×50 cm"/>
+          <figcaption>Acryl op doek · 40×50 cm</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:10px" class="muted">Meer zien? Stuur gerust een bericht met de gewenste afmeting/techniek.</p>
+    </section>
+
+    <!-- SIERADEN -->
+    <section id="sieraden">
+      <h2 class="section">Sieraden (binnenkort)</h2>
+      <div class="card">
+        <p>De sieraden-collectie wordt momenteel samengesteld. Volg Instagram voor updates of laat hieronder een bericht achter als u op de hoogte wilt blijven.</p>
+      </div>
+    </section>
+
+    <!-- OVER -->
+    <section id="over">
+      <h2 class="section">Over Lilia</h2>
+      <div class="grid-2">
+        <div class="card">
+          <p>Als kunstenares en voormalig schilder-docent bij Piezo ben ik altijd nieuwsgierig geweest naar de diepte van ware kunst. In mijn vrije tijd werk ik met verschillende technieken en materialen om gevoel en textuur tot leven te brengen. Op deze pagina toon ik een selectie van mijn schilderijen en binnenkort ook handgemaakte sieraden.</p>
+          <ul class="muted" style="margin:10px 0 0;padding-left:18px">
+            <li>Technieken: acryl, olie, aquarel, mixed media</li>
+            <li>Formaten: klein (20×30) tot groot (80×100)</li>
+            <li>Beschikbaar: verkoop & opdrachten op maat</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin:8px 0 6px">Tentoonstellingen & mijlpalen</h3>
+          <ul class="muted" style="margin:0;padding-left:18px">
+            <li>2025 · Portfolio gelanceerd</li>
+            <li>2019–2024 · Diverse privéopdrachten</li>
+            <li>— Vul hier je hoogtepunten aan —</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section">Contact</h2>
+      <div class="card">
+        <p class="muted">Neem gerust contact op voor aankoop, prijsindicatie of een opdracht op maat.</p>
+        <p>
+          <a class="btn" href="mailto:info@kunstlilia.nl?subject=Vraag%20over%20kunstwerk">Mail direct</a>
+          <span style="margin:0 8px">of</span>
+          <a class="btn ghost" href="#" aria-disabled="true">WhatsApp-link</a>
+        </p>
+        <details style="margin-top:10px">
+          <summary class="muted">Contactformulier (externe service) gebruiken?</summary>
+          <p class="muted">Koppel gratis diensten zoals <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a> of host via Netlify en gebruik <em>Netlify Forms</em>. Plaats hieronder een formulier met <code>action</code> naar de gekozen service.</p>
+        </details>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden
+    </footer>
+  </main>
+
+  <!-- Lightbox minimal -->
+  <div class="lightbox" id="lightbox">
+    <button class="btn close" onclick="toggleLightbox(false)">Sluiten</button>
+    <img id="lightboxImg" alt="Vergrote weergave"/>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    function toggleLightbox(open, src){
+      lb.classList.toggle('active', !!open);
+      if(open && src) lbImg.src = src;
+    }
+    document.getElementById('gallery').addEventListener('click', e => {
+      const img = e.target.closest('img');
+      if(!img) return;
+      toggleLightbox(true, img.src);
+    });
+    lb.addEventListener('click', e => { if(e.target === lb) toggleLightbox(false) });
+  </script>
+</body>
+</html>
