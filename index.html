@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0e0f12; --card:#14161b; --text:#eef1f6; --muted:#9aa3b2; --brand:#d6b27d; --brand-2:#6ee7b7; --line:#222633;
+      --bg:#0d1218; --card:#141922; --text:#eef2f6; --muted:#9aa6b6; --brand:#9fdaf2; --brand-2:#ff7a59; --line:#202838;
       --radius:18px; --shadow:0 10px 28px rgba(0,0,0,.35)
     }
     *{box-sizing:border-box}
@@ -21,7 +21,7 @@
     header{position:sticky;top:0;background:linear-gradient(180deg,rgba(14,15,18,.9),rgba(14,15,18,.5));backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid var(--line)}
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
-    .brand .mark{width:24px;height:24px;border-radius:6px;background:conic-gradient(from 140deg, #caa96e, #f5e3b5 40%, #caa96e 70%, #8b6b36 100%);box-shadow:0 0 20px rgba(198,165,102,.5)}
+    .brand .mark{width:24px;height:24px;border-radius:6px;background:conic-gradient(from 120deg, var(--brand), #e6f6ff 35%, var(--brand) 65%, var(--brand-2) 100%);box-shadow:0 0 20px rgba(198,165,102,.5)}
     .navlinks{display:flex;gap:18px;flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:var(--brand);color:#231b0d;font-weight:700;box-shadow:var(--shadow);border:1px solid #b39159}
     .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
@@ -31,15 +31,12 @@
     .hero p{color:var(--muted);font-size:18px;margin:0 0 18px}
     .badges{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
     .badge{background:#101216;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
-    .cover{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+    .cover{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)} .cover .hero-image{position:relative} .cover .hero-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));pointer-events:none} .cover img{width:100%;height:100%;object-fit:cover;filter:brightness(1.18) contrast(1.03) saturate(1.08);} 
     h2.section{font-size:28px;margin:34px 0 14px}
     .muted{color:var(--muted)}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
     .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s ease, border-color .15s ease}
     .card:hover{transform:translateY(-3px);border-color:#2b3140}
-    .thumb{aspect-ratio:4/3;background:#0b0d11;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-    .thumb img{width:100%;height:100%;object-fit:cover}
     .gallery{columns:1;column-gap:16px}
     @media (min-width:720px){.gallery{columns:2}}
     @media (min-width:1040px){.gallery{columns:3}}
@@ -53,7 +50,7 @@
     .lightbox.active{display:flex}
     .close{position:absolute;top:16px;right:16px}
     @media (max-width:980px){.hero{grid-template-columns:1fr}}
-    @media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}.hero h1{font-size:36px}}
+    @media (max-width:640px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:36px}}
   </style>
 </head>
 <body>
@@ -77,53 +74,89 @@
     <section class="hero">
       <div class="hero-card">
         <h1>Schilderijen & sieraden<br/>door <span style="color:var(--brand)">Lilia Guseva Dosti</span></h1>
-        <p>Welkom! Dit is mijn gloednieuwe portfolio waar ik een selectie van mijn werk toon. Interesse in een specifiek kunstwerk of een opdracht op maat? Bekijk de collectie of neem contact op.</p>
+        <p>Welkom! Dit is mijn portfolio waar ik een selectie van mijn werk toon. Interesse in een specifiek kunstwerk of aankoop? Bekijk de collectie of neem contact op.</p>
         <div class="badges">
           <span class="badge">✓ Origineel handgemaakt</span>
-          <span class="badge">✓ In opdracht mogelijk</span>
+          <span class="badge">✓ Verkoop beschikbaar</span>
           <a class="pill" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
       <div class="cover">
-        <!-- Plaats jouw hero-afbeelding in /assets/hero.jpg -->
-        <img src="/assets/hero.jpg" alt="Hoogwaardige foto van een schilderij van KunstLilia" onerror="this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop'"/>
+        <!-- HERO: probeer eerst WebP uit asset1, anders jpg uit asset1, anders fallback afbeelding -->
+        <div class="hero-image"><img src="/asset1/homepic.png" alt="KunstLilia hero"/></div>
       </div>
     </section>
 
     <!-- SCHILDER COLLECTIE -->
     <section id="schilderijen">
       <h2 class="section">Uitgelichte schilderijen</h2>
-      <p class="muted">Vervang de placeholders door je echte werken. Klik om te vergroten.</p>
+      <p class="muted">Klik op een werk om te vergroten. (Afbeeldingen worden geladen uit <code>/asset1</code> en <code>/asset2</code>.)</p>
+
       <div class="gallery" id="gallery">
+        <!-- Voorbeelden: vervang bestandsnamen door jouw uploads -->
         <figure>
-          <img src="/assets/paintings/DSC01863.jpg" alt="Schilderij 1" data-cap="Acryl op doek · 40×50 cm"/>
+          <picture>
+            <source srcset="/asset1/paintings_1/DSC01863.webp" type="image/webp" />
+            <img src="/asset1/paintings_1/DSC01863.jpg" alt="Schilderij 1" data-cap="Acryl op doek · 40×50 cm"/>
+          </picture>
           <figcaption>Acryl op doek · 40×50 cm</figcaption>
         </figure>
+
         <figure>
-          <img src="/assets/paintings/DSC01865.jpg" alt="Schilderij 2" data-cap="Olie op doek · 60×80 cm"/>
+          <picture>
+            <source srcset="/asset1/paintings_1/DSC01865.webp" type="image/webp" />
+            <img src="/asset1/paintings_1/DSC01865.jpg" alt="Schilderij 2" data-cap="Olie op doek · 60×80 cm"/>
+          </picture>
           <figcaption>Olie op doek · 60×80 cm</figcaption>
         </figure>
+
         <figure>
-          <img src="/assets/paintings/DSC01859.jpg" alt="Schilderij 3" data-cap="Gemengde techniek · 50×70 cm"/>
+          <picture>
+            <source srcset="/asset1/paintings_1/DSC01859.webp" type="image/webp" />
+            <img src="/asset1/paintings_1/DSC01859.jpg" alt="Schilderij 3" data-cap="Gemengde techniek · 50×70 cm"/>
+          </picture>
           <figcaption>Gemengde techniek · 50×70 cm</figcaption>
         </figure>
+
         <figure>
-          <img src="/assets/paintings/DSC01858.jpg" alt="Schilderij 4" data-cap="Aquarel · 30×40 cm"/>
+          <picture>
+            <source srcset="/asset2/paintings_2/DSC01858.webp" type="image/webp" />
+            <img src="/asset2/paintings_2/DSC01858.jpg" alt="Schilderij 4" data-cap="Aquarel · 30×40 cm"/>
+          </picture>
           <figcaption>Aquarel · 30×40 cm</figcaption>
         </figure>
+
         <figure>
-          <img src="/assets/paintings/DA68314B.jpg" alt="Schilderij 5" data-cap="Acryl op doek · 40×50 cm"/>
+          <picture>
+            <source srcset="/asset2/paintings_2/DA68314B.webp" type="image/webp" />
+            <img src="/asset2/paintings_2/DA68314B.jpg" alt="Schilderij 5" data-cap="Acryl op doek · 40×50 cm"/>
+          </picture>
           <figcaption>Acryl op doek · 40×50 cm</figcaption>
         </figure>
       </div>
+
       <p style="margin-top:10px" class="muted">Meer zien? Stuur gerust een bericht met de gewenste afmeting/techniek.</p>
     </section>
 
     <!-- SIERADEN -->
     <section id="sieraden">
-      <h2 class="section">Sieraden (binnenkort)</h2>
-      <div class="card">
-        <p>De sieraden-collectie wordt momenteel samengesteld. Volg Instagram voor updates of laat hieronder een bericht achter als u op de hoogte wilt blijven.</p>
+      <h2 class="section">Sieraden</h2>
+      <div class="gallery">
+        <!-- Voorbeeld-items uit map /sieraden -->
+        <figure>
+          <picture>
+            <source srcset="/sieraden/ketting1.webp" type="image/webp" />
+            <img src="/sieraden/ketting1.jpg" alt="Ketting 1"/>
+          </picture>
+          <figcaption>Zilverkleurige ketting — handgemaakt</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source srcset="/sieraden/oorbel1.webp" type="image/webp" />
+            <img src="/sieraden/oorbel1.jpg" alt="Oorbellen 1"/>
+          </picture>
+          <figcaption>Oorbellen — limited</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -132,11 +165,11 @@
       <h2 class="section">Over Lilia</h2>
       <div class="grid-2">
         <div class="card">
-          <p>Als kunstenares en voormalig schilder-docent bij Piezo ben ik altijd nieuwsgierig geweest naar de diepte van ware kunst. In mijn vrije tijd werk ik met verschillende technieken en materialen om gevoel en textuur tot leven te brengen. Op deze pagina toon ik een selectie van mijn schilderijen en binnenkort ook handgemaakte sieraden.</p>
+          <p>Als kunstenares en voormalig schilder-docent bij Piezo ben ik altijd nieuwsgierig geweest naar de diepte van ware kunst. In mijn vrije tijd werk ik met verschillende technieken en materialen om gevoel en textuur tot leven te brengen. Op deze pagina toon ik een selectie van mijn schilderijen en sieraden.</p>
           <ul class="muted" style="margin:10px 0 0;padding-left:18px">
             <li>Technieken: acryl, olie, aquarel, mixed media</li>
             <li>Formaten: klein (20×30) tot groot (80×100)</li>
-            <li>Beschikbaar: verkoop & opdrachten op maat</li>
+            <li>Beschikbaar: verkoop & exposities</li>
           </ul>
         </div>
         <div class="card">
@@ -160,10 +193,6 @@
           <span style="margin:0 8px">of</span>
           <a class="btn ghost" href="#" aria-disabled="true">WhatsApp-link</a>
         </p>
-        <details style="margin-top:10px">
-          <summary class="muted">Contactformulier (externe service) gebruiken?</summary>
-          <p class="muted">Koppel gratis diensten zoals <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a> of host via Netlify en gebruik <em>Netlify Forms</em>. Plaats hieronder een formulier met <code>action</code> naar de gekozen service.</p>
-        </details>
       </div>
     </section>
 
@@ -186,11 +215,14 @@
       lb.classList.toggle('active', !!open);
       if(open && src) lbImg.src = src;
     }
-    document.getElementById('gallery').addEventListener('click', e => {
-      const img = e.target.closest('img');
-      if(!img) return;
-      toggleLightbox(true, img.src);
-    });
+    const g = document.getElementById('gallery');
+    if(g){
+      g.addEventListener('click', e => {
+        const img = e.target.closest('img');
+        if(!img) return;
+        toggleLightbox(true, img.currentSrc || img.src);
+      });
+    }
     lb.addEventListener('click', e => { if(e.target === lb) toggleLightbox(false) });
   </script>
 </body>
