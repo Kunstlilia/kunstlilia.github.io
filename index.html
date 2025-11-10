@@ -128,70 +128,55 @@
   </div>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
-    // Lightbox handlers
-    lb.addEventListener('click', e=>{if(e.target===lb)toggleLightbox(false)});
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
+  lb.addEventListener('click', e=>{ if(e.target===lb) toggleLightbox(false) });
 
-    // Lightbox click binding for any grid
-    function bindLightbox(containerId){
-      const el = document.getElementById(containerId);
-      if(!el) return;
-      el.addEventListener('click', e => {
-        const img = e.target.closest('img');
-        if(!img) return;
-        toggleLightbox(true, img.currentSrc || img.src);
-      });
+  function bindLightbox(containerId){
+    const el = document.getElementById(containerId);
+    if(!el) return;
+    el.addEventListener('click', e => {
+      const img = e.target.closest('img');
+      if(!img) return;
+      toggleLightbox(true, img.currentSrc || img.src);
+    });
+  }
+
+  // ===== Lees manifest van dezelfde site (CSP-vriendelijk) =====
+  async function loadManifest(){
+    try {
+      const r = await fetch('/images.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error('manifest not found');
+      return await r.json();
+    } catch (e) {
+      console.warn('manifest load error:', e);
+      return { paintings: [], jewels: [] };
     }
+  }
 
-    // ===== Auto-load images via GitHub API (no Jekyll required) =====
-    const GH_OWNER = 'Kunstlilia';
-    const GH_REPO  = 'kunstlilia.github.io';
-    const GH_API   = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
+  function renderTiles(containerId, paths){
+    const root = document.getElementById(containerId);
+    if(!root) return;
+    // stabiele sortering
+    paths.sort((a,b)=> a.localeCompare(b, undefined, {numeric:true}));
+    paths.forEach(p => {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+      const img = new Image();
+      img.loading = 'lazy';
+      img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
+      img.src = '/' + p.replace(/^\/+/, ''); // relative → absolute pad
+      tile.appendChild(img);
+      root.appendChild(tile);
+    });
+    bindLightbox(containerId);
+  }
 
-    async function listImages(dir){
-      try{
-        const r = await fetch(GH_API + dir, { headers: { 'Accept':'application/vnd.github+json' }});
-        if(!r.ok) return [];
-        const data = await r.json();
-        return (Array.isArray(data)? data:[])
-          .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
-          .map(f => f.download_url); // use raw file URL to avoid path issues
-      }catch(e){ console.warn('listImages error', e); return []; }
-    }});
-        if(!r.ok) return [];
-        const data = await r.json();
-        return (Array.isArray(data)? data:[])
-          .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
-          .map(f => f.path);
-      }catch(e){ return []; }
-    }
-
-    function renderTiles(containerId, paths){
-      const root = document.getElementById(containerId);
-      if(!root) return;
-      // sort by name for stable order
-      paths.sort((a,b)=> a.localeCompare(b, undefined, {numeric:true}));
-      paths.forEach(p => {
-        const tile = document.createElement('div');
-        tile.className = 'tile';
-        const img = new Image();
-        img.loading = 'lazy';
-        img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
-        img.src = p; // use raw.githubusercontent.com URL
-        tile.appendChild(img);
-        root.appendChild(tile);
-      });
-      bindLightbox(containerId);
-    }
-
-    (async ()=>{
-      const a1 = await listImages('asset1');
-      const a2 = await listImages('asset2');
-      renderTiles('tiles-paintings', [...a1, ...a2]);
-
-      const jewels = await listImages('sieraden');
-      renderTiles('tiles-jewels', jewels);
-    })();
+  (async () => {
+    const m = await loadManifest();
+    renderTiles('tiles-paintings', m.paintings || []);
+    renderTiles('tiles-jewels',    m.jewels    || []);
+  })();
+</script>

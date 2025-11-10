@@ -1,0 +1,33 @@
+name: Generate images manifest
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate images.json
+        run: |
+          set -e
+          # verzamel alle afbeeldingen (case-insensitive), sorteer natuurlijk
+          PAINTINGS=$( (find asset1 asset2 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) 2>/dev/null | sort -V) || true )
+          JEWELS=$( (find sieraden      -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) 2>/dev/null | sort -V) || true )
+
+          # maak JSON arrays met jq
+          jq -n \
+            --argjson paintings "$(printf '%s\n' "$PAINTINGS" | jq -R -s -c 'split("\n") | map(select(length>0))')" \
+            --argjson jewels    "$(printf '%s\n' "$JEWELS"    | jq -R -s -c 'split("\n") | map(select(length>0))')" \
+            '{"paintings":$paintings,"jewels":$jewels}' > images.json
+
+      - name: Commit and push images.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images.json
+          git commit -m "Update images.json [skip ci]" || echo "No changes"
+          git push
