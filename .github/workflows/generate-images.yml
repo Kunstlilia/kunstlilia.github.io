@@ -1,5 +1,4 @@
 name: Generate images manifest
-
 on:
   push:
     branches: [ "main" ]
@@ -14,11 +13,8 @@ jobs:
       - name: Generate images.json
         run: |
           set -e
-          # verzamel alle afbeeldingen (case-insensitive), sorteer natuurlijk
           PAINTINGS=$( (find asset1 asset2 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) 2>/dev/null | sort -V) || true )
           JEWELS=$( (find sieraden      -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) 2>/dev/null | sort -V) || true )
-
-          # maak JSON arrays met jq
           jq -n \
             --argjson paintings "$(printf '%s\n' "$PAINTINGS" | jq -R -s -c 'split("\n") | map(select(length>0))')" \
             --argjson jewels    "$(printf '%s\n' "$JEWELS"    | jq -R -s -c 'split("\n") | map(select(length>0))')" \
