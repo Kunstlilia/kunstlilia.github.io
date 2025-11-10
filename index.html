@@ -168,5 +168,46 @@ layout: null
         toggleLightbox(true, img.currentSrc || img.src);
       });
     }
-    bindLightbox('tiles-paintings');
-    bindLightbox('tiles-jewels');
+
+    // ===== Auto-load images via GitHub API (no Jekyll required) =====
+    const GH_OWNER = 'Kunstlilia';
+    const GH_REPO  = 'kunstlilia.github.io';
+    const GH_API   = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
+
+    async function listImages(dir){
+      try{
+        const r = await fetch(GH_API + dir, { headers: { 'Accept':'application/vnd.github+json' }});
+        if(!r.ok) return [];
+        const data = await r.json();
+        return (Array.isArray(data)? data:[])
+          .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
+          .map(f => f.path);
+      }catch(e){ return []; }
+    }
+
+    function renderTiles(containerId, paths){
+      const root = document.getElementById(containerId);
+      if(!root) return;
+      // sort by name for stable order
+      paths.sort((a,b)=> a.localeCompare(b, undefined, {numeric:true}));
+      paths.forEach(p => {
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        const img = new Image();
+        img.loading = 'lazy';
+        img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
+        img.src = '/' + p; // serve directly from Pages
+        tile.appendChild(img);
+        root.appendChild(tile);
+      });
+      bindLightbox(containerId);
+    }
+
+    (async ()=>{
+      const a1 = await listImages('asset1');
+      const a2 = await listImages('asset2');
+      renderTiles('tiles-paintings', [...a1, ...a2]);
+
+      const jewels = await listImages('sieraden');
+      renderTiles('tiles-jewels', jewels);
+    })();
