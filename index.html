@@ -158,6 +158,13 @@
         const data = await r.json();
         return (Array.isArray(data)? data:[])
           .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
+          .map(f => f.download_url); // use raw file URL to avoid path issues
+      }catch(e){ console.warn('listImages error', e); return []; }
+    }});
+        if(!r.ok) return [];
+        const data = await r.json();
+        return (Array.isArray(data)? data:[])
+          .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
           .map(f => f.path);
       }catch(e){ return []; }
     }
@@ -173,7 +180,7 @@
         const img = new Image();
         img.loading = 'lazy';
         img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
-        img.src = '/' + p; // serve directly from Pages
+        img.src = p; // use raw.githubusercontent.com URL
         tile.appendChild(img);
         root.appendChild(tile);
       });
