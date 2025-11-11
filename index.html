@@ -12,14 +12,10 @@
   <style>
     :root{
       /* palet */
-      --bg:#0f1430;         /* donker nachtblauw */
+      --bg:#0f1430;
       --bg-2:#1a1f45;
       --card:#161b3a;
-      --accent-1:#DAB6FC;   /* lila */
       --accent-2:#BBADFF;
-      --accent-3:#9FA0FF;
-      --accent-4:#8E94F2;
-      --accent-5:#8895B3;
       --text:#ffffff;
       --muted:#dfe4ffcc;
       --line:#272e63;
@@ -32,24 +28,23 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
     img{max-width:100%;display:block}
-
-    .container{max-width:1200px;margin:0 auto;padding:20px}
     a{color:var(--accent-2);text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:20px}
 
-    /* Header + nav */
+    /* HEADER */
     header{
       position:sticky;top:0;z-index:50;
       background:linear-gradient(180deg,rgba(8,10,26,.95),rgba(8,10,26,.65));
-      backdrop-filter:saturate(1.2) blur(8px);
+      backdrop-filter:blur(8px);
       border-bottom:1px solid var(--line);
     }
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
     .mark{width:28px;height:28px;border-radius:12px;background:
       radial-gradient(120% 90% at 20% 25%, #fff, rgba(255,255,255,.3) 30%, transparent 60%),
-      radial-gradient(90% 70% at 80% 80%, var(--accent-1), transparent 60%),
-      radial-gradient(90% 60% at 30% 80%, var(--accent-4), transparent 60%),
-      linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      radial-gradient(90% 70% at 80% 80%, #DAB6FC, transparent 60%),
+      radial-gradient(90% 60% at 30% 80%, #8E94F2, transparent 60%),
+      linear-gradient(135deg, #BBADFF, #9FA0FF);
       box-shadow:0 0 20px rgba(159,160,255,.55), inset 0 0 18px rgba(255,255,255,.35);
     }
 
@@ -76,54 +71,52 @@
     }
     .nav-pop.show{display:flex}
 
-    @media (max-width:860px){
-      .navlinks{display:none}
-      .hamb{display:flex}
-    }
+    @media (max-width:860px){ .navlinks{display:none} .hamb{display:flex} }
 
-    /* HERO --------------------------------------------------- */
+    /* HERO – helder beeld, geen balken, wel tekst-outline */
     .hero-wrap{position:relative;margin-top:16px}
     .hero{
       position:relative;overflow:hidden;border-radius:28px;border:1px solid var(--line);
-      min-height:460px;background:#0b0f26;box-shadow:var(--shadow)
+      min-height:520px;background:#0b0f26;box-shadow:var(--shadow)
     }
-    /* animated layers */
-    .layer{position:absolute;inset:0;background-size:cover;background-position:center;will-change:transform,background-position}
-    .layer.layer1{
+    .hero::before{
+      /* 1 duidelijke achtergrond met alle kleuren zichtbaar */
+      content:"";position:absolute;inset:0;
       background-image:url('/asset1/homepic.png');
-      opacity:.9; animation:drift1 14s ease-in-out infinite alternate;
-      transform:translate3d(-2%, -1%, 0) scale(1.05);
+      background-size:cover;background-position:center;
+      transform:scale(1.06); /* subtiele zoom */
+      animation:heroZoom 32s ease-in-out infinite alternate;
     }
-    .layer.layer2{
-      background-image:url('/asset1/homepic.png');
-      opacity:.55; filter:contrast(1.05) saturate(1.08) brightness(1.06);
-      animation:drift2 28s ease-in-out infinite alternate;
-      background-position:48% 50%; transform:scale(1.03);
+    @keyframes heroZoom{
+      from{transform:scale(1.03) translate3d(-0.5%, -0.5%,0)}
+      to  {transform:scale(1.08) translate3d(0.5%, 0.5%,0)}
     }
-    .layer.layer3{
-      background:
-        radial-gradient(120% 90% at 50% 40%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(90% 60% at 80% 60%, rgba(160,180,255,.08), transparent 60%),
-        radial-gradient(80% 60% at 20% 70%, rgba(255,180,220,.08), transparent 60%);
-      opacity:.45; mix-blend-mode:soft-light; animation:drift3 36s ease-in-out infinite alternate;
-    }
-    @keyframes drift1{from{transform:translate3d(-2%,-1%,0) scale(1.05)} to{transform:translate3d(2%,1.2%,0) scale(1.05)}}
-    @keyframes drift2{from{background-position:46% 50%} to{background-position:54% 52%}}
-    @keyframes drift3{from{transform:translate3d(-1.2%,.8%,0)} to{transform:translate3d(1.2%,-.8%,0)}}
 
     .hero-inner{
       position:relative;z-index:2;height:100%;
-      display:grid;grid-template-rows:auto 1fr auto;gap:18px;padding:28px
+      display:grid;grid-template-rows:auto 1fr auto;gap:22px;padding:26px
     }
 
-    /* leesbare bubbles */
-    .hero-bubble{
-      display:inline-block;background:rgba(0,0,0,.36);border:3px solid #000;border-radius:26px;
-      padding:14px 18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05), 0 10px 28px rgba(0,0,0,.28);
-      backdrop-filter:blur(2px); color:#fff
+    /* TEKST-OUTLINE (semi-transparant zwart) */
+    .stroke-strong{
+      color:#fff;
+      -webkit-text-stroke: 2px rgba(0,0,0,.55);
+      paint-order: stroke fill;
+      text-shadow:
+        0 0 2px rgba(0,0,0,.55),
+        0 2px 6px rgba(0,0,0,.45),
+        0 0 10px rgba(0,0,0,.25);
     }
-    .hero-bubble *{color:#fff}
-    .hero-title{margin:0;line-height:1.03;font-size: clamp(36px, 6.2vw, 64px);}
+    .stroke-body{
+      color:#fff;
+      -webkit-text-stroke: 1px rgba(0,0,0,.45);
+      paint-order: stroke fill;
+      text-shadow:
+        0 1px 3px rgba(0,0,0,.5),
+        0 0 2px rgba(0,0,0,.45);
+    }
+
+    .hero-title{margin:0;line-height:1.03;font-size: clamp(38px, 6.2vw, 64px)}
     .badges{display:flex;gap:10px;flex-wrap:wrap}
     .badge{background:#10142a;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
 
@@ -191,42 +184,33 @@
 
   <main class="container">
 
-    <!-- HERO -------------------------------------------------->
+    <!-- HERO -->
     <section class="hero-wrap" aria-label="Intro">
       <div class="hero">
-        <div class="layer layer1"></div>
-        <div class="layer layer2"></div>
-        <div class="layer layer3"></div>
-
         <div class="hero-inner">
-          <div class="hero-topline">
-            <div class="hero-bubble">
-              <h1 class="hero-title">
-                schilderijen &<br><span style="color:#E9E2FF">sieraden</span><br>
-                Lilia Guseva Dosti
-              </h1>
-            </div>
+          <div>
+            <h1 class="hero-title stroke-strong">
+              schilderijen &<br>sieraden<br>
+              Lilia Guseva Dosti
+            </h1>
           </div>
 
-          <div></div><!-- midden vrij voor animatie -->
+          <div></div><!-- ruimte voor het beeld -->
 
-          <div class="hero-bottomline">
-            <div class="hero-bubble">
-              <p style="margin:0 0 10px;">
-                Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel —
-                ter inspiratie en kennismaking.
-              </p>
-              <div class="badges">
-                <span class="badge">✓ Origineel werk</span>
-                <span class="badge">✓ Persoonlijke stijl</span>
-              </div>
+          <div>
+            <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:900px;margin:0 0 10px;">
+              Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
+            </p>
+            <div class="badges">
+              <span class="badge">✓ Origineel werk</span>
+              <span class="badge">✓ Persoonlijke stijl</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Schilderijen ----------------------------------------->
+    <!-- Schilderijen -->
     <section id="schilderijen" style="margin-top:30px">
       <h2 class="section">Schilderijen</h2>
       <p class="muted">Filter op type. (Acryl uit <code>asset1</code>, Olie uit <code>asset2</code>.)</p>
@@ -241,7 +225,7 @@
       </div>
     </section>
 
-    <!-- Sieraden --------------------------------------------->
+    <!-- Sieraden -->
     <section id="sieraden" style="margin-top:34px">
       <h2 class="section">Sieraden</h2>
       <p class="muted">Een kleine verzameling sieraden. Er komen later meer stukken bij.</p>
@@ -250,7 +234,7 @@
       </div>
     </section>
 
-    <!-- Over ------------------------------------------------->
+    <!-- Over -->
     <section id="over" style="margin-top:34px">
       <h2 class="section">Over</h2>
       <div class="card">
@@ -258,7 +242,7 @@
       </div>
     </section>
 
-    <!-- Contact ---------------------------------------------->
+    <!-- Contact -->
     <section id="contact" style="margin-top:34px">
       <h2 class="section">Contact</h2>
       <div class="card">
@@ -290,7 +274,6 @@
         const r = await fetch('/images.json', {cache:'no-store'});
         if (r.ok) return await r.json();
       } catch {}
-      // Fallback: lees mappen via GitHub API
       const GH = 'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
       const get = async (p) => {
         try {
