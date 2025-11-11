@@ -5,26 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KunstLilia – Portfolio van Lilia Guseva Dosti</title>
   <meta name="description" content="Portfolio van Lilia Guseva Dosti. Bekijk schilderijen en sieraden, en neem contact op voor meer informatie of interesse.">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    /* ==== Thema / kleuren ==== */
+    /* ===== Thema op basis van jouw palet ===== */
     :root{
-      --bg:#0b1020;           /* dieper nachtblauw */
-      --bg-soft:#0e152c;
-      --card:#141b2e;
-      --text:#eef2f6;
-      --muted:#9aa6b6;
-      --brand:#9fdaf2;        /* zacht ijsblauw */
-      --accent:#ffa873;       /* perzik-oranje (hover/accent) */
-      --chip:#1f2740;         /* nav pill bg */
-      --chip-hover:#293257;   /* nav pill hover */
-      --line:#22304b;
+      /* Palette (jouw kleuren) */
+      --lav1:#DAB6FC; --lav2:#BBADFF; --lav3:#9FA0FF; --lav4:#8E94F2; --lav5:#8895B3;
+
+      /* Dark theme met lavendelglow */
+      --bg:#0f1122; /* basis donker */
+      --bg-soft:#141633;
+      --card:#171a3a;
+      --text:#f1f2fb;
+      --muted:#c7c9e6;
+
+      --brand: var(--lav3); /* knoppen */
+      --accent: var(--lav1); /* hover/accent */
+      --chip:#1f2350;       /* nav pills bg */
+      --chip-hover:#272b61;
+
+      --line:#2c3173;
       --radius:18px;
-      --shadow:0 10px 28px rgba(0,0,0,.35)
+      --shadow:0 12px 32px rgba(0,0,0,.38);
     }
 
     *{box-sizing:border-box}
@@ -32,58 +37,52 @@
       margin:0;padding:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
-      /* zachte gloed in de achtergrond */
       background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(86,127,194,.18), transparent 60%),
-        radial-gradient(1000px 500px at 90% 10%, rgba(255,168,115,.12), transparent 60%),
+        radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--lav2) 30%, transparent), transparent 60%),
+        radial-gradient(900px 500px at 95% 0%, color-mix(in oklab, var(--lav4) 25%, transparent), transparent 60%),
+        radial-gradient(1200px 800px at 50% 100%, color-mix(in oklab, var(--lav5) 18%, transparent), transparent 70%),
         var(--bg);
     }
     a{color:var(--accent);text-decoration:none}
     img{max-width:100%;display:block}
     .container{max-width:1200px;margin:0 auto;padding:20px}
 
-    /* ==== Header / navigatie ==== */
+    /* ===== Header / nav ===== */
     header{
       position:sticky;top:0;z-index:10;
-      background:linear-gradient(180deg,rgba(10,14,28,.9),rgba(10,14,28,.6));
-      backdrop-filter:blur(8px);
+      background:linear-gradient(180deg,rgba(10,12,30,.9),rgba(10,12,30,.6));
+      backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line)
     }
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;position:relative}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
 
-    /* Nieuwe “paint-blob” mark (SVG) */
+    /* “Paint-blob” mark */
     .mark{
       width:28px;height:28px;border-radius:50%;
       background:
-        radial-gradient(140% 140% at 20% 20%, #a9e6ff 0 40%, transparent 41%),
-        radial-gradient(120% 120% at 80% 35%, #ffa873 0 38%, transparent 39%),
-        radial-gradient(110% 110% at 50% 80%, #72b7ff 0 42%, transparent 43%),
-        #6db4f5;
-      box-shadow:0 0 22px rgba(159,218,242,.45);
+        radial-gradient(135% 135% at 20% 20%, var(--lav1) 0 42%, transparent 43%),
+        radial-gradient(120% 120% at 80% 35%, var(--lav3) 0 40%, transparent 41%),
+        radial-gradient(110% 110% at 50% 85%, var(--lav4) 0 44%, transparent 45%),
+        var(--lav2);
+      box-shadow:0 0 22px color-mix(in oklab, var(--lav1) 35%, transparent);
       position:relative;overflow:hidden;
     }
     .mark::after{
-      content:"";
-      position:absolute;inset:-20%;
-      background:conic-gradient(from 120deg,#9fdaf2,#e6f6ff,#9fdaf2,#ffa873,#9fdaf2);
-      opacity:.45;mix-blend-mode:overlay;
-      animation:swirl 8s linear infinite;
+      content:"";position:absolute;inset:-20%;
+      background:conic-gradient(from 100deg,var(--lav1),var(--lav2),var(--lav3),var(--lav4),var(--lav5),var(--lav1));
+      opacity:.45;mix-blend-mode:overlay;animation:swirl 9s linear infinite;
     }
     @keyframes swirl {to{transform:rotate(360deg)}}
 
-    /* Nav links als afgeronde pills */
+    /* Navlinks als ronde pills */
     .navlinks{display:flex;gap:10px;flex-wrap:wrap}
     .navlinks a{
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:999px;
-      background:var(--chip);
-      border:1px solid var(--line);
-      color:#e9edf6;
-      transition:transform .15s ease, background .15s ease, border-color .15s ease, color .15s ease;
+      display:inline-block;padding:10px 14px;border-radius:999px;
+      background:var(--chip);border:1px solid var(--line);color:#eef;
+      transition:transform .15s, background .15s, border-color .15s, color .15s;
     }
-    .navlinks a:hover{background:var(--chip-hover);border-color:#2f3b5e;color:#fff;transform:translateY(-1px)}
+    .navlinks a:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 40%, var(--line));color:#fff;transform:translateY(-1px)}
     .menu-toggle{
       display:none;align-items:center;gap:8px;padding:10px 12px;
       border:1px solid var(--line);border-radius:12px;background:var(--chip);color:var(--text);cursor:pointer
@@ -102,59 +101,89 @@
       nav.open .navlinks{display:flex}
       .navlinks{
         position:absolute;top:100%;left:0;right:0;margin-top:8px;
-        background:var(--card);border:1px solid var(--line);border-radius:14px;
-        box-shadow:var(--shadow);flex-direction:column;gap:6px;padding:10px 12px;z-index:20
+        background:linear-gradient(180deg,var(--card), color-mix(in oklab,var(--card) 80%, black));
+        border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+        flex-direction:column;gap:6px;padding:10px 12px;z-index:20
       }
       .navlinks a{padding:12px 14px}
       nav{z-index:21}
     }
 
-    /* ==== Hero ==== */
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:center;padding:36px 0}
-    .hero-card{background:linear-gradient(180deg,#161c30,#12182b);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
-    .hero h1{font-size:48px;line-height:1.08;margin:0 0 10px}
-    .hero p{color:var(--muted);font-size:18px;margin:0 0 18px}
-    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
-    .badge{background:#101826;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
-    .cover{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
-    .cover .hero-image{position:relative}
-    .cover .hero-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));pointer-events:none}
-    .cover img{width:100%;height:100%;object-fit:cover;filter:brightness(1.15) contrast(1.04) saturate(1.08)}
+    /* ===== Cinema hero ===== */
+    .hero-cinema{
+      position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);
+      min-height:56vh; /* cinema gevoel */
+      background: center/cover no-repeat url('/asset1/homepic.png');
+      box-shadow:var(--shadow);
+    }
+    /* subtiele overlay voor leesbaarheid */
+    .hero-cinema::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg, rgba(15,17,34,.72) 0 55%, rgba(15,17,34,.25) 65%, rgba(15,17,34,.05) 100%);
+      pointer-events:none;
+    }
+    .hero-card{
+      position:absolute;left:28px;top:28px;max-width:min(560px,90%);
+      background:color-mix(in oklab, var(--bg-soft) 70%, transparent);
+      border:1px solid var(--line);border-radius:16px;padding:24px 22px;backdrop-filter:blur(6px);
+    }
+    .hero-card h1{margin:0 0 10px;font-size:46px;line-height:1.06}
+    .hero-card p{margin:0 0 14px;color:var(--muted);font-size:18px}
+    .badges{display:flex;gap:10px;flex-wrap:wrap}
+    .badge{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
 
+    @media (max-width:720px){
+      .hero-card{left:16px;right:16px;max-width:unset}
+      .hero-card h1{font-size:34px}
+    }
+
+    /* ===== Kaarten / grids ===== */
     h2.section{font-size:28px;margin:34px 0 14px}
     .muted{color:var(--muted)}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s ease, border-color .15s ease}
-    .card:hover{transform:translateY(-3px);border-color:#2b3656}
+    .card:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line))}
 
-    .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    /* Scrollbare schilderijenweergave */
+    .tiles-scroll{
+      max-height:75vh; /* eigen viewport */
+      overflow:auto;border:1px solid var(--line);border-radius:14px;
+      background:linear-gradient(180deg,color-mix(in oklab,var(--card) 90%, black), var(--card));
+      padding:14px;margin-top:10px;
+    }
+    .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
     .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .15s ease,border-color .15s ease}
-    .tile:hover{transform:translateY(-3px);border-color:#2b3656}
+    .tile:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav4) 35%, var(--line))}
     .tile img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* Filter chips */
-    .filters{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+    /* Mooie chips (filters) */
+    .filters{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 12px}
     .chip{
       padding:8px 12px;border-radius:999px;border:1px solid var(--line);
-      background:var(--chip);color:#e9edf6;cursor:pointer;user-select:none;
+      background:var(--chip);color:#eef;cursor:pointer;user-select:none;
       transition:background .15s,border-color .15s,transform .15s;
     }
-    .chip:hover{background:var(--chip-hover);border-color:#2f3b5e;transform:translateY(-1px)}
-    .chip.active{background:linear-gradient(180deg,#2a3c65,#203356);border-color:#3f4f7c;color:#fff;box-shadow:0 6px 18px rgba(47,77,130,.25)}
+    .chip:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line));transform:translateY(-1px)}
+    .chip.active{background:linear-gradient(180deg, color-mix(in oklab,var(--lav3) 20%, var(--chip)), var(--chip-hover));border-color:color-mix(in oklab,var(--lav3) 55%, var(--line));color:#fff;box-shadow:0 6px 18px rgba(74,86,180,.25)}
+
+    /* Scrollbar styling (webkit) */
+    .tiles-scroll::-webkit-scrollbar{width:10px}
+    .tiles-scroll::-webkit-scrollbar-track{background:transparent}
+    .tiles-scroll::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--chip-hover) 70%, black);border-radius:10px}
+    .tiles-scroll::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--chip-hover) 85%, black)}
 
     footer{margin:48px 0 20px;color:var(--muted);font-size:14px}
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:20px}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px}
     .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px}
     .lightbox.active{display:flex}
     .close{position:absolute;top:16px;right:16px}
-    @media (max-width:980px){.hero{grid-template-columns:1fr}}
-    @media (max-width:640px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:36px}}
 
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
-  <!-- ===== Header / Nav ===== -->
+  <!-- ===== Header ===== -->
   <header>
     <div class="container">
       <nav id="site-nav">
@@ -175,36 +204,33 @@
   </header>
 
   <main class="container">
-    <!-- ===== Hero ===== -->
-    <section class="hero">
+    <!-- ===== Cinema Hero ===== -->
+    <section class="hero-cinema">
       <div class="hero-card">
-        <h1>Schilderijen & sieraden<br/>door <span style="color:var(--brand)">Lilia Guseva Dosti</span></h1>
-        <p>Welkom op mijn portfolio. Deze website toont een persoonlijke selectie van werk — zonder commercieel doel — enkel ter inspiratie en kennismaking.</p>
+        <h1>Schilderijen & sieraden<br><span style="color:var(--accent)">Lilia Guseva Dosti</span></h1>
+        <p>Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.</p>
         <div class="badges">
           <span class="badge">✓ Origineel werk</span>
           <span class="badge">✓ Persoonlijke stijl</span>
         </div>
       </div>
-      <div class="cover">
-        <div class="hero-image"><img src="/asset1/homepic.png" alt="KunstLilia hero"></div>
-      </div>
     </section>
 
-    <!-- ===== Schilderijen met filters ===== -->
+    <!-- ===== Schilderijen met filters en scrollbare grid ===== -->
     <section id="schilderijen">
       <h2 class="section">Schilderijen</h2>
-      <p class="muted">Filter op type of collectie. Bestandsnamen met prefix <code>acryl_</code>, <code>olie_</code> of <code>aquarel_</code> worden automatisch herkend.</p>
+      <p class="muted">Filter op type. Tip: geef je bestandsnamen <code>acryl_</code>, <code>olie_</code> of <code>aquarel_</code> mee (of als woord ergens in de naam) voor betere herkenning.</p>
 
       <div class="filters" id="paint-filters">
         <button class="chip active" data-filter="all">Alles</button>
         <button class="chip" data-filter="acryl">Acryl</button>
         <button class="chip" data-filter="olie">Olie</button>
         <button class="chip" data-filter="aquarel">Aquarel</button>
-        <span class="chip" data-filter="asset1">Collectie A</span>
-        <span class="chip" data-filter="asset2">Collectie B</span>
       </div>
 
-      <div class="tiles" id="tiles-paintings"></div>
+      <div class="tiles-scroll">
+        <div class="tiles" id="tiles-paintings"></div>
+      </div>
     </section>
 
     <!-- ===== Sieraden ===== -->
@@ -217,14 +243,8 @@
     <!-- ===== Over ===== -->
     <section id="over">
       <h2 class="section">Over</h2>
-      <div class="grid-2">
-        <div class="card">
-          <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin:8px 0 6px">Inspiratie & achtergrond</h3>
-          <p class="muted">Ik werk met acryl, olie en aquarel. Elk werk is een momentopname van emotie en kleur. Kunst is voor mij geen product, maar een vorm van verbinding.</p>
-        </div>
+      <div class="card">
+        <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
       </div>
     </section>
 
@@ -232,7 +252,7 @@
     <section id="contact">
       <h2 class="section">Contact</h2>
       <div class="card">
-        <p class="muted">Voor vragen, samenwerkingen of om gedachten te delen, kunt u mailen. Reacties worden persoonlijk gelezen.</p>
+        <p class="muted">Voor vragen, samenwerkingen of gedachten delen, kunt u mailen. Reacties worden persoonlijk gelezen.</p>
         <p><a class="btn" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
       </div>
     </section>
@@ -256,7 +276,7 @@
     function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
     lb.addEventListener('click', e=>{ if(e.target===lb) toggleLightbox(false) });
 
-    // Mobiele navigatie (robuust)
+    // Mobiele navigatie
     (function(){
       const nav = document.getElementById('site-nav');
       const btn = document.getElementById('menu-toggle');
@@ -275,17 +295,6 @@
       window.addEventListener('resize', ()=>{ if(window.innerWidth>900) close(); });
     })();
 
-    // Lightbox binding
-    function bindLightbox(containerId){
-      const el = document.getElementById(containerId);
-      if(!el) return;
-      el.addEventListener('click', e => {
-        const img = e.target.closest('img');
-        if(!img) return;
-        toggleLightbox(true, img.currentSrc || img.src);
-      });
-    }
-
     // Manifest laden
     async function loadManifest(){
       try{
@@ -298,19 +307,16 @@
       }
     }
 
-    // Type bepalen uit bestandsnaam of map
+    // Type herkennen uit bestandsnaam (acryl/olie/aquarel)
     function detectType(path){
       const name = path.split('/').pop().toLowerCase();
-      if(name.startsWith('acryl')) return 'acryl';
-      if(name.startsWith('olie')) return 'olie';
-      if(name.startsWith('aquarel')) return 'aquarel';
-      // fallback: mapnaam
-      if(path.startsWith('asset1/')) return 'asset1';
-      if(path.startsWith('asset2/')) return 'asset2';
+      if(name.includes('acryl')) return 'acryl';
+      if(name.includes('olie')) return 'olie';
+      if(name.includes('aquarel') || name.includes('aquarel')) return 'aquarel';
       return 'overig';
     }
 
-    // Renderen + filters
+    // Render schilderijen + dataset tags
     function renderPaintings(paths){
       const root = document.getElementById('tiles-paintings');
       root.innerHTML = '';
@@ -320,7 +326,6 @@
         const card = document.createElement('div');
         card.className = 'tile';
         card.dataset.type = type;
-        card.dataset.path = p;
 
         const img = new Image();
         img.loading = 'lazy';
@@ -333,6 +338,7 @@
       bindLightbox('tiles-paintings');
     }
 
+    // Filter toepassen
     function applyPaintingFilter(filter){
       const nodes = document.querySelectorAll('#tiles-paintings .tile');
       nodes.forEach(n=>{
@@ -342,6 +348,7 @@
       });
     }
 
+    // Filterbalk
     function setupFilters(){
       const bar = document.getElementById('paint-filters');
       if(!bar) return;
@@ -354,6 +361,7 @@
       });
     }
 
+    // Sieraden
     function renderJewels(paths){
       const root = document.getElementById('tiles-jewels');
       root.innerHTML = '';
@@ -371,11 +379,22 @@
       bindLightbox('tiles-jewels');
     }
 
+    // Lightbox binding voor tegels
+    function bindLightbox(containerId){
+      const el = document.getElementById(containerId);
+      if(!el) return;
+      el.addEventListener('click', e => {
+        const img = e.target.closest('img');
+        if(!img) return;
+        toggleLightbox(true, img.currentSrc || img.src);
+      });
+    }
+
     (async ()=>{
       const m = await loadManifest();
       renderPaintings(m.paintings || []);
       renderJewels(m.jewels || []);
-      setupFilters(); // actief nadat tiles er zijn
+      setupFilters();
     })();
   </script>
 </body>
