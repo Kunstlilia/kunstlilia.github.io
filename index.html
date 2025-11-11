@@ -1,435 +1,372 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KunstLilia – Portfolio van Lilia Guseva Dosti</title>
-  <meta name="description" content="Portfolio van Lilia Guseva Dosti. Bekijk schilderijen en sieraden, en neem contact op voor meer informatie of interesse.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KunstLilia – Portfolio van Lilia Guseva Dosti</title>
+<meta name="description" content="Portfolio van Lilia Guseva Dosti. Bekijk schilderijen en sieraden, en neem contact op voor meer informatie of interesse.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== Lichter thema (leesbaar) ===== */
+  :root{
+    --lav1:#DAB6FC; --lav2:#BBADFF; --lav3:#9FA0FF; --lav4:#8E94F2; --lav5:#8895B3;
 
-  <style>
-    /* ===== Thema op basis van jouw palet ===== */
-    :root{
-      /* Palet */
-      --lav1:#DAB6FC; --lav2:#BBADFF; --lav3:#9FA0FF; --lav4:#8E94F2; --lav5:#8895B3;
+    /* minder donker: */
+    --bg:#11173a;          /* was #0f1122 */
+    --bg-soft:#171d49;     /* was #141633 */
+    --card:#1c2357;        /* was #171a3a */
 
-      /* Donker thema met lavendel glow */
-      --bg:#0f1122;
-      --bg-soft:#141633;
-      --card:#171a3a;
+    --text:#ffffff;
+    --muted:#F2F4FF;       /* veel lichter */
+    --brand: var(--lav3);
+    --accent: var(--lav1);
+    --chip:#222a66;
+    --chip-hover:#2b3580;
+    --line:#3a4090;
+    --radius:18px;
+    --shadow:0 12px 32px rgba(0,0,0,.28);
+  }
+  *{box-sizing:border-box}
+  html,body{
+    margin:0;padding:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text);
+    /* zachtere achtergrond */
+    background:
+      radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--lav2) 28%, transparent), transparent 60%),
+      radial-gradient(900px 500px at 95% 0%, color-mix(in oklab, var(--lav4) 20%, transparent), transparent 60%),
+      radial-gradient(1200px 800px at 50% 100%, color-mix(in oklab, var(--lav5) 14%, transparent), transparent 70%),
+      var(--bg);
+  }
+  a{color:var(--accent);text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1200px;margin:0 auto;padding:20px}
 
-      /* Helderder tekst */
-      --text:#ffffff;
-      --muted:#E8EBFF;
-
-      --brand: var(--lav3);
-      --accent: var(--lav1);
-      --chip:#1f2350;
-      --chip-hover:#272b61;
-
-      --line:#2c3173;
-      --radius:18px;
-      --shadow:0 12px 32px rgba(0,0,0,.38);
+  /* ===== Header / nav ===== */
+  header{
+    position:sticky;top:0;z-index:10;
+    background:linear-gradient(180deg,rgba(12,14,40,.85),rgba(12,14,40,.55));
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line)
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;position:relative}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+  .mark{
+    width:28px;height:28px;border-radius:50%;
+    background:
+      radial-gradient(135% 135% at 20% 20%, var(--lav1) 0 42%, transparent 43%),
+      radial-gradient(120% 120% at 80% 35%, var(--lav3) 0 40%, transparent 41%),
+      radial-gradient(110% 110% at 50% 85%, var(--lav4) 0 44%, transparent 45%),
+      var(--lav2);
+    box-shadow:0 0 22px color-mix(in oklab, var(--lav1) 35%, transparent);
+    position:relative;overflow:hidden;
+  }
+  .mark::after{content:"";position:absolute;inset:-20%;background:conic-gradient(from 100deg,var(--lav1),var(--lav2),var(--lav3),var(--lav4),var(--lav5),var(--lav1));opacity:.45;mix-blend-mode:overlay;animation:swirl 9s linear infinite;}
+  @keyframes swirl {to{transform:rotate(360deg)}}
+  .navlinks{display:flex;gap:10px;flex-wrap:wrap}
+  .navlinks a{
+    display:inline-block;padding:10px 14px;border-radius:999px;
+    background:var(--chip);border:1px solid var(--line);color:#fff;
+    transition:transform .15s, background .15s, border-color .15s, color .15s;
+  }
+  .navlinks a:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 40%, var(--line));transform:translateY(-1px)}
+  .menu-toggle{display:none;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--chip);color:#fff;cursor:pointer}
+  .menu-toggle:hover{background:var(--chip-hover)}
+  .menu-toggle svg{width:20px;height:20px}
+  .nav-overlay{display:none;position:fixed;inset:0;background:transparent;z-index:19}
+  nav.open + .nav-overlay{display:block}
+  @media (max-width:900px){
+    .menu-toggle{display:inline-flex}
+    .navlinks{display:none}
+    nav.open .navlinks{display:flex}
+    .navlinks{
+      position:absolute;top:100%;left:0;right:0;margin-top:8px;
+      background:linear-gradient(180deg,var(--card), color-mix(in oklab,var(--card) 80%, black));
+      border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+      flex-direction:column;gap:6px;padding:10px 12px;z-index:20
     }
+    .navlinks a{padding:12px 14px}
+    nav{z-index:21}
+  }
 
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;padding:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--lav2) 30%, transparent), transparent 60%),
-        radial-gradient(900px 500px at 95% 0%, color-mix(in oklab, var(--lav4) 25%, transparent), transparent 60%),
-        radial-gradient(1200px 800px at 50% 100%, color-mix(in oklab, var(--lav5) 18%, transparent), transparent 70%),
-        var(--bg);
-    }
-    a{color:var(--accent);text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{max-width:1200px;margin:0 auto;padding:20px}
+  /* ===== Cinema hero (veel lichter) ===== */
+  .hero-cinema{
+    position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);
+    min-height:56vh;
+    background:center/cover no-repeat url('/asset1/homepic.png');
+    box-shadow:var(--shadow);
+    filter:saturate(1.08) brightness(1.05); /* iets lichter beeld */
+  }
+  .hero-cinema::after{
+    content:"";position:absolute;inset:0;
+    /* transparantere overlay zodat kunst zichtbaar blijft */
+    background:linear-gradient(90deg, rgba(17,22,60,.52) 0 55%, rgba(17,22,60,.18) 68%, rgba(17,22,60,.04) 100%);
+    pointer-events:none;
+  }
+  .hero-card{
+    position:absolute;left:28px;top:28px;max-width:min(560px,90%);
+    background:rgba(25,30,80,.36); /* lichter glas */
+    border:1px solid color-mix(in oklab,var(--line) 80%, white);
+    border-radius:16px;padding:28px 26px;backdrop-filter:blur(10px);
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .hero-card h1{margin:0 0 10px;font-size:46px;line-height:1.06;color:#ffffff} /* écht wit */
+  .hero-card h1 span{color:#E9E2FF;text-shadow:0 0 10px rgba(233,226,255,.55)}
+  .hero-card p{margin:0 0 14px;color:#ffffff;opacity:.95;font-size:18px} /* wit */
+  .badges{display:flex;gap:10px;flex-wrap:wrap}
+  .badge{background:rgba(60,70,150,.55);border:1px solid rgba(170,180,255,.55);border-radius:999px;padding:8px 12px;color:#fff;font-size:14px}
 
-    /* ===== Header / nav ===== */
-    header{
-      position:sticky;top:0;z-index:10;
-      background:linear-gradient(180deg,rgba(10,12,30,.9),rgba(10,12,30,.6));
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line)
-    }
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;position:relative}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+  @media (max-width:720px){.hero-card{left:16px;right:16px;max-width:unset}.hero-card h1{font-size:34px}}
 
-    /* “Paint-blob” mark */
-    .mark{
-      width:28px;height:28px;border-radius:50%;
-      background:
-        radial-gradient(135% 135% at 20% 20%, var(--lav1) 0 42%, transparent 43%),
-        radial-gradient(120% 120% at 80% 35%, var(--lav3) 0 40%, transparent 41%),
-        radial-gradient(110% 110% at 50% 85%, var(--lav4) 0 44%, transparent 45%),
-        var(--lav2);
-      box-shadow:0 0 22px color-mix(in oklab, var(--lav1) 35%, transparent);
-      position:relative;overflow:hidden;
-    }
-    .mark::after{
-      content:"";position:absolute;inset:-20%;
-      background:conic-gradient(from 100deg,var(--lav1),var(--lav2),var(--lav3),var(--lav4),var(--lav5),var(--lav1));
-      opacity:.45;mix-blend-mode:overlay;animation:swirl 9s linear infinite;
-    }
-    @keyframes swirl {to{transform:rotate(360deg)}}
+  /* ===== kaarten / grids ===== */
+  h2.section{font-size:28px;margin:34px 0 14px;color:#fff}
+  .muted{color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s ease, border-color .15s ease}
+  .card:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line))}
 
-    /* Navlinks als ronde pills */
-    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
-    .navlinks a{
-      display:inline-block;padding:10px 14px;border-radius:999px;
-      background:var(--chip);border:1px solid var(--line);color:#fff;
-      transition:transform .15s, background .15s, border-color .15s, color .15s;
-    }
-    .navlinks a:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 40%, var(--line));color:#fff;transform:translateY(-1px)}
-    .menu-toggle{
-      display:none;align-items:center;gap:8px;padding:10px 12px;
-      border:1px solid var(--line);border-radius:12px;background:var(--chip);color:#fff;cursor:pointer
-    }
-    .menu-toggle:hover{background:var(--chip-hover)}
-    .menu-toggle svg{width:20px;height:20px}
+  /* scrollbare weergaves */
+  .tiles-scroll{
+    max-height:75vh; overflow:auto;border:1px solid var(--line);border-radius:14px;
+    background:linear-gradient(180deg,color-mix(in oklab,var(--card) 92%, white 8%), var(--card));
+    padding:14px;margin-top:10px;
+  }
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .15s,border-color .15s}
+  .tile:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav4) 35%, var(--line))}
+  .tile img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* Backdrop voor buitenklik */
-    .nav-overlay{display:none;position:fixed;inset:0;background:transparent;z-index:19}
-    nav.open + .nav-overlay{display:block}
+  /* Chips (filters) */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 12px}
+  .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;cursor:pointer;user-select:none;transition:background .15s,border-color .15s,transform .15s}
+  .chip:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line));transform:translateY(-1px)}
+  .chip.active{background:linear-gradient(180deg, color-mix(in oklab,var(--lav3) 20%, var(--chip)), var(--chip-hover));border-color:color-mix(in oklab,var(--lav3) 55%, var(--line));box-shadow:0 6px 18px rgba(74,86,180,.22)}
 
-    /* Mobiel dropdown */
-    @media (max-width:900px){
-      .menu-toggle{display:inline-flex}
-      .navlinks{display:none}
-      nav.open .navlinks{display:flex}
-      .navlinks{
-        position:absolute;top:100%;left:0;right:0;margin-top:8px;
-        background:linear-gradient(180deg,var(--card), color-mix(in oklab,var(--card) 80%, black));
-        border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
-        flex-direction:column;gap:6px;padding:10px 12px;z-index:20
-      }
-      .navlinks a{padding:12px 14px}
-      nav{z-index:21}
-    }
+  /* scrollbar (webkit) */
+  .tiles-scroll::-webkit-scrollbar{width:10px}
+  .tiles-scroll::-webkit-scrollbar-track{background:transparent}
+  .tiles-scroll::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--chip-hover) 70%, black);border-radius:10px}
+  .tiles-scroll::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--chip-hover) 85%, black)}
 
-    /* ===== Cinema hero ===== */
-    .hero-cinema{
-      position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);
-      min-height:56vh;
-      background: center/cover no-repeat url('/asset1/homepic.png');
-      box-shadow:var(--shadow);
-    }
-    .hero-cinema::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(90deg, rgba(15,17,34,.75) 0 55%, rgba(15,17,34,.28) 65%, rgba(15,17,34,.06) 100%);
-      pointer-events:none;
-    }
-    .hero-card{
-  position:absolute;
-  left:28px;top:28px;
-  max-width:min(560px,90%);
-  background:rgba(12, 14, 30, 0.55); /* iets lichter glas */
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:28px 26px;
-  backdrop-filter:blur(10px);
-  box-shadow:0 0 40px rgba(0,0,0,0.4);
-}
+  footer{margin:48px 0 20px;color:var(--muted);font-size:14px}
 
-/* heldere tekst */
-.hero-card h1{
-  margin:0 0 10px;
-  font-size:46px;
-  line-height:1.06;
-  color:#ffffff;              /* pure wit */
-}
-
-.hero-card h1 span{
-  color:#d9ccff;              /* veel lichtere lavendel */
-  text-shadow:0 0 12px rgba(217,204,255,0.6);
-}
-.hero-card p{
-  margin:0 0 14px;
-  color:#f2f2f2;              /* bijna wit */
-  font-size:18px;
-}
-.badge{
-  background:rgba(40,45,90,0.6);
-  border:1px solid rgba(150,150,255,0.4);
-  color:#f7f7ff;
-}
-    .badges{display:flex;gap:10px;flex-wrap:wrap}
-    .badge{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
-
-    @media (max-width:720px){
-      .hero-card{left:16px;right:16px;max-width:unset}
-      .hero-card h1{font-size:34px}
-    }
-
-    /* ===== Kaarten / grids ===== */
-    h2.section{font-size:28px;margin:34px 0 14px;color:#fff}
-    .muted{color:var(--muted)}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s ease, border-color .15s ease}
-    .card:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line))}
-
-    /* Scrollbare weergaves */
-    .tiles-scroll{
-      max-height:75vh;
-      overflow:auto;border:1px solid var(--line);border-radius:14px;
-      background:linear-gradient(180deg,color-mix(in oklab,var(--card) 90%, black), var(--card));
-      padding:14px;margin-top:10px;
-    }
-    .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-    .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .15s ease,border-color .15s ease}
-    .tile:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav4) 35%, var(--line))}
-    .tile img{width:100%;height:100%;object-fit:cover;display:block}
-
-    /* Chips (filters) */
-    .filters{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 12px}
-    .chip{
-      padding:8px 12px;border-radius:999px;border:1px solid var(--line);
-      background:var(--chip);color:#fff;cursor:pointer;user-select:none;
-      transition:background .15s,border-color .15s,transform .15s;
-    }
-    .chip:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line));transform:translateY(-1px)}
-    .chip.active{background:linear-gradient(180deg, color-mix(in oklab,var(--lav3) 20%, var(--chip)), var(--chip-hover));border-color:color-mix(in oklab,var(--lav3) 55%, var(--line));color:#fff;box-shadow:0 6px 18px rgba(74,86,180,.25)}
-
-    /* Scrollbar styling (webkit) */
-    .tiles-scroll::-webkit-scrollbar{width:10px}
-    .tiles-scroll::-webkit-scrollbar-track{background:transparent}
-    .tiles-scroll::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--chip-hover) 70%, black);border-radius:10px}
-    .tiles-scroll::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--chip-hover) 85%, black)}
-
-    footer{margin:48px 0 20px;color:var(--muted);font-size:14px}
-
-    /* Lightbox */
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px}
-    .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px}
-    .lightbox.active{display:flex}
-    .close{position:absolute;top:16px;right:16px}
-
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px}
+  .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px}
+  .lightbox.active{display:flex}
+  .close{position:absolute;top:16px;right:16px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
 </head>
 <body>
-  <!-- ===== Header ===== -->
-  <header>
-    <div class="container">
-      <nav id="site-nav">
-        <div class="brand"><span class="mark"></span> <span>KunstLilia</span></div>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
-          <span class="sr-only">Menu</span>
-        </button>
-        <div class="navlinks" id="menu">
-          <a href="#schilderijen">Schilder collectie</a>
-          <a href="#sieraden">Sieraden</a>
-          <a href="#over">Over</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-      <div class="nav-overlay" id="nav-overlay"></div>
-    </div>
-  </header>
-
-  <main class="container">
-    <!-- ===== Cinema Hero ===== -->
-    <section class="hero-cinema">
-      <div class="hero-card">
-        <h1>Schilderijen & sieraden<br><span style="color:var(--accent)">Lilia Guseva Dosti</span></h1>
-        <p>Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.</p>
-        <div class="badges">
-          <span class="badge">✓ Origineel werk</span>
-          <span class="badge">✓ Persoonlijke stijl</span>
-        </div>
+<header>
+  <div class="container">
+    <nav id="site-nav">
+      <div class="brand"><span class="mark"></span> <span>KunstLilia</span></div>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+        <span class="sr-only">Menu</span>
+      </button>
+      <div class="navlinks" id="menu">
+        <a href="#schilderijen">Schilder collectie</a>
+        <a href="#sieraden">Sieraden</a>
+        <a href="#over">Over</a>
+        <a href="#contact">Contact</a>
       </div>
-    </section>
-
-    <!-- ===== Schilderijen met filters + scroll ===== -->
-    <section id="schilderijen">
-      <h2 class="section">Schilderijen</h2>
-      <p class="muted">Filter op type. Tip: voeg in de bestandsnaam <code>acryl</code>, <code>olie</code> of <code>aquarel</code> toe. (Nu alvast werkend: <strong>asset1 ⇒ acryl</strong>, <strong>asset2 ⇒ olie</strong>.)</p>
-
-      <div class="filters" id="paint-filters">
-        <button class="chip active" data-filter="all">Alles</button>
-        <button class="chip" data-filter="acryl">Acryl</button>
-        <button class="chip" data-filter="olie">Olie</button>
-        <button class="chip" data-filter="aquarel">Aquarel</button>
-      </div>
-
-      <div class="tiles-scroll">
-        <div class="tiles" id="tiles-paintings"></div>
-      </div>
-    </section>
-
-    <!-- ===== Sieraden met scroll ===== -->
-    <section id="sieraden">
-      <h2 class="section">Sieraden</h2>
-      <p class="muted">Een groeiende verzameling handgemaakte stukken.</p>
-      <div class="tiles-scroll">
-        <div class="tiles" id="tiles-jewels"></div>
-      </div>
-    </section>
-
-    <!-- ===== Over ===== -->
-    <section id="over">
-      <h2 class="section">Over</h2>
-      <div class="card">
-        <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
-      </div>
-    </section>
-
-    <!-- ===== Contact ===== -->
-    <section id="contact">
-      <h2 class="section">Contact</h2>
-      <div class="card">
-        <p class="muted">Voor vragen, samenwerkingen of gedachten delen, kunt u mailen. Reacties worden persoonlijk gelezen.</p>
-        <p><a class="btn" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
-      </div>
-    </section>
-
-    <footer>© <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden</footer>
-  </main>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="btn close" onclick="toggleLightbox(false)">Sluiten</button>
-    <img id="lightboxImg" alt="Vergrote weergave">
+    </nav>
+    <div class="nav-overlay" id="nav-overlay"></div>
   </div>
+</header>
 
-  <script>
-    // Footer jaartal
-    document.getElementById('year').textContent = new Date().getFullYear();
+<main class="container">
+  <!-- Hero -->
+  <section class="hero-cinema">
+    <div class="hero-card">
+      <h1>Schilderijen & sieraden<br><span>Lilia Guseva Dosti</span></h1>
+      <p>Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.</p>
+      <div class="badges">
+        <span class="badge">✓ Origineel werk</span>
+        <span class="badge">✓ Persoonlijke stijl</span>
+      </div>
+    </div>
+  </section>
 
-    // Lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
-    lb.addEventListener('click', e=>{ if(e.target===lb) toggleLightbox(false) });
+  <!-- Schilderijen -->
+  <section id="schilderijen">
+    <h2 class="section">Schilderijen</h2>
+    <p class="muted">Filter op type. (Nu alvast werkend: <strong>asset1 ⇒ acryl</strong>, <strong>asset2 ⇒ olie</strong>.)</p>
 
-    // Mobiele navigatie
-    (function(){
-      const nav = document.getElementById('site-nav');
-      const btn = document.getElementById('menu-toggle');
-      const menu = document.getElementById('menu');
-      const over = document.getElementById('nav-overlay');
-      if(!nav||!btn||!menu||!over) return;
-      const isOpen = ()=>nav.classList.contains('open');
-      const open = ()=>{ if(!isOpen()){ nav.classList.add('open'); btn.setAttribute('aria-expanded','true'); } };
-      const close= ()=>{ if(isOpen()){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } };
-      btn.addEventListener('click', ()=> isOpen()? close():open());
-      over.addEventListener('click', close);
-      menu.addEventListener('click', e=>{ if(e.target.closest('a')) close(); });
-      window.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
-      let lock=false; window.addEventListener('scroll', ()=>{ if(isOpen()&&!lock){ lock=true; setTimeout(()=>lock=false,150); close(); } }, {passive:true});
-      window.addEventListener('hashchange', close);
-      window.addEventListener('resize', ()=>{ if(window.innerWidth>900) close(); });
-    })();
+    <div class="filters" id="paint-filters">
+      <button class="chip active" data-filter="all">Alles</button>
+      <button class="chip" data-filter="acryl">Acryl</button>
+      <button class="chip" data-filter="olie">Olie</button>
+    </div>
 
-    // Manifest laden
-    async function loadManifest(){
-      try{
-        const r = await fetch('/images.json', { cache:'no-store' });
-        if(!r.ok) throw new Error('manifest not found');
-        return await r.json();
-      }catch(e){
-        console.warn('manifest load error:', e);
-        return {paintings:[], jewels:[]};
-      }
+    <div class="tiles-scroll">
+      <div class="tiles" id="tiles-paintings"></div>
+    </div>
+  </section>
+
+  <!-- Sieraden -->
+  <section id="sieraden">
+    <h2 class="section">Sieraden</h2>
+    <p class="muted">Een groeiende verzameling handgemaakte stukken.</p>
+    <div class="tiles-scroll">
+      <div class="tiles" id="tiles-jewels"></div>
+    </div>
+  </section>
+
+  <!-- Over -->
+  <section id="over">
+    <h2 class="section">Over</h2>
+    <div class="card">
+      <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section">Contact</h2>
+    <div class="card">
+      <p class="muted">Voor vragen, samenwerkingen of gedachten delen, kunt u mailen. Reacties worden persoonlijk gelezen.</p>
+      <p><a class="btn" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden</footer>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="btn close" onclick="toggleLightbox(false)">Sluiten</button>
+  <img id="lightboxImg" alt="Vergrote weergave">
+</div>
+
+<script>
+  // Footer jaartal
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
+  lb.addEventListener('click', e=>{ if(e.target===lb) toggleLightbox(false) });
+
+  // Mobiele navigatie
+  (function(){
+    const nav = document.getElementById('site-nav');
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    const over = document.getElementById('nav-overlay');
+    if(!nav||!btn||!menu||!over) return;
+    const isOpen = ()=>nav.classList.contains('open');
+    const open = ()=>{ if(!isOpen()){ nav.classList.add('open'); btn.setAttribute('aria-expanded','true'); } };
+    const close= ()=>{ if(isOpen()){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } };
+    btn.addEventListener('click', ()=> isOpen()? close():open());
+    over.addEventListener('click', close);
+    menu.addEventListener('click', e=>{ if(e.target.closest('a')) close(); });
+    window.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+    let lock=false; window.addEventListener('scroll', ()=>{ if(isOpen()&&!lock){ lock=true; setTimeout(()=>lock=false,150); close(); } }, {passive:true});
+    window.addEventListener('hashchange', close);
+    window.addEventListener('resize', ()=>{ if(window.innerWidth>900) close(); });
+  })();
+
+  // Manifest laden
+  async function loadManifest(){
+    try{
+      const r = await fetch('/images.json', { cache:'no-store' });
+      if(!r.ok) throw new Error('manifest not found');
+      return await r.json();
+    }catch(e){
+      console.warn('manifest load error:', e);
+      return {paintings:[], jewels:[]};
     }
+  }
 
-    // Type herkennen:
-    // 1) naam bevat 'acryl' | 'olie' | 'aquarel'/'aquArel'
-    // 2) Fallback: asset1 => acryl, asset2 => olie (zodat filters NU al werken)
-    function detectType(path){
-      const name = path.split('/').pop().toLowerCase();
-      if(name.includes('acryl')) return 'acryl';
-      if(name.includes('olie')) return 'olie';
-      if(name.includes('aquarel') || name.includes('aquarel')) return 'aquarel';
-      if(path.startsWith('asset1/')) return 'acryl';
-      if(path.startsWith('asset2/')) return 'olie';
-      return 'overig';
-    }
+  // Type herkennen (alleen acryl/olie; geen aquarel)
+  function detectType(path){
+    const name = path.split('/').pop().toLowerCase();
+    if(name.includes('acryl')) return 'acryl';
+    if(name.includes('olie')) return 'olie';
+    if(path.startsWith('asset1/')) return 'acryl';
+    if(path.startsWith('asset2/')) return 'olie';
+    return 'overig';
+  }
 
-    // Render schilderijen + dataset tags
-    function renderPaintings(paths){
-      const root = document.getElementById('tiles-paintings');
-      root.innerHTML = '';
-      paths.sort((a,b)=> a.localeCompare(b,undefined,{numeric:true}));
-      paths.forEach(p=>{
-        const type = detectType(p);
-        const card = document.createElement('div');
-        card.className = 'tile';
-        card.dataset.type = type;
+  function renderPaintings(paths){
+    const root = document.getElementById('tiles-paintings');
+    root.innerHTML = '';
+    paths.sort((a,b)=> a.localeCompare(b,undefined,{numeric:true}));
+    paths.forEach(p=>{
+      const type = detectType(p);
+      const card = document.createElement('div');
+      card.className = 'tile';
+      card.dataset.type = type;
+      const img = new Image();
+      img.loading = 'lazy';
+      img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
+      img.src = '/' + p.replace(/^\/+/, '');
+      card.appendChild(img);
+      root.appendChild(card);
+    });
+    bindLightbox('tiles-paintings');
+  }
 
-        const img = new Image();
-        img.loading = 'lazy';
-        img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
-        img.src = '/' + p.replace(/^\/+/, '');
-        card.appendChild(img);
+  function applyPaintingFilter(filter){
+    const nodes = document.querySelectorAll('#tiles-paintings .tile');
+    nodes.forEach(n=>{
+      const t = n.dataset.type;
+      const show = (filter==='all') || (t===filter);
+      n.style.display = show ? '' : 'none';
+    });
+  }
 
-        root.appendChild(card);
-      });
-      bindLightbox('tiles-paintings');
-    }
+  function setupFilters(){
+    const bar = document.getElementById('paint-filters');
+    if(!bar) return;
+    bar.addEventListener('click', e=>{
+      const chip = e.target.closest('.chip[data-filter]');
+      if(!chip) return;
+      bar.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      applyPaintingFilter(chip.dataset.filter);
+    });
+  }
 
-    // Filter toepassen
-    function applyPaintingFilter(filter){
-      const nodes = document.querySelectorAll('#tiles-paintings .tile');
-      nodes.forEach(n=>{
-        const t = n.dataset.type;
-        const show = (filter==='all') || (t===filter);
-        n.style.display = show ? '' : 'none';
-      });
-    }
+  function renderJewels(paths){
+    const root = document.getElementById('tiles-jewels');
+    root.innerHTML = '';
+    paths.sort((a,b)=> a.localeCompare(b,undefined,{numeric:true}));
+    paths.forEach(p=>{
+      const card = document.createElement('div');
+      card.className = 'tile';
+      const img = new Image();
+      img.loading = 'lazy';
+      img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
+      img.src = '/' + p.replace(/^\/+/, '');
+      card.appendChild(img);
+      root.appendChild(card);
+    });
+    bindLightbox('tiles-jewels');
+  }
 
-    // Filterbalk
-    function setupFilters(){
-      const bar = document.getElementById('paint-filters');
-      if(!bar) return;
-      bar.addEventListener('click', e=>{
-        const chip = e.target.closest('.chip[data-filter]');
-        if(!chip) return;
-        bar.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-        chip.classList.add('active');
-        applyPaintingFilter(chip.dataset.filter);
-      });
-    }
+  function bindLightbox(containerId){
+    const el = document.getElementById(containerId);
+    if(!el) return;
+    el.addEventListener('click', e => {
+      const img = e.target.closest('img');
+      if(!img) return;
+      toggleLightbox(true, img.currentSrc || img.src);
+    });
+  }
 
-    // Sieraden
-    function renderJewels(paths){
-      const root = document.getElementById('tiles-jewels');
-      root.innerHTML = '';
-      paths.sort((a,b)=> a.localeCompare(b,undefined,{numeric:true}));
-      paths.forEach(p=>{
-        const card = document.createElement('div');
-        card.className = 'tile';
-        const img = new Image();
-        img.loading = 'lazy';
-        img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
-        img.src = '/' + p.replace(/^\/+/, '');
-        card.appendChild(img);
-        root.appendChild(card);
-      });
-      bindLightbox('tiles-jewels');
-    }
-
-    // Lightbox binding voor tegels
-    function bindLightbox(containerId){
-      const el = document.getElementById(containerId);
-      if(!el) return;
-      el.addEventListener('click', e => {
-        const img = e.target.closest('img');
-        if(!img) return;
-        toggleLightbox(true, img.currentSrc || img.src);
-      });
-    }
-
-    (async ()=>{
-      const m = await loadManifest();
-      renderPaintings(m.paintings || []);
-      renderJewels(m.jewels || []);
-      setupFilters();
-    })();
-  </script>
+  (async ()=>{
+    const m = await loadManifest();
+    renderPaintings(m.paintings || []);
+    renderJewels(m.jewels || []);
+    setupFilters();
+  })();
+</script>
 </body>
 </html>
