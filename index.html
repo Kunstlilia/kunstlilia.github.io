@@ -12,11 +12,11 @@
   /* ===== Thema ===== */
   :root{
     --lav1:#DAB6FC; --lav2:#BBADFF; --lav3:#9FA0FF; --lav4:#8E94F2; --lav5:#8895B3;
-    --bg:#11173a; --card:#1c2357;
+    --bg:#101632; --card:#171e49;
     --text:#ffffff; --muted:#F2F4FF;
     --brand:var(--lav3); --accent:var(--lav1);
     --chip:#222a66; --chip-hover:#2b3580; --line:#3a4090;
-    --radius:18px; --shadow:0 12px 32px rgba(0,0,0,.28);
+    --radius:18px; --shadow:0 14px 36px rgba(0,0,0,.28);
   }
   *{box-sizing:border-box}
   html,body{
@@ -61,44 +61,72 @@
     nav{z-index:21}
   }
 
-  /* ===== Hero (tekst boven/onder + cinema animatie) ===== */
-  .hero-top{
+  /* ===== HERO: tekst binnen het kader (boven & onder) + next-level animatie ===== */
+  .hero{
+    position:relative;
     margin-top: clamp(10px, 3vw, 18px);
-    margin-bottom: 12px;
+    border:1px solid var(--line);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    background:linear-gradient(180deg, color-mix(in oklab,var(--card) 92%, #fff 8%), var(--card));
+    min-height:58vh;
   }
-  .hero-top h1{
-    margin:0 0 8px;font-size: clamp(32px, 5vw, 56px);line-height:1.05;color:#fff;
+  /* Binnenranden/ruimte */
+  .hero-inner{
+    position:relative; z-index:3;
+    display:grid; grid-template-rows:auto 1fr auto;
+    height:100%;
+    padding: clamp(16px, 2.8vw, 26px);
   }
-  .hero-top h1 span{color:#E9E2FF;text-shadow:0 0 12px rgba(233,226,255,.55)}
-  .hero-cinema{
-    position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);
-    min-height:58vh;box-shadow:var(--shadow);
+  .hero-topline h1{
+    margin:0;
+    font-size: clamp(36px, 6.2vw, 64px);
+    line-height:1.02;
+    color:#fff; text-shadow:0 6px 30px rgba(0,0,0,.35), 0 0 18px rgba(233,226,255,.35);
   }
-  .hero-cinema::before,
-  .hero-cinema::after{
-    content:"";position:absolute;inset:0;background:center/110% no-repeat url('/asset1/homepic.png');
-    filter:saturate(1.06) brightness(1.06);
-    transform-origin:center;pointer-events:none;border-radius:20px;
-  }
-  /* zachte golven */
-  @keyframes panA { 0%{transform:translate3d(-1%,0,0) scale(1.04)} 50%{transform:translate3d(1%,0.5%,0) scale(1.06)} 100%{transform:translate3d(-1%,0,0) scale(1.04)} }
-  @keyframes panB { 0%{background-position:0% 50%;transform:scale(1.02) rotate(0.05deg)} 50%{background-position:100% 52%;transform:scale(1.035) rotate(-0.05deg)} 100%{background-position:0% 50%;transform:scale(1.02) rotate(0.05deg)} }
-  .hero-cinema::before{opacity:.95; animation: panA 28s ease-in-out infinite}
-  .hero-cinema::after {opacity:.45; mix-blend-mode:overlay; animation: panB 32s ease-in-out infinite}
-  /* intensere golf tijdens “wave-strong” (optioneel) */
-  .hero-cinema.wave-strong::before{animation-duration:9s}
-  .hero-cinema.wave-strong::after {animation-duration:10s; opacity:.55}
+  .hero-topline h1 span{color:#E9E2FF}
 
-  .hero-bottom{
-    margin-top:12px;
-    display:grid;gap:12px;
-    grid-template-columns:1fr;
-  }
-  .hero-bottom .card{background:rgba(25,30,80,.38);backdrop-filter:blur(8px)}
+  .hero-bottomline{align-self:end}
+  .hero-bottomline p{margin:0 0 10px;color:#fff;opacity:.96}
   .badges{display:flex;gap:10px;flex-wrap:wrap}
   .badge{background:rgba(60,70,150,.55);border:1px solid rgba(170,180,255,.55);border-radius:999px;padding:8px 12px;color:#fff;font-size:14px}
 
-  /* ===== Grids / filters ===== */
+  /* Lagen voor kunst-animatie */
+  .hero-layers{position:absolute; inset:0; z-index:1; filter:url(#liquid);}
+  .layer{position:absolute; inset:-4%; background-size:110% 110%; background-position:center; mix-blend-mode:overlay; opacity:.9}
+  .layer.layer1{ background-image:url('/asset1/homepic.png'); animation: pan1 38s ease-in-out infinite; opacity:.9}
+  .layer.layer2{ background-image:url('/asset1/homepic.png'); animation: pan2 56s ease-in-out infinite; opacity:.55; filter:contrast(1.05) saturate(1.08) brightness(1.06)}
+  .layer.layer3{ background-image:radial-gradient(120% 90% at 50% 40%, rgba(255,255,255,.08), transparent 60%),
+                                radial-gradient(90% 60% at 80% 60%, rgba(160,180,255,.08), transparent 60%),
+                                radial-gradient(80% 60% at 20% 70%, rgba(255,180,220,.08), transparent 60%);
+                  animation: drift 60s linear infinite; opacity:.45; mix-blend-mode:soft-light }
+
+  /* Grain subtiel */
+  .hero::after{
+    content:""; position:absolute; inset:0; z-index:2; pointer-events:none; border-radius:inherit;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 .035 .06 .035 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+    opacity:.35;
+  }
+
+  @keyframes pan1{
+    0%{transform:translate3d(-2%, -1%, 0) scale(1.05) rotate(0.05deg)}
+    50%{transform:translate3d(2%, 1.2%, 0) scale(1.08) rotate(-0.07deg)}
+    100%{transform:translate3d(-2%, -1%, 0) scale(1.05) rotate(0.05deg)}
+  }
+  @keyframes pan2{
+    0%{background-position:0% 50%;transform:scale(1.02)}
+    50%{background-position:100% 52%;transform:scale(1.035)}
+    100%{background-position:0% 50%;transform:scale(1.02)}
+  }
+  @keyframes drift{
+    0%{transform:translate3d(0,0,0)}
+    50%{transform:translate3d(1.5%, -1.5%, 0)}
+    100%{transform:translate3d(0,0,0)}
+  }
+
+  /* ===== Secties / grids ===== */
   h2.section{font-size:28px;margin:34px 0 14px;color:#fff}
   .muted{color:var(--muted)}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s,border-color .15s}
@@ -146,23 +174,29 @@
 </header>
 
 <main class="container">
-  <!-- Tekst boven de hero -->
-  <section class="hero-top" aria-label="Intro">
-    <h1>Schilderijen & sieraden<br><span>Lilia Guseva Dosti</span></h1>
-  </section>
+  <!-- HERO met tekst binnen het kader -->
+  <section class="hero" aria-label="Intro & kunst animatie">
+    <div class="hero-layers">
+      <div class="layer layer1"></div>
+      <div class="layer layer2"></div>
+      <div class="layer layer3"></div>
+    </div>
 
-  <!-- Cinema hero met golvende achtergrond -->
-  <section class="hero-cinema" id="hero" aria-label="Kunst preview"></section>
+    <div class="hero-inner">
+      <!-- BOVENSTE TEKST -->
+      <div class="hero-topline">
+        <h1>schilderijen &<br><span>sieraden</span><br>Lilia Guseva Dosti</h1>
+      </div>
 
-  <!-- Tekst onder de hero -->
-  <section class="hero-bottom" aria-label="Intro details">
-    <div class="card">
-      <p class="muted" style="color:#fff;opacity:.98">
-        Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
-      </p>
-      <div class="badges">
-        <span class="badge">✓ Origineel werk</span>
-        <span class="badge">✓ Persoonlijke stijl</span>
+      <!-- lege flex-ruimte in het midden; hier “danst” de animatie vrij -->
+
+      <!-- ONDERSTE TEKST -->
+      <div class="hero-bottomline">
+        <p>Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.</p>
+        <div class="badges">
+          <span class="badge">✓ Origineel werk</span>
+          <span class="badge">✓ Persoonlijke stijl</span>
+        </div>
       </div>
     </div>
   </section>
@@ -170,7 +204,7 @@
   <!-- Schilderijen -->
   <section id="schilderijen">
     <h2 class="section">Schilderijen</h2>
-    <p class="muted">Filter op type. (Nu alvast werkend: <strong>asset1 ⇒ acryl</strong>, <strong>asset2 ⇒ olie</strong>.)</p>
+    <p class="muted">Filter op type. (Nu werkend: <strong>asset1 ⇒ acryl</strong>, <strong>asset2 ⇒ olie</strong>.)</p>
     <div class="filters" id="paint-filters">
       <button class="chip active" data-filter="all">Alles</button>
       <button class="chip" data-filter="acryl">Acryl</button>
@@ -212,8 +246,21 @@
   <img id="lightboxImg" alt="Vergrote weergave">
 </div>
 
+<!-- SVG liquid displacement filter -->
+<svg width="0" height="0" style="position:absolute">
+  <filter id="liquid">
+    <feTurbulence type="fractalNoise" baseFrequency="0.005 0.008" numOctaves="2" seed="7" result="noise">
+      <animate attributeName="baseFrequency" dur="14s" values="0.004 0.007;0.007 0.011;0.004 0.007" repeatCount="indefinite"/>
+      <animate attributeName="seed" dur="20s" values="7;9;11;7" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
+      <animate attributeName="scale" dur="18s" values="10;16;12;10" repeatCount="indefinite"/>
+    </feDisplacementMap>
+  </filter>
+</svg>
+
 <script>
-  // Footer jaartal
+  // Jaar in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Lightbox
@@ -222,7 +269,7 @@
   function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
   lb.addEventListener('click', e=>{ if(e.target===lb) toggleLightbox(false) });
 
-  // Mobiele navigatie
+  // Mobiele navigatie (hamburger)
   (function(){
     const nav = document.getElementById('site-nav');
     const btn = document.getElementById('menu-toggle');
@@ -241,7 +288,7 @@
     window.addEventListener('resize', ()=>{ if(window.innerWidth>900) close(); });
   })();
 
-  // Manifest laden (van dezelfde site)
+  // Manifest laden
   async function loadManifest(){
     try{
       const r = await fetch('/images.json', { cache:'no-store' });
@@ -253,7 +300,7 @@
     }
   }
 
-  // Type herkennen
+  // Type bepalen
   function detectType(path){
     const name = path.split('/').pop().toLowerCase();
     if(name.includes('acryl')) return 'acryl';
@@ -263,6 +310,7 @@
     return 'overig';
   }
 
+  // Schilderijen renderen
   function renderPaintings(paths){
     const root = document.getElementById('tiles-paintings');
     root.innerHTML = '';
@@ -282,6 +330,7 @@
     bindLightbox('tiles-paintings');
   }
 
+  // Filteren
   function applyPaintingFilter(filter){
     const nodes = document.querySelectorAll('#tiles-paintings .tile');
     nodes.forEach(n=>{
@@ -301,6 +350,7 @@
     });
   }
 
+  // Sieraden renderen
   function renderJewels(paths){
     const root = document.getElementById('tiles-jewels');
     root.innerHTML = '';
@@ -318,6 +368,7 @@
     bindLightbox('tiles-jewels');
   }
 
+  // Lightbox binding
   function bindLightbox(containerId){
     const el = document.getElementById(containerId);
     if(!el) return;
@@ -328,17 +379,7 @@
     });
   }
 
-  // (Optioneel) als je alsnog een 5s “sterkere golf” cyclus wil:
-  (function(){
-    const hero = document.getElementById('hero');
-    if(!hero) return;
-    const SHOW_MS = 20000; // 20s soft
-    const HIDE_MS = 5000;  // 5s stronger waves
-    function strongOn(){ hero.classList.add('wave-strong'); setTimeout(strongOff, HIDE_MS); }
-    function strongOff(){ hero.classList.remove('wave-strong'); setTimeout(strongOn, SHOW_MS); }
-    strongOn(); // start met 5s sterk, daarna 20s zacht, herhalen
-  })();
-
+  // Init
   (async ()=>{
     const m = await loadManifest();
     renderPaintings(m.paintings || []);
