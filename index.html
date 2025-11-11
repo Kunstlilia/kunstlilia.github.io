@@ -44,9 +44,14 @@
     .nav-pop.show{display:flex}
     @media (max-width:860px){ .navlinks{display:none} .hamb{display:flex} }
 
-    /* ===== FULL-BLEED HERO (alleen breder; layout verder ongewijzigd) ===== */
-    .hero-outer{width:100vw;margin-left:50%;transform:translateX(-50%);padding:16px 0;}
-    .hero-wrap{position:relative}
+    /* HERO (full-bleed) + ANIMATIE */
+    .hero-outer{
+      width:100vw;
+      margin-left:calc(50% - 50vw); /* full-bleed */
+      margin-right:calc(50% - 50vw);
+      padding:0 20px; /* uitlijnen met containerpadding */
+    }
+    .hero-wrap{position:relative;margin-top:16px}
     .hero{position:relative;overflow:hidden;border-radius:28px;border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)}
     .hero-bg{
       position:absolute;inset:0;background-image:url('/asset1/homepic.png');background-size:cover;background-position:50% 50%;
@@ -65,8 +70,6 @@
     }
 
     .hero-inner{position:relative;z-index:1;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:22px;padding:26px}
-
-    /* tekst-outline */
     .stroke-strong{color:#fff;-webkit-text-stroke:2px rgba(0,0,0,.55);paint-order:stroke fill;text-shadow:0 0 2px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.45),0 0 10px rgba(0,0,0,.25)}
     .stroke-body{color:#fff;-webkit-text-stroke:1px rgba(0,0,0,.45);paint-order:stroke fill;text-shadow:0 1px 3px rgba(0,0,0,.5),0 0 2px rgba(0,0,0,.45)}
     .hero-title{margin:0;line-height:1.03;font-size:clamp(38px,6.2vw,64px)}
@@ -85,7 +88,7 @@
 
     .scroller{border:1px solid var(--line);border-radius:16px;background:var(--bg-2);padding:14px;max-height:560px;overflow:auto;box-shadow:var(--shadow)}
     .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-    .tile{background:#0e1330;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .12s,border-color .12s;cursor:zoom-in}
+    .tile{background:#0e1330;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .12s,border-color .12s;cursor:pointer}
     .tile:hover{transform:translateY(-2px);border-color:#3a459a}
     .tile img{width:100%;height:300px;object-fit:cover}
 
@@ -93,18 +96,39 @@
     .scroller::-webkit-scrollbar-thumb{background:#3b4185;border-radius:999px;border:3px solid transparent;background-clip:content-box}
     .scroller::-webkit-scrollbar-track{background:transparent}
 
+    /* Over mij – layout */
+    .about {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .about .portrait {
+      width: 160px;
+      height: 160px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      cursor: zoom-in;
+    }
+    @media (max-width: 640px) {
+      .about {
+        grid-template-columns: 1fr;
+      }
+      .about .portrait {
+        width: 100%;
+        height: 260px;
+      }
+    }
+
     footer{margin:48px 0 20px;color:var(--muted);font-size:14px;text-align:center}
 
-    /* ===== LIGHTBOX ===== */
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:120;padding:20px}
+    /* LIGHTBOX */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:20px;z-index:1000}
     .lightbox.active{display:flex}
-    .lightbox img{max-width:96vw;max-height:92vh;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6)}
-    .lb-close{
-      position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;
-      background:rgba(30,35,60,.95);border:1px solid #5160a8;color:#fff;font-weight:800;
-      display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.45)
-    }
-    .lb-close:hover{background:#3a49ff}
+    .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+    .lightbox .close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:10px;border:1px solid #ffffff33;background:#00000066;color:#fff;font-size:24px;line-height:42px;text-align:center;cursor:pointer}
   </style>
 </head>
 <body>
@@ -135,33 +159,31 @@
     </div>
   </header>
 
-  <!-- ===== HERO only full width ===== -->
+  <!-- HERO full-bleed -->
   <div class="hero-outer">
-    <main class="container" style="padding-top:0;padding-bottom:0;">
-      <section class="hero-wrap" aria-label="Intro">
-        <div class="hero">
-          <div class="hero-bg" aria-hidden="true"></div>
-          <div class="hero-inner">
-            <div>
-              <h1 class="hero-title stroke-strong">
-                schilderijen &<br>sieraden<br>
-                Lilia Guseva Dosti
-              </h1>
-            </div>
-            <div></div>
-            <div>
-              <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:900px;margin:0 0 10px;">
-                Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
-              </p>
-              <div class="badges">
-                <span class="badge">✓ Origineel werk</span>
-                <span class="badge">✓ Persoonlijke stijl</span>
-              </div>
+    <section class="hero-wrap" aria-label="Intro">
+      <div class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div>
+            <h1 class="hero-title stroke-strong">
+              schilderijen &<br>sieraden<br>
+              Lilia Guseva Dosti
+            </h1>
+          </div>
+          <div></div>
+          <div>
+            <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:1100px;margin:0 0 10px;">
+              Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
+            </p>
+            <div class="badges">
+              <span class="badge">✓ Origineel werk</span>
+              <span class="badge">✓ Persoonlijke stijl</span>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   </div>
 
   <main class="container">
@@ -188,7 +210,21 @@
     <section id="over" style="margin-top:34px">
       <h2 class="section">Over mij</h2>
       <div class="card">
-        <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
+        <div class="about">
+          <img
+            class="portrait"
+            src="/Portfolio/IMG_0107.jpg"
+            alt="Lilia Guseva Dosti"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <p>Mijn naam is <strong>Lilia Guseva Dosti</strong>. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
+            <p class="muted" style="margin-top:10px">
+              Vragen of reacties? <a class="pill" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -220,7 +256,7 @@
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lb-close" id="lbClose" aria-label="Sluiten">✕</button>
+    <button class="close" id="lbClose" aria-label="Sluiten">✕</button>
     <img id="lbImg" alt="Vergrote weergave"/>
   </div>
 
@@ -236,7 +272,7 @@
       if (!navPop.contains(e.target) && !hamb.contains(e.target)) navPop.classList.remove('show');
     });
 
-    // manifest laden (met fallback naar GitHub API)
+    // manifest laden (eerst images.json; anders GitHub API fallback)
     async function fetchManifest() {
       try {
         const r = await fetch('/images.json', {cache:'no-store'});
@@ -257,13 +293,13 @@
       return { paintings:[...a1, ...a2], jewels:s };
     }
 
-    // tiles
+    // tile helpers
     function makeTile(src){
       const d = document.createElement('div'); d.className='tile';
       const img = new Image(); img.loading='lazy'; img.decoding='async';
       img.src = '/' + src.replace(/^\/+/, ''); img.alt = src.split('/').pop();
       d.appendChild(img);
-      // open lightbox op click
+      // Lightbox binding
       d.addEventListener('click', () => openLightbox(img.src));
       return d;
     }
@@ -271,6 +307,22 @@
       const root = document.getElementById(rootId); root.innerHTML='';
       paths.forEach(p => root.appendChild(makeTile(p)));
     }
+
+    // LIGHTBOX logic
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+    function openLightbox(src){ lbImg.src = src; lb.classList.add('active'); lb.setAttribute('aria-hidden','false'); }
+    function closeLightbox(){ lb.classList.remove('active'); lb.setAttribute('aria-hidden','true'); lbImg.removeAttribute('src'); }
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
+
+    // Portret ook zoombaar
+    document.addEventListener('click', (e)=>{
+      const p = e.target.closest('img.portrait');
+      if(p) openLightbox(p.currentSrc || p.src);
+    });
 
     (async () => {
       const m = await fetchManifest();
@@ -295,27 +347,6 @@
       // sieraden
       renderList('tiles-jewels', (m.jewels || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})));
     })();
-
-    /* ===== Lightbox ===== */
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbClose = document.getElementById('lbClose');
-
-    function openLightbox(src){
-      lbImg.src = src;
-      lb.classList.add('active');
-      document.documentElement.style.overflow='hidden';
-      lb.setAttribute('aria-hidden','false');
-    }
-    function closeLightbox(){
-      lb.classList.remove('active');
-      lbImg.src = '';
-      document.documentElement.style.overflow='';
-      lb.setAttribute('aria-hidden','true');
-    }
-    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
-    lbClose.addEventListener('click', closeLightbox);
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
   </script>
 </body>
 </html>
