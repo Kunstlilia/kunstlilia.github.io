@@ -44,13 +44,8 @@
     .nav-pop.show{display:flex}
     @media (max-width:860px){ .navlinks{display:none} .hamb{display:flex} }
 
-    /* HERO (full-bleed) + ANIMATIE */
-    .hero-outer{
-      width:100vw;
-      margin-left:calc(50% - 50vw); /* full-bleed */
-      margin-right:calc(50% - 50vw);
-      padding:0 20px; /* uitlijnen met containerpadding */
-    }
+    /* FULL-BLEED HERO (100vw) */
+    .hero-bleed { width:100vw; margin-left:calc(50% - 50vw); }
     .hero-wrap{position:relative;margin-top:16px}
     .hero{position:relative;overflow:hidden;border-radius:28px;border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)}
     .hero-bg{
@@ -76,59 +71,45 @@
     .badges{display:flex;gap:10px;flex-wrap:wrap}
     .badge{background:#10142a;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
 
-    /* sections & grids */
     h2.section{font-size:32px;margin:28px 0 12px;letter-spacing:.3px}
     .muted{color:var(--muted)}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
 
-    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
-    .chip{display:inline-flex;align-items:center;gap:8px;font-weight:600;padding:8px 12px;border-radius:999px;background:var(--chip-bg);border:1px solid var(--chip-br);color:#fff;cursor:pointer;user-select:none;transition:background .2s,border-color .2s,transform .12s}
-    .chip:hover{background:rgba(255,255,255,.12);border-color:#9fa0ff66;transform:translateY(-1px)}
-    .chip.active{background:linear-gradient(180deg, rgba(180,175,255,.25), rgba(130,140,255,.18));border-color:#aab0ff;color:#fff}
-
+    /* Scrollers + tiles */
     .scroller{border:1px solid var(--line);border-radius:16px;background:var(--bg-2);padding:14px;max-height:560px;overflow:auto;box-shadow:var(--shadow)}
     .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
     .tile{background:#0e1330;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .12s,border-color .12s;cursor:pointer}
     .tile:hover{transform:translateY(-2px);border-color:#3a459a}
     .tile img{width:100%;height:300px;object-fit:cover}
-
     .scroller::-webkit-scrollbar{height:12px;width:12px}
     .scroller::-webkit-scrollbar-thumb{background:#3b4185;border-radius:999px;border:3px solid transparent;background-clip:content-box}
     .scroller::-webkit-scrollbar-track{background:transparent}
 
-    /* Over mij – layout */
-    .about {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 16px;
-      align-items: start;
+    /* Category dropdown */
+    .cat-filter { position: relative; display: inline-block; margin: 8px 0 16px; }
+    .cat-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:12px; font-weight:600;
+      background:#7f4e67; color:#fff; border:1px solid #ad7c98; cursor:pointer;
     }
-    .about .portrait {
-      width: 160px;
-      height: 160px;
-      border-radius: 16px;
-      object-fit: cover;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      cursor: zoom-in;
+    .cat-menu {
+      position:absolute; top:46px; left:0; min-width:220px; z-index:20;
+      background:#151938; border:1px solid var(--line); border-radius:12px; padding:8px;
+      display:none; box-shadow:var(--shadow);
     }
-    @media (max-width: 640px) {
-      .about {
-        grid-template-columns: 1fr;
-      }
-      .about .portrait {
-        width: 100%;
-        height: 260px;
-      }
+    .cat-menu.show { display:block; }
+    .cat-item {
+      display:block; padding:10px 12px; border-radius:10px; color:#eaf0ff; cursor:pointer;
     }
+    .cat-item:hover { background:#222861; }
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:95vw;max-height:90vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+    .lb-close{position:absolute;top:16px;right:16px;background:#ffffff22;border:1px solid #ffffff55;border-radius:10px;color:#fff;padding:10px 14px;cursor:pointer}
 
     footer{margin:48px 0 20px;color:var(--muted);font-size:14px;text-align:center}
-
-    /* LIGHTBOX */
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:20px;z-index:1000}
-    .lightbox.active{display:flex}
-    .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-    .lightbox .close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:10px;border:1px solid #ffffff33;background:#00000066;color:#fff;font-size:24px;line-height:42px;text-align:center;cursor:pointer}
   </style>
 </head>
 <body>
@@ -159,43 +140,51 @@
     </div>
   </header>
 
-  <!-- HERO full-bleed -->
-  <div class="hero-outer">
-    <section class="hero-wrap" aria-label="Intro">
-      <div class="hero">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="hero-inner">
-          <div>
-            <h1 class="hero-title stroke-strong">
-              schilderijen &<br>sieraden<br>
-              Lilia Guseva Dosti
-            </h1>
-          </div>
-          <div></div>
-          <div>
-            <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:1100px;margin:0 0 10px;">
-              Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
-            </p>
-            <div class="badges">
-              <span class="badge">✓ Origineel werk</span>
-              <span class="badge">✓ Persoonlijke stijl</span>
-            </div>
+  <!-- FULL-WIDTH HERO buiten container voor 100vw -->
+  <section class="hero-bleed hero-wrap" aria-label="Intro">
+    <div class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div>
+          <h1 class="hero-title stroke-strong">
+            schilderijen &<br>sieraden<br>
+            Lilia Guseva Dosti
+          </h1>
+        </div>
+        <div></div>
+        <div>
+          <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:1100px;margin:0 0 10px;">
+            Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
+          </p>
+          <div class="badges">
+            <span class="badge">✓ Origineel werk</span>
+            <span class="badge">✓ Persoonlijke stijl</span>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <main class="container">
     <!-- Schilderijen -->
     <section id="schilderijen" style="margin-top:30px">
       <h2 class="section">Schilderijen</h2>
-      <p class="muted">Filter op type. (Acryl uit <code>asset1</code>, Olie uit <code>asset2</code>.)</p>
-      <div class="filters" id="paintFilters">
-        <div class="chip active" data-filter="all">Alles</div>
-        <div class="chip" data-filter="acryl">Acryl</div>
-        <div class="chip" data-filter="olie">Olie</div>
+      <p class="muted">Filter op type (automatisch gedetecteerd uit bestandsnamen; indien onbekend → Abstract). </p>
+
+      <!-- Categorie dropdown -->
+      <div class="cat-filter" id="catFilter">
+        <button class="cat-btn" id="catBtn">Alles ▾</button>
+        <div class="cat-menu" id="catMenu" role="menu" aria-label="Categorie">
+          <span class="cat-item" data-cat="Alles">Alles</span>
+          <span class="cat-item" data-cat="Mensen">Mensen</span>
+          <span class="cat-item" data-cat="Dieren">Dieren</span>
+          <span class="cat-item" data-cat="Planten">Planten</span>
+          <span class="cat-item" data-cat="Landschap">Landschap</span>
+          <span class="cat-item" data-cat="Abstract">Abstract</span>
+          <span class="cat-item" data-cat="Relief">Relief</span>
+        </div>
       </div>
+
       <div class="scroller"><div class="tiles" id="tiles-paintings"></div></div>
     </section>
 
@@ -209,22 +198,9 @@
     <!-- Over mij -->
     <section id="over" style="margin-top:34px">
       <h2 class="section">Over mij</h2>
-      <div class="card">
-        <div class="about">
-          <img
-            class="portrait"
-            src="/Portfolio/IMG_0107.jpg"
-            alt="Lilia Guseva Dosti"
-            loading="lazy"
-            decoding="async"
-          />
-          <div>
-            <p>Mijn naam is <strong>Lilia Guseva Dosti</strong>. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
-            <p class="muted" style="margin-top:10px">
-              Vragen of reacties? <a class="pill" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a>
-            </p>
-          </div>
-        </div>
+      <div class="card" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center">
+        <img id="aboutPhoto" src="/Portfolio/IMG_0107.jpg" alt="Lilia Guseva Dosti" style="width:120px;height:120px;object-fit:cover;border-radius:50%;border:2px solid var(--line)">
+        <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
       </div>
     </section>
 
@@ -240,6 +216,12 @@
     <footer>© <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden</footer>
   </main>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+    <button class="lb-close" id="lbClose" aria-label="Sluiten">✕ Sluiten</button>
+    <img id="lightboxImg" alt="Vergrote weergave"/>
+  </div>
+
   <!-- SVG filter voor subtiele golf-displacement -->
   <svg width="0" height="0" style="position:absolute">
     <filter id="liquid-waves">
@@ -254,12 +236,6 @@
     </filter>
   </svg>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="close" id="lbClose" aria-label="Sluiten">✕</button>
-    <img id="lbImg" alt="Vergrote weergave"/>
-  </div>
-
   <script>
     // jaar
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -272,12 +248,13 @@
       if (!navPop.contains(e.target) && !hamb.contains(e.target)) navPop.classList.remove('show');
     });
 
-    // manifest laden (eerst images.json; anders GitHub API fallback)
+    // manifest laden
     async function fetchManifest() {
       try {
         const r = await fetch('/images.json', {cache:'no-store'});
         if (r.ok) return await r.json();
       } catch {}
+      // Fallback: GitHub API
       const GH = 'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
       const get = async (p) => {
         try {
@@ -293,13 +270,51 @@
       return { paintings:[...a1, ...a2], jewels:s };
     }
 
-    // tile helpers
+    // ==== Lightbox ====
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbClose = document.getElementById('lbClose');
+    function openLightbox(src){ lbImg.src = src; lb.classList.add('active'); }
+    function closeLightbox(){ lb.classList.remove('active'); lbImg.src=''; }
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', e => { if(e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+    // ==== Tagging (auto + manual overrides) ====
+    const MANUAL_TAGS = {
+      // voorbeeld:
+      // "asset2/portret_anna.jpg": ["Mensen"],
+      // "asset1/no_name.png":     ["Landschap"],
+    };
+    const KEYWORDS = {
+      Mensen:   ["mens","people","portrait","portret","face","vrouw","man","meisje","jongen","girl","boy","lady","woman","man_","self","model"],
+      Dieren:   ["dier","animal","tijger","tiger","kat","cat","hond","dog","bird","vogel","paard","horse","lion","leeuw","fish","vis"],
+      Planten:  ["plant","bloem","flower","rose","roos","tulp","tulip","leaf","blad","tree","boom","lotus","orchid","orchidee"],
+      Landschap:["land","sea","zee","sky","lucht","mountain","berg","river","rivier","forest","bos","meer","lake","strand","beach","duin","desert","woestijn"],
+      Relief:   ["relief","texture","emboss","structuur","thick","paste","impasto"]
+    };
+    function inferCategoriesFromName(filename){
+      const base = filename.toLowerCase();
+      const hits = new Set();
+      for (const [k,v] of Object.entries(MANUAL_TAGS)) {
+        if (filename.toLowerCase().endsWith(k.toLowerCase())) v.forEach(t => hits.add(t));
+      }
+      for (const [cat, list] of Object.entries(KEYWORDS)) {
+        if (list.some(w => base.includes(w))) hits.add(cat);
+      }
+      if (hits.size === 0) hits.add("Abstract");
+      return Array.from(hits);
+    }
+
     function makeTile(src){
       const d = document.createElement('div'); d.className='tile';
       const img = new Image(); img.loading='lazy'; img.decoding='async';
-      img.src = '/' + src.replace(/^\/+/, ''); img.alt = src.split('/').pop();
+      const cleanSrc = '/' + src.replace(/^\/+/, '');
+      img.src = cleanSrc; img.alt = src.split('/').pop();
+
+      const tags = MANUAL_TAGS[src] || inferCategoriesFromName(src);
+      d.dataset.tags = tags.join(',');  // "Dieren,Planten"
       d.appendChild(img);
-      // Lightbox binding
       d.addEventListener('click', () => openLightbox(img.src));
       return d;
     }
@@ -308,44 +323,45 @@
       paths.forEach(p => root.appendChild(makeTile(p)));
     }
 
-    // LIGHTBOX logic
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbClose = document.getElementById('lbClose');
-    function openLightbox(src){ lbImg.src = src; lb.classList.add('active'); lb.setAttribute('aria-hidden','false'); }
-    function closeLightbox(){ lb.classList.remove('active'); lb.setAttribute('aria-hidden','true'); lbImg.removeAttribute('src'); }
-    lbClose.addEventListener('click', closeLightbox);
-    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
-
-    // Portret ook zoombaar
-    document.addEventListener('click', (e)=>{
-      const p = e.target.closest('img.portrait');
-      if(p) openLightbox(p.currentSrc || p.src);
+    // ==== Category dropdown ====
+    const catBtn  = document.getElementById('catBtn');
+    const catMenu = document.getElementById('catMenu');
+    catBtn.addEventListener('click', () => catMenu.classList.toggle('show'));
+    document.addEventListener('click', (e) => {
+      if (!catMenu.contains(e.target) && !catBtn.contains(e.target)) catMenu.classList.remove('show');
+    });
+    function applyCategoryFilter(category){
+      catBtn.textContent = category + ' ▾';
+      const tiles = document.querySelectorAll('#tiles-paintings .tile');
+      tiles.forEach(t => {
+        if (category === 'Alles') t.style.display = '';
+        else {
+          const tags = (t.dataset.tags || '').split(',').map(s=>s.trim());
+          t.style.display = tags.includes(category) ? '' : 'none';
+        }
+      });
+    }
+    catMenu.addEventListener('click', (e)=>{
+      const item = e.target.closest('.cat-item');
+      if(!item) return;
+      applyCategoryFilter(item.dataset.cat);
+      catMenu.classList.remove('show');
     });
 
     (async () => {
       const m = await fetchManifest();
 
-      // schilderijen + filters
+      // schilderijen
       const allPaints = (m.paintings || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
-      const tiles = document.getElementById('tiles-paintings');
-      const filt = document.getElementById('paintFilters');
-      const byType = { acryl: allPaints.filter(p=>/^asset1\//i.test(p)), olie: allPaints.filter(p=>/^asset2\//i.test(p)) };
-      const allMap = { all: allPaints, ...byType };
-
-      function applyPaintFilter(key){
-        renderList('tiles-paintings', allMap[key] || allPaints);
-        [...filt.querySelectorAll('.chip')].forEach(c => c.classList.toggle('active', c.dataset.filter===key));
-      }
-      filt.addEventListener('click', e => {
-        const chip = e.target.closest('.chip'); if(!chip) return;
-        applyPaintFilter(chip.dataset.filter);
-      });
-      applyPaintFilter('all');
+      renderList('tiles-paintings', allPaints);
+      applyCategoryFilter('Alles');
 
       // sieraden
       renderList('tiles-jewels', (m.jewels || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})));
+
+      // "Over mij" fallback als foto ontbreekt
+      const about = document.getElementById('aboutPhoto');
+      about.addEventListener('error', ()=>{ about.style.display='none'; });
     })();
   </script>
 </body>
