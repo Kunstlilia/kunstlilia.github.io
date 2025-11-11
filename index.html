@@ -44,8 +44,9 @@
     .nav-pop.show{display:flex}
     @media (max-width:860px){ .navlinks{display:none} .hamb{display:flex} }
 
-    /* HERO met ANIMATIE */
-    .hero-wrap{position:relative;margin-top:16px}
+    /* ===== FULL-BLEED HERO (alleen breder; layout verder ongewijzigd) ===== */
+    .hero-outer{width:100vw;margin-left:50%;transform:translateX(-50%);padding:16px 0;}
+    .hero-wrap{position:relative}
     .hero{position:relative;overflow:hidden;border-radius:28px;border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)}
     .hero-bg{
       position:absolute;inset:0;background-image:url('/asset1/homepic.png');background-size:cover;background-position:50% 50%;
@@ -84,7 +85,7 @@
 
     .scroller{border:1px solid var(--line);border-radius:16px;background:var(--bg-2);padding:14px;max-height:560px;overflow:auto;box-shadow:var(--shadow)}
     .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-    .tile{background:#0e1330;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .12s,border-color .12s}
+    .tile{background:#0e1330;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .12s,border-color .12s;cursor:zoom-in}
     .tile:hover{transform:translateY(-2px);border-color:#3a459a}
     .tile img{width:100%;height:300px;object-fit:cover}
 
@@ -93,6 +94,17 @@
     .scroller::-webkit-scrollbar-track{background:transparent}
 
     footer{margin:48px 0 20px;color:var(--muted);font-size:14px;text-align:center}
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:120;padding:20px}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:96vw;max-height:92vh;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+    .lb-close{
+      position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;
+      background:rgba(30,35,60,.95);border:1px solid #5160a8;color:#fff;font-weight:800;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.45)
+    }
+    .lb-close:hover{background:#3a49ff}
   </style>
 </head>
 <body>
@@ -123,35 +135,36 @@
     </div>
   </header>
 
-  <main class="container">
-    <!-- HERO -->
-    <section class="hero-wrap" aria-label="Intro">
-      <div class="hero">
-        <!-- beweegbare achtergrond -->
-        <div class="hero-bg" aria-hidden="true"></div>
-
-        <!-- tekstlagen -->
-        <div class="hero-inner">
-          <div>
-            <h1 class="hero-title stroke-strong">
-              schilderijen &<br>sieraden<br>
-              Lilia Guseva Dosti
-            </h1>
-          </div>
-          <div></div>
-          <div>
-            <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:900px;margin:0 0 10px;">
-              Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
-            </p>
-            <div class="badges">
-              <span class="badge">✓ Origineel werk</span>
-              <span class="badge">✓ Persoonlijke stijl</span>
+  <!-- ===== HERO only full width ===== -->
+  <div class="hero-outer">
+    <main class="container" style="padding-top:0;padding-bottom:0;">
+      <section class="hero-wrap" aria-label="Intro">
+        <div class="hero">
+          <div class="hero-bg" aria-hidden="true"></div>
+          <div class="hero-inner">
+            <div>
+              <h1 class="hero-title stroke-strong">
+                schilderijen &<br>sieraden<br>
+                Lilia Guseva Dosti
+              </h1>
+            </div>
+            <div></div>
+            <div>
+              <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:900px;margin:0 0 10px;">
+                Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
+              </p>
+              <div class="badges">
+                <span class="badge">✓ Origineel werk</span>
+                <span class="badge">✓ Persoonlijke stijl</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
+  </div>
 
+  <main class="container">
     <!-- Schilderijen -->
     <section id="schilderijen" style="margin-top:30px">
       <h2 class="section">Schilderijen</h2>
@@ -205,6 +218,12 @@
     </filter>
   </svg>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="Sluiten">✕</button>
+    <img id="lbImg" alt="Vergrote weergave"/>
+  </div>
+
   <script>
     // jaar
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -217,7 +236,7 @@
       if (!navPop.contains(e.target) && !hamb.contains(e.target)) navPop.classList.remove('show');
     });
 
-    // manifest laden
+    // manifest laden (met fallback naar GitHub API)
     async function fetchManifest() {
       try {
         const r = await fetch('/images.json', {cache:'no-store'});
@@ -238,11 +257,15 @@
       return { paintings:[...a1, ...a2], jewels:s };
     }
 
+    // tiles
     function makeTile(src){
       const d = document.createElement('div'); d.className='tile';
       const img = new Image(); img.loading='lazy'; img.decoding='async';
       img.src = '/' + src.replace(/^\/+/, ''); img.alt = src.split('/').pop();
-      d.appendChild(img); return d;
+      d.appendChild(img);
+      // open lightbox op click
+      d.addEventListener('click', () => openLightbox(img.src));
+      return d;
     }
     function renderList(rootId, paths){
       const root = document.getElementById(rootId); root.innerHTML='';
@@ -272,6 +295,27 @@
       // sieraden
       renderList('tiles-jewels', (m.jewels || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})));
     })();
+
+    /* ===== Lightbox ===== */
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+
+    function openLightbox(src){
+      lbImg.src = src;
+      lb.classList.add('active');
+      document.documentElement.style.overflow='hidden';
+      lb.setAttribute('aria-hidden','false');
+    }
+    function closeLightbox(){
+      lb.classList.remove('active');
+      lbImg.src = '';
+      document.documentElement.style.overflow='';
+      lb.setAttribute('aria-hidden','true');
+    }
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
+    lbClose.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
   </script>
 </body>
 </html>
