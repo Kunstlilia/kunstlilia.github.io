@@ -12,19 +12,21 @@
   <style>
     /* ===== Thema op basis van jouw palet ===== */
     :root{
-      /* Palette (jouw kleuren) */
+      /* Palet */
       --lav1:#DAB6FC; --lav2:#BBADFF; --lav3:#9FA0FF; --lav4:#8E94F2; --lav5:#8895B3;
 
-      /* Dark theme met lavendelglow */
-      --bg:#0f1122; /* basis donker */
+      /* Donker thema met lavendel glow */
+      --bg:#0f1122;
       --bg-soft:#141633;
       --card:#171a3a;
-      --text:#f1f2fb;
-      --muted:#c7c9e6;
 
-      --brand: var(--lav3); /* knoppen */
-      --accent: var(--lav1); /* hover/accent */
-      --chip:#1f2350;       /* nav pills bg */
+      /* Helderder tekst */
+      --text:#ffffff;
+      --muted:#E8EBFF;
+
+      --brand: var(--lav3);
+      --accent: var(--lav1);
+      --chip:#1f2350;
       --chip-hover:#272b61;
 
       --line:#2c3173;
@@ -79,13 +81,13 @@
     .navlinks{display:flex;gap:10px;flex-wrap:wrap}
     .navlinks a{
       display:inline-block;padding:10px 14px;border-radius:999px;
-      background:var(--chip);border:1px solid var(--line);color:#eef;
+      background:var(--chip);border:1px solid var(--line);color:#fff;
       transition:transform .15s, background .15s, border-color .15s, color .15s;
     }
     .navlinks a:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 40%, var(--line));color:#fff;transform:translateY(-1px)}
     .menu-toggle{
       display:none;align-items:center;gap:8px;padding:10px 12px;
-      border:1px solid var(--line);border-radius:12px;background:var(--chip);color:var(--text);cursor:pointer
+      border:1px solid var(--line);border-radius:12px;background:var(--chip);color:#fff;cursor:pointer
     }
     .menu-toggle:hover{background:var(--chip-hover)}
     .menu-toggle svg{width:20px;height:20px}
@@ -112,14 +114,13 @@
     /* ===== Cinema hero ===== */
     .hero-cinema{
       position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);
-      min-height:56vh; /* cinema gevoel */
+      min-height:56vh;
       background: center/cover no-repeat url('/asset1/homepic.png');
       box-shadow:var(--shadow);
     }
-    /* subtiele overlay voor leesbaarheid */
     .hero-cinema::after{
       content:"";position:absolute;inset:0;
-      background:linear-gradient(90deg, rgba(15,17,34,.72) 0 55%, rgba(15,17,34,.25) 65%, rgba(15,17,34,.05) 100%);
+      background:linear-gradient(90deg, rgba(15,17,34,.75) 0 55%, rgba(15,17,34,.28) 65%, rgba(15,17,34,.06) 100%);
       pointer-events:none;
     }
     .hero-card{
@@ -127,7 +128,7 @@
       background:color-mix(in oklab, var(--bg-soft) 70%, transparent);
       border:1px solid var(--line);border-radius:16px;padding:24px 22px;backdrop-filter:blur(6px);
     }
-    .hero-card h1{margin:0 0 10px;font-size:46px;line-height:1.06}
+    .hero-card h1{margin:0 0 10px;font-size:46px;line-height:1.06;color:#fff}
     .hero-card p{margin:0 0 14px;color:var(--muted);font-size:18px}
     .badges{display:flex;gap:10px;flex-wrap:wrap}
     .badge{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
@@ -138,14 +139,14 @@
     }
 
     /* ===== Kaarten / grids ===== */
-    h2.section{font-size:28px;margin:34px 0 14px}
+    h2.section{font-size:28px;margin:34px 0 14px;color:#fff}
     .muted{color:var(--muted)}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s ease, border-color .15s ease}
     .card:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line))}
 
-    /* Scrollbare schilderijenweergave */
+    /* Scrollbare weergaves */
     .tiles-scroll{
-      max-height:75vh; /* eigen viewport */
+      max-height:75vh;
       overflow:auto;border:1px solid var(--line);border-radius:14px;
       background:linear-gradient(180deg,color-mix(in oklab,var(--card) 90%, black), var(--card));
       padding:14px;margin-top:10px;
@@ -155,11 +156,11 @@
     .tile:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav4) 35%, var(--line))}
     .tile img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* Mooie chips (filters) */
+    /* Chips (filters) */
     .filters{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 12px}
     .chip{
       padding:8px 12px;border-radius:999px;border:1px solid var(--line);
-      background:var(--chip);color:#eef;cursor:pointer;user-select:none;
+      background:var(--chip);color:#fff;cursor:pointer;user-select:none;
       transition:background .15s,border-color .15s,transform .15s;
     }
     .chip:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line));transform:translateY(-1px)}
@@ -216,10 +217,10 @@
       </div>
     </section>
 
-    <!-- ===== Schilderijen met filters en scrollbare grid ===== -->
+    <!-- ===== Schilderijen met filters + scroll ===== -->
     <section id="schilderijen">
       <h2 class="section">Schilderijen</h2>
-      <p class="muted">Filter op type. Tip: geef je bestandsnamen <code>acryl_</code>, <code>olie_</code> of <code>aquarel_</code> mee (of als woord ergens in de naam) voor betere herkenning.</p>
+      <p class="muted">Filter op type. Tip: voeg in de bestandsnaam <code>acryl</code>, <code>olie</code> of <code>aquarel</code> toe. (Nu alvast werkend: <strong>asset1 ⇒ acryl</strong>, <strong>asset2 ⇒ olie</strong>.)</p>
 
       <div class="filters" id="paint-filters">
         <button class="chip active" data-filter="all">Alles</button>
@@ -233,11 +234,13 @@
       </div>
     </section>
 
-    <!-- ===== Sieraden ===== -->
+    <!-- ===== Sieraden met scroll ===== -->
     <section id="sieraden">
       <h2 class="section">Sieraden</h2>
       <p class="muted">Een groeiende verzameling handgemaakte stukken.</p>
-      <div class="tiles" id="tiles-jewels"></div>
+      <div class="tiles-scroll">
+        <div class="tiles" id="tiles-jewels"></div>
+      </div>
     </section>
 
     <!-- ===== Over ===== -->
@@ -307,12 +310,16 @@
       }
     }
 
-    // Type herkennen uit bestandsnaam (acryl/olie/aquarel)
+    // Type herkennen:
+    // 1) naam bevat 'acryl' | 'olie' | 'aquarel'/'aquArel'
+    // 2) Fallback: asset1 => acryl, asset2 => olie (zodat filters NU al werken)
     function detectType(path){
       const name = path.split('/').pop().toLowerCase();
       if(name.includes('acryl')) return 'acryl';
       if(name.includes('olie')) return 'olie';
       if(name.includes('aquarel') || name.includes('aquarel')) return 'aquarel';
+      if(path.startsWith('asset1/')) return 'acryl';
+      if(path.startsWith('asset2/')) return 'olie';
       return 'overig';
     }
 
