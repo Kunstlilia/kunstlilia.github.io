@@ -109,7 +109,6 @@
           <a class="pill" href="#schilderijen">Schilder collectie</a>
           <a class="pill" href="#sieraden">Sieraden</a>
           <a class="pill" href="#over">Over mij</a>
-          <a class="pill" href="#over">Over</a>
           <a class="pill" href="#contact">Contact</a>
         </div>
 
@@ -118,7 +117,6 @@
           <a class="pill" href="#schilderijen">Schilder collectie</a>
           <a class="pill" href="#sieraden">Sieraden</a>
           <a class="pill" href="#over">Over mij</a>
-          <a class="pill" href="#over">Over</a>
           <a class="pill" href="#contact">Contact</a>
         </div>
       </nav>
@@ -133,10 +131,6 @@
         <div class="hero-bg" aria-hidden="true"></div>
 
         <!-- tekstlagen -->
-
-    <!-- HERO -->
-    <section class="hero-wrap" aria-label="Intro">
-      <div class="hero">
         <div class="hero-inner">
           <div>
             <h1 class="hero-title stroke-strong">
@@ -145,9 +139,6 @@
             </h1>
           </div>
           <div></div>
-
-          <div></div><!-- ruimte voor het beeld -->
-
           <div>
             <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:900px;margin:0 0 10px;">
               Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
@@ -170,24 +161,19 @@
         <div class="chip" data-filter="acryl">Acryl</div>
         <div class="chip" data-filter="olie">Olie</div>
       </div>
-
-      <div class="scroller">
-        <div class="tiles" id="tiles-paintings"></div>
-      </div>
+      <div class="scroller"><div class="tiles" id="tiles-paintings"></div></div>
     </section>
 
     <!-- Sieraden -->
     <section id="sieraden" style="margin-top:34px">
       <h2 class="section">Sieraden</h2>
       <p class="muted">Een kleine verzameling sieraden. Er komen later meer stukken bij.</p>
-      <div class="scroller">
-        <div class="tiles" id="tiles-jewels"></div>
-      </div>
+      <div class="scroller"><div class="tiles" id="tiles-jewels"></div></div>
     </section>
 
-    <!-- Over -->
+    <!-- Over mij -->
     <section id="over" style="margin-top:34px">
-      <h2 class="section">Over</h2>
+      <h2 class="section">Over mij</h2>
       <div class="card">
         <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
       </div>
@@ -202,16 +188,28 @@
       </div>
     </section>
 
-    <footer>
-      © <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden
-    </footer>
+    <footer>© <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden</footer>
   </main>
+
+  <!-- SVG filter voor subtiele golf-displacement -->
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="liquid-waves">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="8">
+        <animate attributeName="baseFrequency"
+                 values="0.008 0.012;0.011 0.009;0.008 0.012"
+                 dur="20s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" scale="8" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale" values="6;10;6" dur="18s" repeatCount="indefinite"/>
+      </feDisplacementMap>
+    </filter>
+  </svg>
 
   <script>
     // jaar
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // hamburger/pop
+    // hamburger
     const hamb = document.getElementById('hamb');
     const navPop = document.getElementById('navPop');
     hamb.addEventListener('click', () => navPop.classList.toggle('show'));
@@ -219,7 +217,7 @@
       if (!navPop.contains(e.target) && !hamb.contains(e.target)) navPop.classList.remove('show');
     });
 
-    // manifest laden (voorkeur: /images.json; fallback GitHub API)
+    // manifest laden
     async function fetchManifest() {
       try {
         const r = await fetch('/images.json', {cache:'no-store'});
@@ -243,44 +241,35 @@
     function makeTile(src){
       const d = document.createElement('div'); d.className='tile';
       const img = new Image(); img.loading='lazy'; img.decoding='async';
-      img.src = '/' + src.replace(/^\/+/, '');
-      img.alt = src.split('/').pop();
+      img.src = '/' + src.replace(/^\/+/, ''); img.alt = src.split('/').pop();
       d.appendChild(img); return d;
     }
-
     function renderList(rootId, paths){
-      const root = document.getElementById(rootId);
-      root.innerHTML = '';
+      const root = document.getElementById(rootId); root.innerHTML='';
       paths.forEach(p => root.appendChild(makeTile(p)));
     }
 
     (async () => {
       const m = await fetchManifest();
 
-      // --- schilderijen (filters)
+      // schilderijen + filters
       const allPaints = (m.paintings || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
       const tiles = document.getElementById('tiles-paintings');
       const filt = document.getElementById('paintFilters');
-
-      const byType = {
-        acryl: allPaints.filter(p => /^asset1\//i.test(p)),
-        olie:  allPaints.filter(p => /^asset2\//i.test(p)),
-      };
+      const byType = { acryl: allPaints.filter(p=>/^asset1\//i.test(p)), olie: allPaints.filter(p=>/^asset2\//i.test(p)) };
       const allMap = { all: allPaints, ...byType };
 
       function applyPaintFilter(key){
         renderList('tiles-paintings', allMap[key] || allPaints);
         [...filt.querySelectorAll('.chip')].forEach(c => c.classList.toggle('active', c.dataset.filter===key));
       }
-
-      filt.addEventListener('click', (e)=>{
+      filt.addEventListener('click', e => {
         const chip = e.target.closest('.chip'); if(!chip) return;
         applyPaintFilter(chip.dataset.filter);
       });
-
       applyPaintFilter('all');
 
-      // --- sieraden
+      // sieraden
       renderList('tiles-jewels', (m.jewels || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})));
     })();
   </script>
