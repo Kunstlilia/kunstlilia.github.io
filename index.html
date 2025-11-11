@@ -124,12 +124,39 @@
       pointer-events:none;
     }
     .hero-card{
-      position:absolute;left:28px;top:28px;max-width:min(560px,90%);
-      background:color-mix(in oklab, var(--bg-soft) 70%, transparent);
-      border:1px solid var(--line);border-radius:16px;padding:24px 22px;backdrop-filter:blur(6px);
-    }
-    .hero-card h1{margin:0 0 10px;font-size:46px;line-height:1.06;color:#fff}
-    .hero-card p{margin:0 0 14px;color:var(--muted);font-size:18px}
+  position:absolute;
+  left:28px;top:28px;
+  max-width:min(560px,90%);
+  background:rgba(12, 14, 30, 0.55); /* iets lichter glas */
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:28px 26px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 40px rgba(0,0,0,0.4);
+}
+
+/* heldere tekst */
+.hero-card h1{
+  margin:0 0 10px;
+  font-size:46px;
+  line-height:1.06;
+  color:#ffffff;              /* pure wit */
+}
+
+.hero-card h1 span{
+  color:#d9ccff;              /* veel lichtere lavendel */
+  text-shadow:0 0 12px rgba(217,204,255,0.6);
+}
+.hero-card p{
+  margin:0 0 14px;
+  color:#f2f2f2;              /* bijna wit */
+  font-size:18px;
+}
+.badge{
+  background:rgba(40,45,90,0.6);
+  border:1px solid rgba(150,150,255,0.4);
+  color:#f7f7ff;
+}
     .badges{display:flex;gap:10px;flex-wrap:wrap}
     .badge{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
 
