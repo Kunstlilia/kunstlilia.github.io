@@ -9,31 +9,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  /* ===== Lichter thema (leesbaar) ===== */
+  /* ===== Thema ===== */
   :root{
     --lav1:#DAB6FC; --lav2:#BBADFF; --lav3:#9FA0FF; --lav4:#8E94F2; --lav5:#8895B3;
-
-    /* minder donker: */
-    --bg:#11173a;          /* was #0f1122 */
-    --bg-soft:#171d49;     /* was #141633 */
-    --card:#1c2357;        /* was #171a3a */
-
-    --text:#ffffff;
-    --muted:#F2F4FF;       /* veel lichter */
-    --brand: var(--lav3);
-    --accent: var(--lav1);
-    --chip:#222a66;
-    --chip-hover:#2b3580;
-    --line:#3a4090;
-    --radius:18px;
-    --shadow:0 12px 32px rgba(0,0,0,.28);
+    --bg:#11173a; --bg-soft:#171d49; --card:#1c2357;
+    --text:#ffffff; --muted:#F2F4FF;
+    --brand:var(--lav3); --accent:var(--lav1);
+    --chip:#222a66; --chip-hover:#2b3580; --line:#3a4090;
+    --radius:18px; --shadow:0 12px 32px rgba(0,0,0,.28);
   }
   *{box-sizing:border-box}
   html,body{
-    margin:0;padding:0;
+    margin:0;padding:0;color:var(--text);
     font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    color:var(--text);
-    /* zachtere achtergrond */
     background:
       radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--lav2) 28%, transparent), transparent 60%),
       radial-gradient(900px 500px at 95% 0%, color-mix(in oklab, var(--lav4) 20%, transparent), transparent 60%),
@@ -45,32 +33,19 @@
   .container{max-width:1200px;margin:0 auto;padding:20px}
 
   /* ===== Header / nav ===== */
-  header{
-    position:sticky;top:0;z-index:10;
-    background:linear-gradient(180deg,rgba(12,14,40,.85),rgba(12,14,40,.55));
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line)
-  }
+  header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(12,14,40,.85),rgba(12,14,40,.55));backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;position:relative}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
-  .mark{
-    width:28px;height:28px;border-radius:50%;
-    background:
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+  .mark{width:28px;height:28px;border-radius:50%;background:
       radial-gradient(135% 135% at 20% 20%, var(--lav1) 0 42%, transparent 43%),
       radial-gradient(120% 120% at 80% 35%, var(--lav3) 0 40%, transparent 41%),
       radial-gradient(110% 110% at 50% 85%, var(--lav4) 0 44%, transparent 45%),
       var(--lav2);
-    box-shadow:0 0 22px color-mix(in oklab, var(--lav1) 35%, transparent);
-    position:relative;overflow:hidden;
-  }
-  .mark::after{content:"";position:absolute;inset:-20%;background:conic-gradient(from 100deg,var(--lav1),var(--lav2),var(--lav3),var(--lav4),var(--lav5),var(--lav1));opacity:.45;mix-blend-mode:overlay;animation:swirl 9s linear infinite;}
+    box-shadow:0 0 22px color-mix(in oklab, var(--lav1) 35%, transparent); position:relative;overflow:hidden}
+  .mark::after{content:"";position:absolute;inset:-20%;background:conic-gradient(from 100deg,var(--lav1),var(--lav2),var(--lav3),var(--lav4),var(--lav5),var(--lav1));opacity:.45;mix-blend-mode:overlay;animation:swirl 9s linear infinite}
   @keyframes swirl {to{transform:rotate(360deg)}}
   .navlinks{display:flex;gap:10px;flex-wrap:wrap}
-  .navlinks a{
-    display:inline-block;padding:10px 14px;border-radius:999px;
-    background:var(--chip);border:1px solid var(--line);color:#fff;
-    transition:transform .15s, background .15s, border-color .15s, color .15s;
-  }
+  .navlinks a{display:inline-block;padding:10px 14px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:#fff;transition:transform .15s,background .15s,border-color .15s}
   .navlinks a:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 40%, var(--line));transform:translateY(-1px)}
   .menu-toggle{display:none;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--chip);color:#fff;cursor:pointer}
   .menu-toggle:hover{background:var(--chip-hover)}
@@ -81,77 +56,82 @@
     .menu-toggle{display:inline-flex}
     .navlinks{display:none}
     nav.open .navlinks{display:flex}
-    .navlinks{
-      position:absolute;top:100%;left:0;right:0;margin-top:8px;
-      background:linear-gradient(180deg,var(--card), color-mix(in oklab,var(--card) 80%, black));
-      border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
-      flex-direction:column;gap:6px;padding:10px 12px;z-index:20
-    }
+    .navlinks{position:absolute;top:100%;left:0;right:0;margin-top:8px;background:linear-gradient(180deg,var(--card), color-mix(in oklab,var(--card) 80%, black));border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);flex-direction:column;gap:6px;padding:10px 12px;z-index:20}
     .navlinks a{padding:12px 14px}
     nav{z-index:21}
   }
 
-  /* ===== Cinema hero (veel lichter) ===== */
+  /* ===== Cinema hero met golf-animatie ===== */
   .hero-cinema{
     position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);
-    min-height:56vh;
-    background:center/cover no-repeat url('/asset1/homepic.png');
+    min-height:60vh; /* iets hoger */
+    padding: clamp(16px, 3vw, 28px); /* veilige buffer rondom */
     box-shadow:var(--shadow);
-    filter:saturate(1.08) brightness(1.05); /* iets lichter beeld */
   }
+  /* Twee lagen van dezelfde afbeelding voor “golven” */
+  .hero-cinema::before,
   .hero-cinema::after{
-    content:"";position:absolute;inset:0;
-    /* transparantere overlay zodat kunst zichtbaar blijft */
-    background:linear-gradient(90deg, rgba(17,22,60,.52) 0 55%, rgba(17,22,60,.18) 68%, rgba(17,22,60,.04) 100%);
-    pointer-events:none;
+    content:"";position:absolute;inset:0;background:center/110% no-repeat url('/asset1/homepic.png');
+    filter:saturate(1.06) brightness(1.06);
+    transform-origin:center;pointer-events:none;border-radius:20px;
   }
+  /* langzame pan/zoom + zachte golf */
+  @keyframes panA { 0%{transform:translate3d(-1%,0,0) scale(1.04)} 50%{transform:translate3d(1%,0.5%,0) scale(1.06)} 100%{transform:translate3d(-1%,0,0) scale(1.04)} }
+  @keyframes panB { 0%{background-position:0% 50%;transform:scale(1.02) rotate(0.05deg)} 50%{background-position:100% 52%;transform:scale(1.035) rotate(-0.05deg)} 100%{background-position:0% 50%;transform:scale(1.02) rotate(0.05deg)} }
+
+  .hero-cinema::before{opacity:.95; animation: panA 28s ease-in-out infinite}
+  .hero-cinema::after {opacity:.45; mix-blend-mode:overlay; animation: panB 32s ease-in-out infinite}
+
+  /* Sterkere golf tijdens verbergen */
+  .hero-cinema.wave-strong::before{animation-duration:9s}
+  .hero-cinema.wave-strong::after {animation-duration:10s; opacity:.55}
+
+  /* Hero-kaart gecentreerd en animaties */
   .hero-card{
-    position:absolute;left:28px;top:28px;max-width:min(560px,90%);
-    background:rgba(25,30,80,.36); /* lichter glas */
+    position:absolute;left:clamp(16px,4vw,28px);right:auto;
+    top:50%;transform:translateY(-50%); /* verticaal centreren */
+    width:min(560px,90%);
+    background:rgba(25,30,80,.38);
     border:1px solid color-mix(in oklab,var(--line) 80%, white);
     border-radius:16px;padding:28px 26px;backdrop-filter:blur(10px);
     box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transition:opacity .8s ease, transform .8s ease;
   }
-  .hero-card h1{margin:0 0 10px;font-size:46px;line-height:1.06;color:#ffffff} /* écht wit */
+  .hero-card.hide{opacity:0; transform:translateY(-50%) scale(.985); pointer-events:none}
+
+  .hero-card h1{margin:0 0 10px;font-size:46px;line-height:1.06;color:#fff}
   .hero-card h1 span{color:#E9E2FF;text-shadow:0 0 10px rgba(233,226,255,.55)}
-  .hero-card p{margin:0 0 14px;color:#ffffff;opacity:.95;font-size:18px} /* wit */
+  .hero-card p{margin:0 0 14px;color:#fff;opacity:.96;font-size:18px}
   .badges{display:flex;gap:10px;flex-wrap:wrap}
   .badge{background:rgba(60,70,150,.55);border:1px solid rgba(170,180,255,.55);border-radius:999px;padding:8px 12px;color:#fff;font-size:14px}
 
-  @media (max-width:720px){.hero-card{left:16px;right:16px;max-width:unset}.hero-card h1{font-size:34px}}
+  @media (max-width:720px){
+    .hero-card{left:16px;right:16px;width:auto}
+    .hero-card h1{font-size:34px}
+  }
 
-  /* ===== kaarten / grids ===== */
+  /* ===== Grids / filters ===== */
   h2.section{font-size:28px;margin:34px 0 14px;color:#fff}
   .muted{color:var(--muted)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s ease, border-color .15s ease}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s,border-color .15s}
   .card:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line))}
 
-  /* scrollbare weergaves */
-  .tiles-scroll{
-    max-height:75vh; overflow:auto;border:1px solid var(--line);border-radius:14px;
-    background:linear-gradient(180deg,color-mix(in oklab,var(--card) 92%, white 8%), var(--card));
-    padding:14px;margin-top:10px;
-  }
+  .tiles-scroll{max-height:75vh;overflow:auto;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,color-mix(in oklab,var(--card) 92%, white 8%), var(--card));padding:14px;margin-top:10px}
   .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
   .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .15s,border-color .15s}
   .tile:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav4) 35%, var(--line))}
   .tile img{width:100%;height:100%;object-fit:cover;display:block}
 
-  /* Chips (filters) */
   .filters{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 12px}
   .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;cursor:pointer;user-select:none;transition:background .15s,border-color .15s,transform .15s}
   .chip:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line));transform:translateY(-1px)}
   .chip.active{background:linear-gradient(180deg, color-mix(in oklab,var(--lav3) 20%, var(--chip)), var(--chip-hover));border-color:color-mix(in oklab,var(--lav3) 55%, var(--line));box-shadow:0 6px 18px rgba(74,86,180,.22)}
 
-  /* scrollbar (webkit) */
   .tiles-scroll::-webkit-scrollbar{width:10px}
-  .tiles-scroll::-webkit-scrollbar-track{background:transparent}
   .tiles-scroll::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--chip-hover) 70%, black);border-radius:10px}
   .tiles-scroll::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--chip-hover) 85%, black)}
 
   footer{margin:48px 0 20px;color:var(--muted);font-size:14px}
-
-  /* lightbox */
   .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px}
   .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px}
   .lightbox.active{display:flex}
@@ -180,9 +160,9 @@
 </header>
 
 <main class="container">
-  <!-- Hero -->
-  <section class="hero-cinema">
-    <div class="hero-card">
+  <!-- HERO -->
+  <section class="hero-cinema" id="hero">
+    <div class="hero-card" id="hero-card">
       <h1>Schilderijen & sieraden<br><span>Lilia Guseva Dosti</span></h1>
       <p>Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.</p>
       <div class="badges">
@@ -196,25 +176,19 @@
   <section id="schilderijen">
     <h2 class="section">Schilderijen</h2>
     <p class="muted">Filter op type. (Nu alvast werkend: <strong>asset1 ⇒ acryl</strong>, <strong>asset2 ⇒ olie</strong>.)</p>
-
     <div class="filters" id="paint-filters">
       <button class="chip active" data-filter="all">Alles</button>
       <button class="chip" data-filter="acryl">Acryl</button>
       <button class="chip" data-filter="olie">Olie</button>
     </div>
-
-    <div class="tiles-scroll">
-      <div class="tiles" id="tiles-paintings"></div>
-    </div>
+    <div class="tiles-scroll"><div class="tiles" id="tiles-paintings"></div></div>
   </section>
 
   <!-- Sieraden -->
   <section id="sieraden">
     <h2 class="section">Sieraden</h2>
     <p class="muted">Een groeiende verzameling handgemaakte stukken.</p>
-    <div class="tiles-scroll">
-      <div class="tiles" id="tiles-jewels"></div>
-    </div>
+    <div class="tiles-scroll"><div class="tiles" id="tiles-jewels"></div></div>
   </section>
 
   <!-- Over -->
@@ -284,7 +258,7 @@
     }
   }
 
-  // Type herkennen (alleen acryl/olie; geen aquarel)
+  // Type herkennen
   function detectType(path){
     const name = path.split('/').pop().toLowerCase();
     if(name.includes('acryl')) return 'acryl';
@@ -317,11 +291,9 @@
     const nodes = document.querySelectorAll('#tiles-paintings .tile');
     nodes.forEach(n=>{
       const t = n.dataset.type;
-      const show = (filter==='all') || (t===filter);
-      n.style.display = show ? '' : 'none';
+      n.style.display = (filter==='all') || (t===filter) ? '' : 'none';
     });
   }
-
   function setupFilters(){
     const bar = document.getElementById('paint-filters');
     if(!bar) return;
@@ -361,6 +333,29 @@
     });
   }
 
+  // ===== Hero animatie-cyclus (eerst 5s weg, dan 20s zichtbaar) =====
+  (function(){
+    const hero = document.getElementById('hero');
+    const card = document.getElementById('hero-card');
+    if(!hero || !card) return;
+
+    const SHOW_MS = 20000; // 20s zichtbaar
+    const HIDE_MS = 5000;  // 5s verborgen
+
+    function cycleShow(){
+      card.classList.remove('hide');
+      hero.classList.remove('wave-strong');
+      setTimeout(cycleHide, SHOW_MS);
+    }
+    function cycleHide(){
+      card.classList.add('hide');
+      hero.classList.add('wave-strong');
+      setTimeout(cycleShow, HIDE_MS);
+    }
+
+    // Start direct met 5s verborgen
+    cycleHide();
+  
   (async ()=>{
     const m = await loadManifest();
     renderPaintings(m.paintings || []);
