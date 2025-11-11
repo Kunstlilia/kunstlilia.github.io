@@ -12,7 +12,7 @@
   /* ===== Thema ===== */
   :root{
     --lav1:#DAB6FC; --lav2:#BBADFF; --lav3:#9FA0FF; --lav4:#8E94F2; --lav5:#8895B3;
-    --bg:#11173a; --bg-soft:#171d49; --card:#1c2357;
+    --bg:#11173a; --card:#1c2357;
     --text:#ffffff; --muted:#F2F4FF;
     --brand:var(--lav3); --accent:var(--lav1);
     --chip:#222a66; --chip-hover:#2b3580; --line:#3a4090;
@@ -61,75 +61,61 @@
     nav{z-index:21}
   }
 
-  /* ===== Cinema hero met golf-animatie ===== */
+  /* ===== Hero (tekst boven/onder + cinema animatie) ===== */
+  .hero-top{
+    margin-top: clamp(10px, 3vw, 18px);
+    margin-bottom: 12px;
+  }
+  .hero-top h1{
+    margin:0 0 8px;font-size: clamp(32px, 5vw, 56px);line-height:1.05;color:#fff;
+  }
+  .hero-top h1 span{color:#E9E2FF;text-shadow:0 0 12px rgba(233,226,255,.55)}
   .hero-cinema{
     position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);
-    min-height:60vh; /* iets hoger */
-    padding: clamp(16px, 3vw, 28px); /* veilige buffer rondom */
-    box-shadow:var(--shadow);
+    min-height:58vh;box-shadow:var(--shadow);
   }
-  /* Twee lagen van dezelfde afbeelding voor “golven” */
   .hero-cinema::before,
   .hero-cinema::after{
     content:"";position:absolute;inset:0;background:center/110% no-repeat url('/asset1/homepic.png');
     filter:saturate(1.06) brightness(1.06);
     transform-origin:center;pointer-events:none;border-radius:20px;
   }
-  /* langzame pan/zoom + zachte golf */
+  /* zachte golven */
   @keyframes panA { 0%{transform:translate3d(-1%,0,0) scale(1.04)} 50%{transform:translate3d(1%,0.5%,0) scale(1.06)} 100%{transform:translate3d(-1%,0,0) scale(1.04)} }
   @keyframes panB { 0%{background-position:0% 50%;transform:scale(1.02) rotate(0.05deg)} 50%{background-position:100% 52%;transform:scale(1.035) rotate(-0.05deg)} 100%{background-position:0% 50%;transform:scale(1.02) rotate(0.05deg)} }
-
   .hero-cinema::before{opacity:.95; animation: panA 28s ease-in-out infinite}
   .hero-cinema::after {opacity:.45; mix-blend-mode:overlay; animation: panB 32s ease-in-out infinite}
-
-  /* Sterkere golf tijdens verbergen */
+  /* intensere golf tijdens “wave-strong” (optioneel) */
   .hero-cinema.wave-strong::before{animation-duration:9s}
   .hero-cinema.wave-strong::after {animation-duration:10s; opacity:.55}
 
-  /* Hero-kaart gecentreerd en animaties */
-  .hero-card{
-    position:absolute;left:clamp(16px,4vw,28px);right:auto;
-    top:50%;transform:translateY(-50%); /* verticaal centreren */
-    width:min(560px,90%);
-    background:rgba(25,30,80,.38);
-    border:1px solid color-mix(in oklab,var(--line) 80%, white);
-    border-radius:16px;padding:28px 26px;backdrop-filter:blur(10px);
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
-    transition:opacity .8s ease, transform .8s ease;
+  .hero-bottom{
+    margin-top:12px;
+    display:grid;gap:12px;
+    grid-template-columns:1fr;
   }
-  .hero-card.hide{opacity:0; transform:translateY(-50%) scale(.985); pointer-events:none}
-
-  .hero-card h1{margin:0 0 10px;font-size:46px;line-height:1.06;color:#fff}
-  .hero-card h1 span{color:#E9E2FF;text-shadow:0 0 10px rgba(233,226,255,.55)}
-  .hero-card p{margin:0 0 14px;color:#fff;opacity:.96;font-size:18px}
+  .hero-bottom .card{background:rgba(25,30,80,.38);backdrop-filter:blur(8px)}
   .badges{display:flex;gap:10px;flex-wrap:wrap}
   .badge{background:rgba(60,70,150,.55);border:1px solid rgba(170,180,255,.55);border-radius:999px;padding:8px 12px;color:#fff;font-size:14px}
-
-  @media (max-width:720px){
-    .hero-card{left:16px;right:16px;width:auto}
-    .hero-card h1{font-size:34px}
-  }
 
   /* ===== Grids / filters ===== */
   h2.section{font-size:28px;margin:34px 0 14px;color:#fff}
   .muted{color:var(--muted)}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s,border-color .15s}
   .card:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line))}
-
   .tiles-scroll{max-height:75vh;overflow:auto;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,color-mix(in oklab,var(--card) 92%, white 8%), var(--card));padding:14px;margin-top:10px}
   .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
   .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .15s,border-color .15s}
   .tile:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav4) 35%, var(--line))}
   .tile img{width:100%;height:100%;object-fit:cover;display:block}
+  .tiles-scroll::-webkit-scrollbar{width:10px}
+  .tiles-scroll::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--chip-hover) 70%, black);border-radius:10px}
+  .tiles-scroll::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--chip-hover) 85%, black)}
 
   .filters{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 12px}
   .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;cursor:pointer;user-select:none;transition:background .15s,border-color .15s,transform .15s}
   .chip:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line));transform:translateY(-1px)}
   .chip.active{background:linear-gradient(180deg, color-mix(in oklab,var(--lav3) 20%, var(--chip)), var(--chip-hover));border-color:color-mix(in oklab,var(--lav3) 55%, var(--line));box-shadow:0 6px 18px rgba(74,86,180,.22)}
-
-  .tiles-scroll::-webkit-scrollbar{width:10px}
-  .tiles-scroll::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--chip-hover) 70%, black);border-radius:10px}
-  .tiles-scroll::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--chip-hover) 85%, black)}
 
   footer{margin:48px 0 20px;color:var(--muted);font-size:14px}
   .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px}
@@ -160,11 +146,20 @@
 </header>
 
 <main class="container">
-  <!-- HERO -->
-  <section class="hero-cinema" id="hero">
-    <div class="hero-card" id="hero-card">
-      <h1>Schilderijen & sieraden<br><span>Lilia Guseva Dosti</span></h1>
-      <p>Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.</p>
+  <!-- Tekst boven de hero -->
+  <section class="hero-top" aria-label="Intro">
+    <h1>Schilderijen & sieraden<br><span>Lilia Guseva Dosti</span></h1>
+  </section>
+
+  <!-- Cinema hero met golvende achtergrond -->
+  <section class="hero-cinema" id="hero" aria-label="Kunst preview"></section>
+
+  <!-- Tekst onder de hero -->
+  <section class="hero-bottom" aria-label="Intro details">
+    <div class="card">
+      <p class="muted" style="color:#fff;opacity:.98">
+        Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
+      </p>
       <div class="badges">
         <span class="badge">✓ Origineel werk</span>
         <span class="badge">✓ Persoonlijke stijl</span>
@@ -204,7 +199,7 @@
     <h2 class="section">Contact</h2>
     <div class="card">
       <p class="muted">Voor vragen, samenwerkingen of gedachten delen, kunt u mailen. Reacties worden persoonlijk gelezen.</p>
-      <p><a class="btn" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
+      <p><a class="chip" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
     </div>
   </section>
 
@@ -213,7 +208,7 @@
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
-  <button class="btn close" onclick="toggleLightbox(false)">Sluiten</button>
+  <button class="chip close" onclick="toggleLightbox(false)">Sluiten</button>
   <img id="lightboxImg" alt="Vergrote weergave">
 </div>
 
@@ -246,7 +241,7 @@
     window.addEventListener('resize', ()=>{ if(window.innerWidth>900) close(); });
   })();
 
-  // Manifest laden
+  // Manifest laden (van dezelfde site)
   async function loadManifest(){
     try{
       const r = await fetch('/images.json', { cache:'no-store' });
@@ -333,29 +328,17 @@
     });
   }
 
-  // ===== Hero animatie-cyclus (eerst 5s weg, dan 20s zichtbaar) =====
+  // (Optioneel) als je alsnog een 5s “sterkere golf” cyclus wil:
   (function(){
     const hero = document.getElementById('hero');
-    const card = document.getElementById('hero-card');
-    if(!hero || !card) return;
+    if(!hero) return;
+    const SHOW_MS = 20000; // 20s soft
+    const HIDE_MS = 5000;  // 5s stronger waves
+    function strongOn(){ hero.classList.add('wave-strong'); setTimeout(strongOff, HIDE_MS); }
+    function strongOff(){ hero.classList.remove('wave-strong'); setTimeout(strongOn, SHOW_MS); }
+    strongOn(); // start met 5s sterk, daarna 20s zacht, herhalen
+  })();
 
-    const SHOW_MS = 20000; // 20s zichtbaar
-    const HIDE_MS = 5000;  // 5s verborgen
-
-    function cycleShow(){
-      card.classList.remove('hide');
-      hero.classList.remove('wave-strong');
-      setTimeout(cycleHide, SHOW_MS);
-    }
-    function cycleHide(){
-      card.classList.add('hide');
-      hero.classList.add('wave-strong');
-      setTimeout(cycleShow, HIDE_MS);
-    }
-
-    // Start direct met 5s verborgen
-    cycleHide();
-  
   (async ()=>{
     const m = await loadManifest();
     renderPaintings(m.paintings || []);
