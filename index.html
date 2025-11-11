@@ -1,391 +1,354 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>KunstLilia – Portfolio van Lilia Guseva Dosti</title>
-<meta name="description" content="Portfolio van Lilia Guseva Dosti. Bekijk schilderijen en sieraden, en neem contact op voor meer informatie of interesse.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-  /* ===== Thema ===== */
-  :root{
-    --lav1:#DAB6FC; --lav2:#BBADFF; --lav3:#9FA0FF; --lav4:#8E94F2; --lav5:#8895B3;
-    --bg:#101632; --card:#171e49;
-    --text:#ffffff; --muted:#F2F4FF;
-    --brand:var(--lav3); --accent:var(--lav1);
-    --chip:#222a66; --chip-hover:#2b3580; --line:#3a4090;
-    --radius:18px; --shadow:0 14px 36px rgba(0,0,0,.28);
-  }
-  *{box-sizing:border-box}
-  html,body{
-    margin:0;padding:0;color:var(--text);
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:
-      radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--lav2) 28%, transparent), transparent 60%),
-      radial-gradient(900px 500px at 95% 0%, color-mix(in oklab, var(--lav4) 20%, transparent), transparent 60%),
-      radial-gradient(1200px 800px at 50% 100%, color-mix(in oklab, var(--lav5) 14%, transparent), transparent 70%),
-      var(--bg);
-  }
-  a{color:var(--accent);text-decoration:none}
-  img{max-width:100%;display:block}
-  .container{max-width:1200px;margin:0 auto;padding:20px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KunstLilia – Portfolio van Lilia Guseva Dosti</title>
+  <meta name="description" content="Portfolio van Lilia Guseva Dosti. Bekijk schilderijen en sieraden, en neem contact op voor inspiratie en kennismaking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  /* ===== Header / nav ===== */
-  header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(12,14,40,.85),rgba(12,14,40,.55));backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;position:relative}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:800}
-  .mark{width:28px;height:28px;border-radius:50%;background:
-      radial-gradient(135% 135% at 20% 20%, var(--lav1) 0 42%, transparent 43%),
-      radial-gradient(120% 120% at 80% 35%, var(--lav3) 0 40%, transparent 41%),
-      radial-gradient(110% 110% at 50% 85%, var(--lav4) 0 44%, transparent 45%),
-      var(--lav2);
-    box-shadow:0 0 22px color-mix(in oklab, var(--lav1) 35%, transparent); position:relative;overflow:hidden}
-  .mark::after{content:"";position:absolute;inset:-20%;background:conic-gradient(from 100deg,var(--lav1),var(--lav2),var(--lav3),var(--lav4),var(--lav5),var(--lav1));opacity:.45;mix-blend-mode:overlay;animation:swirl 9s linear infinite}
-  @keyframes swirl {to{transform:rotate(360deg)}}
-  .navlinks{display:flex;gap:10px;flex-wrap:wrap}
-  .navlinks a{display:inline-block;padding:10px 14px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:#fff;transition:transform .15s,background .15s,border-color .15s}
-  .navlinks a:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 40%, var(--line));transform:translateY(-1px)}
-  .menu-toggle{display:none;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--chip);color:#fff;cursor:pointer}
-  .menu-toggle:hover{background:var(--chip-hover)}
-  .menu-toggle svg{width:20px;height:20px}
-  .nav-overlay{display:none;position:fixed;inset:0;background:transparent;z-index:19}
-  nav.open + .nav-overlay{display:block}
-  @media (max-width:900px){
-    .menu-toggle{display:inline-flex}
-    .navlinks{display:none}
-    nav.open .navlinks{display:flex}
-    .navlinks{position:absolute;top:100%;left:0;right:0;margin-top:8px;background:linear-gradient(180deg,var(--card), color-mix(in oklab,var(--card) 80%, black));border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);flex-direction:column;gap:6px;padding:10px 12px;z-index:20}
-    .navlinks a{padding:12px 14px}
-    nav{z-index:21}
-  }
+  <style>
+    :root{
+      /* palet */
+      --bg:#0f1430;         /* donker nachtblauw */
+      --bg-2:#1a1f45;
+      --card:#161b3a;
+      --accent-1:#DAB6FC;   /* lila */
+      --accent-2:#BBADFF;
+      --accent-3:#9FA0FF;
+      --accent-4:#8E94F2;
+      --accent-5:#8895B3;
+      --text:#ffffff;
+      --muted:#dfe4ffcc;
+      --line:#272e63;
+      --radius:20px;
+      --shadow:0 12px 32px rgba(0,0,0,.35);
+      --chip-bg:rgba(255,255,255,.06);
+      --chip-br:rgba(255,255,255,.18);
+    }
 
-  /* ===== HERO: tekst binnen het kader (boven & onder) + next-level animatie ===== */
-  .hero{
-    position:relative;
-    margin-top: clamp(10px, 3vw, 18px);
-    border:1px solid var(--line);
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:var(--shadow);
-    background:linear-gradient(180deg, color-mix(in oklab,var(--card) 92%, #fff 8%), var(--card));
-    min-height:58vh;
-  }
-  /* Binnenranden/ruimte */
-  .hero-inner{
-    position:relative; z-index:3;
-    display:grid; grid-template-rows:auto 1fr auto;
-    height:100%;
-    padding: clamp(16px, 2.8vw, 26px);
-  }
-  .hero-topline h1{
-    margin:0;
-    font-size: clamp(36px, 6.2vw, 64px);
-    line-height:1.02;
-    color:#fff; text-shadow:0 6px 30px rgba(0,0,0,.35), 0 0 18px rgba(233,226,255,.35);
-  }
-  .hero-topline h1 span{color:#E9E2FF}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    img{max-width:100%;display:block}
 
-  .hero-bottomline{align-self:end}
-  .hero-bottomline p{margin:0 0 10px;color:#fff;opacity:.96}
-  .badges{display:flex;gap:10px;flex-wrap:wrap}
-  .badge{background:rgba(60,70,150,.55);border:1px solid rgba(170,180,255,.55);border-radius:999px;padding:8px 12px;color:#fff;font-size:14px}
+    .container{max-width:1200px;margin:0 auto;padding:20px}
+    a{color:var(--accent-2);text-decoration:none}
 
-  /* Lagen voor kunst-animatie */
-  .hero-layers{position:absolute; inset:0; z-index:1; filter:url(#liquid);}
-  .layer{position:absolute; inset:-4%; background-size:110% 110%; background-position:center; mix-blend-mode:overlay; opacity:.9}
-  .layer.layer1{ background-image:url('/asset1/homepic.png'); animation: pan1 38s ease-in-out infinite; opacity:.9}
-  .layer.layer2{ background-image:url('/asset1/homepic.png'); animation: pan2 56s ease-in-out infinite; opacity:.55; filter:contrast(1.05) saturate(1.08) brightness(1.06)}
-  .layer.layer3{ background-image:radial-gradient(120% 90% at 50% 40%, rgba(255,255,255,.08), transparent 60%),
-                                radial-gradient(90% 60% at 80% 60%, rgba(160,180,255,.08), transparent 60%),
-                                radial-gradient(80% 60% at 20% 70%, rgba(255,180,220,.08), transparent 60%);
-                  animation: drift 60s linear infinite; opacity:.45; mix-blend-mode:soft-light }
+    /* Header + nav */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:linear-gradient(180deg,rgba(8,10,26,.95),rgba(8,10,26,.65));
+      backdrop-filter:saturate(1.2) blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+    .mark{width:28px;height:28px;border-radius:12px;background:
+      radial-gradient(120% 90% at 20% 25%, #fff, rgba(255,255,255,.3) 30%, transparent 60%),
+      radial-gradient(90% 70% at 80% 80%, var(--accent-1), transparent 60%),
+      radial-gradient(90% 60% at 30% 80%, var(--accent-4), transparent 60%),
+      linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      box-shadow:0 0 20px rgba(159,160,255,.55), inset 0 0 18px rgba(255,255,255,.35);
+    }
 
-  /* Grain subtiel */
-  .hero::after{
-    content:""; position:absolute; inset:0; z-index:2; pointer-events:none; border-radius:inherit;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 .035 .06 .035 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
-    mix-blend-mode:overlay;
-    opacity:.35;
-  }
+    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:999px;font-weight:600;
+      background:var(--chip-bg);border:1px solid var(--chip-br);color:var(--text);
+      transition:transform .15s ease, background .2s ease, border-color .2s ease;
+    }
+    .pill:hover{transform:translateY(-1px); background:rgba(255,255,255,.12); border-color:#9fa0ff66}
 
-  @keyframes pan1{
-    0%{transform:translate3d(-2%, -1%, 0) scale(1.05) rotate(0.05deg)}
-    50%{transform:translate3d(2%, 1.2%, 0) scale(1.08) rotate(-0.07deg)}
-    100%{transform:translate3d(-2%, -1%, 0) scale(1.05) rotate(0.05deg)}
-  }
-  @keyframes pan2{
-    0%{background-position:0% 50%;transform:scale(1.02)}
-    50%{background-position:100% 52%;transform:scale(1.035)}
-    100%{background-position:0% 50%;transform:scale(1.02)}
-  }
-  @keyframes drift{
-    0%{transform:translate3d(0,0,0)}
-    50%{transform:translate3d(1.5%, -1.5%, 0)}
-    100%{transform:translate3d(0,0,0)}
-  }
+    /* hamburger */
+    .hamb{display:none;align-items:center;justify-content:center;width:48px;height:48px;
+      border-radius:14px;background:var(--chip-bg);border:1px solid var(--chip-br)}
+    .hamb span,.hamb span::before,.hamb span::after{
+      content:"";display:block;width:22px;height:2px;background:#dfe2ff;border-radius:2px;position:relative
+    }
+    .hamb span::before{position:absolute;top:-6px}
+    .hamb span::after{position:absolute;top:6px}
+    .nav-pop{
+      position:absolute;right:20px;top:68px;display:none;flex-direction:column;gap:10px;
+      background:rgba(8,10,26,.96);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow)
+    }
+    .nav-pop.show{display:flex}
 
-  /* ===== Secties / grids ===== */
-  h2.section{font-size:28px;margin:34px 0 14px;color:#fff}
-  .muted{color:var(--muted)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s,border-color .15s}
-  .card:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line))}
-  .tiles-scroll{max-height:75vh;overflow:auto;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,color-mix(in oklab,var(--card) 92%, white 8%), var(--card));padding:14px;margin-top:10px}
-  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .15s,border-color .15s}
-  .tile:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--lav4) 35%, var(--line))}
-  .tile img{width:100%;height:100%;object-fit:cover;display:block}
-  .tiles-scroll::-webkit-scrollbar{width:10px}
-  .tiles-scroll::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--chip-hover) 70%, black);border-radius:10px}
-  .tiles-scroll::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--chip-hover) 85%, black)}
+    @media (max-width:860px){
+      .navlinks{display:none}
+      .hamb{display:flex}
+    }
 
-  .filters{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 12px}
-  .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:#fff;cursor:pointer;user-select:none;transition:background .15s,border-color .15s,transform .15s}
-  .chip:hover{background:var(--chip-hover);border-color:color-mix(in oklab,var(--lav3) 35%, var(--line));transform:translateY(-1px)}
-  .chip.active{background:linear-gradient(180deg, color-mix(in oklab,var(--lav3) 20%, var(--chip)), var(--chip-hover));border-color:color-mix(in oklab,var(--lav3) 55%, var(--line));box-shadow:0 6px 18px rgba(74,86,180,.22)}
+    /* HERO --------------------------------------------------- */
+    .hero-wrap{position:relative;margin-top:16px}
+    .hero{
+      position:relative;overflow:hidden;border-radius:28px;border:1px solid var(--line);
+      min-height:460px;background:#0b0f26;box-shadow:var(--shadow)
+    }
+    /* animated layers */
+    .layer{position:absolute;inset:0;background-size:cover;background-position:center;will-change:transform,background-position}
+    .layer.layer1{
+      background-image:url('/asset1/homepic.png');
+      opacity:.9; animation:drift1 14s ease-in-out infinite alternate;
+      transform:translate3d(-2%, -1%, 0) scale(1.05);
+    }
+    .layer.layer2{
+      background-image:url('/asset1/homepic.png');
+      opacity:.55; filter:contrast(1.05) saturate(1.08) brightness(1.06);
+      animation:drift2 28s ease-in-out infinite alternate;
+      background-position:48% 50%; transform:scale(1.03);
+    }
+    .layer.layer3{
+      background:
+        radial-gradient(120% 90% at 50% 40%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(90% 60% at 80% 60%, rgba(160,180,255,.08), transparent 60%),
+        radial-gradient(80% 60% at 20% 70%, rgba(255,180,220,.08), transparent 60%);
+      opacity:.45; mix-blend-mode:soft-light; animation:drift3 36s ease-in-out infinite alternate;
+    }
+    @keyframes drift1{from{transform:translate3d(-2%,-1%,0) scale(1.05)} to{transform:translate3d(2%,1.2%,0) scale(1.05)}}
+    @keyframes drift2{from{background-position:46% 50%} to{background-position:54% 52%}}
+    @keyframes drift3{from{transform:translate3d(-1.2%,.8%,0)} to{transform:translate3d(1.2%,-.8%,0)}}
 
-  footer{margin:48px 0 20px;color:var(--muted);font-size:14px}
-  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px}
-  .lightbox img{max-width:96vw;max-height:90vh;border-radius:12px}
-  .lightbox.active{display:flex}
-  .close{position:absolute;top:16px;right:16px}
-  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-</style>
+    .hero-inner{
+      position:relative;z-index:2;height:100%;
+      display:grid;grid-template-rows:auto 1fr auto;gap:18px;padding:28px
+    }
+
+    /* leesbare bubbles */
+    .hero-bubble{
+      display:inline-block;background:rgba(0,0,0,.36);border:3px solid #000;border-radius:26px;
+      padding:14px 18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05), 0 10px 28px rgba(0,0,0,.28);
+      backdrop-filter:blur(2px); color:#fff
+    }
+    .hero-bubble *{color:#fff}
+    .hero-title{margin:0;line-height:1.03;font-size: clamp(36px, 6.2vw, 64px);}
+    .badges{display:flex;gap:10px;flex-wrap:wrap}
+    .badge{background:#10142a;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
+
+    /* sections */
+    h2.section{font-size:32px;margin:28px 0 12px;letter-spacing:.3px}
+    .muted{color:var(--muted)}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+
+    /* Filter chips */
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;font-weight:600;
+      padding:8px 12px;border-radius:999px;background:var(--chip-bg);border:1px solid var(--chip-br);color:#fff;
+      cursor:pointer;user-select:none;transition:background .2s ease, border-color .2s ease, transform .12s ease;
+    }
+    .chip:hover{background:rgba(255,255,255,.12);border-color:#9fa0ff66;transform:translateY(-1px)}
+    .chip.active{background:linear-gradient(180deg, rgba(180,175,255,.25), rgba(130,140,255,.18));border-color:#aab0ff;color:#fff}
+
+    /* scrollbare galerijen */
+    .scroller{
+      border:1px solid var(--line);border-radius:16px;background:var(--bg-2);
+      padding:14px;max-height:560px;overflow:auto;box-shadow:var(--shadow)
+    }
+    .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+    .tile{background:#0e1330;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .12s ease,border-color .12s ease}
+    .tile:hover{transform:translateY(-2px);border-color:#3a459a}
+    .tile img{width:100%;height:300px;object-fit:cover}
+
+    /* mooiere scrollbars */
+    .scroller::-webkit-scrollbar{height:12px;width:12px}
+    .scroller::-webkit-scrollbar-thumb{background:#3b4185;border-radius:999px;border:3px solid transparent;background-clip:content-box}
+    .scroller::-webkit-scrollbar-track{background:transparent}
+
+    footer{margin:48px 0 20px;color:var(--muted);font-size:14px;text-align:center}
+  </style>
 </head>
 <body>
-<header>
-  <div class="container">
-    <nav id="site-nav">
-      <div class="brand"><span class="mark"></span> <span>KunstLilia</span></div>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
-        <span class="sr-only">Menu</span>
-      </button>
-      <div class="navlinks" id="menu">
-        <a href="#schilderijen">Schilder collectie</a>
-        <a href="#sieraden">Sieraden</a>
-        <a href="#over">Over</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-    <div class="nav-overlay" id="nav-overlay"></div>
-  </div>
-</header>
 
-<main class="container">
-  <!-- HERO met tekst binnen het kader -->
-  <section class="hero" aria-label="Intro & kunst animatie">
-    <div class="hero-layers">
-      <div class="layer layer1"></div>
-      <div class="layer layer2"></div>
-      <div class="layer layer3"></div>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <span>KunstLilia</span>
+        </div>
+
+        <div class="navlinks">
+          <a class="pill" href="#schilderijen">Schilder collectie</a>
+          <a class="pill" href="#sieraden">Sieraden</a>
+          <a class="pill" href="#over">Over</a>
+          <a class="pill" href="#contact">Contact</a>
+        </div>
+
+        <button class="hamb" id="hamb" aria-label="Menu"><span></span></button>
+        <div class="nav-pop" id="navPop">
+          <a class="pill" href="#schilderijen">Schilder collectie</a>
+          <a class="pill" href="#sieraden">Sieraden</a>
+          <a class="pill" href="#over">Over</a>
+          <a class="pill" href="#contact">Contact</a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <div class="hero-inner">
-      <!-- BOVENSTE TEKST -->
-      <div class="hero-topline">
-        <h1>schilderijen &<br><span>sieraden</span><br>Lilia Guseva Dosti</h1>
-      </div>
+  <main class="container">
 
-      <!-- lege flex-ruimte in het midden; hier “danst” de animatie vrij -->
+    <!-- HERO -------------------------------------------------->
+    <section class="hero-wrap" aria-label="Intro">
+      <div class="hero">
+        <div class="layer layer1"></div>
+        <div class="layer layer2"></div>
+        <div class="layer layer3"></div>
 
-      <!-- ONDERSTE TEKST -->
-      <div class="hero-bottomline">
-        <p>Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.</p>
-        <div class="badges">
-          <span class="badge">✓ Origineel werk</span>
-          <span class="badge">✓ Persoonlijke stijl</span>
+        <div class="hero-inner">
+          <div class="hero-topline">
+            <div class="hero-bubble">
+              <h1 class="hero-title">
+                schilderijen &<br><span style="color:#E9E2FF">sieraden</span><br>
+                Lilia Guseva Dosti
+              </h1>
+            </div>
+          </div>
+
+          <div></div><!-- midden vrij voor animatie -->
+
+          <div class="hero-bottomline">
+            <div class="hero-bubble">
+              <p style="margin:0 0 10px;">
+                Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel —
+                ter inspiratie en kennismaking.
+              </p>
+              <div class="badges">
+                <span class="badge">✓ Origineel werk</span>
+                <span class="badge">✓ Persoonlijke stijl</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Schilderijen -->
-  <section id="schilderijen">
-    <h2 class="section">Schilderijen</h2>
-    <p class="muted">Filter op type. (Nu werkend: <strong>asset1 ⇒ acryl</strong>, <strong>asset2 ⇒ olie</strong>.)</p>
-    <div class="filters" id="paint-filters">
-      <button class="chip active" data-filter="all">Alles</button>
-      <button class="chip" data-filter="acryl">Acryl</button>
-      <button class="chip" data-filter="olie">Olie</button>
-    </div>
-    <div class="tiles-scroll"><div class="tiles" id="tiles-paintings"></div></div>
-  </section>
+    <!-- Schilderijen ----------------------------------------->
+    <section id="schilderijen" style="margin-top:30px">
+      <h2 class="section">Schilderijen</h2>
+      <p class="muted">Filter op type. (Acryl uit <code>asset1</code>, Olie uit <code>asset2</code>.)</p>
+      <div class="filters" id="paintFilters">
+        <div class="chip active" data-filter="all">Alles</div>
+        <div class="chip" data-filter="acryl">Acryl</div>
+        <div class="chip" data-filter="olie">Olie</div>
+      </div>
 
-  <!-- Sieraden -->
-  <section id="sieraden">
-    <h2 class="section">Sieraden</h2>
-    <p class="muted">Een groeiende verzameling handgemaakte stukken.</p>
-    <div class="tiles-scroll"><div class="tiles" id="tiles-jewels"></div></div>
-  </section>
+      <div class="scroller">
+        <div class="tiles" id="tiles-paintings"></div>
+      </div>
+    </section>
 
-  <!-- Over -->
-  <section id="over">
-    <h2 class="section">Over</h2>
-    <div class="card">
-      <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
-    </div>
-  </section>
+    <!-- Sieraden --------------------------------------------->
+    <section id="sieraden" style="margin-top:34px">
+      <h2 class="section">Sieraden</h2>
+      <p class="muted">Een kleine verzameling sieraden. Er komen later meer stukken bij.</p>
+      <div class="scroller">
+        <div class="tiles" id="tiles-jewels"></div>
+      </div>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2 class="section">Contact</h2>
-    <div class="card">
-      <p class="muted">Voor vragen, samenwerkingen of gedachten delen, kunt u mailen. Reacties worden persoonlijk gelezen.</p>
-      <p><a class="chip" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
-    </div>
-  </section>
+    <!-- Over ------------------------------------------------->
+    <section id="over" style="margin-top:34px">
+      <h2 class="section">Over</h2>
+      <div class="card">
+        <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
+      </div>
+    </section>
 
-  <footer>© <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden</footer>
-</main>
+    <!-- Contact ---------------------------------------------->
+    <section id="contact" style="margin-top:34px">
+      <h2 class="section">Contact</h2>
+      <div class="card">
+        <p class="muted">Voor vragen, samenwerkingen of gedachten over kunst: stuur gerust een bericht.</p>
+        <p><a class="pill" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
+      </div>
+    </section>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <button class="chip close" onclick="toggleLightbox(false)">Sluiten</button>
-  <img id="lightboxImg" alt="Vergrote weergave">
-</div>
+    <footer>
+      © <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden
+    </footer>
+  </main>
 
-<!-- SVG liquid displacement filter -->
-<svg width="0" height="0" style="position:absolute">
-  <filter id="liquid">
-    <feTurbulence type="fractalNoise" baseFrequency="0.005 0.008" numOctaves="2" seed="7" result="noise">
-      <animate attributeName="baseFrequency" dur="14s" values="0.004 0.007;0.007 0.011;0.004 0.007" repeatCount="indefinite"/>
-      <animate attributeName="seed" dur="20s" values="7;9;11;7" repeatCount="indefinite"/>
-    </feTurbulence>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
-      <animate attributeName="scale" dur="18s" values="10;16;12;10" repeatCount="indefinite"/>
-    </feDisplacementMap>
-  </filter>
-</svg>
+  <script>
+    // jaar
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-<script>
-  // Jaar in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
+    // hamburger/pop
+    const hamb = document.getElementById('hamb');
+    const navPop = document.getElementById('navPop');
+    hamb.addEventListener('click', () => navPop.classList.toggle('show'));
+    document.addEventListener('click', (e) => {
+      if (!navPop.contains(e.target) && !hamb.contains(e.target)) navPop.classList.remove('show');
+    });
 
-  // Lightbox
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightboxImg');
-  function toggleLightbox(open, src){ lb.classList.toggle('active', !!open); if(open && src) lbImg.src = src; }
-  lb.addEventListener('click', e=>{ if(e.target===lb) toggleLightbox(false) });
-
-  // Mobiele navigatie (hamburger)
-  (function(){
-    const nav = document.getElementById('site-nav');
-    const btn = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-    const over = document.getElementById('nav-overlay');
-    if(!nav||!btn||!menu||!over) return;
-    const isOpen = ()=>nav.classList.contains('open');
-    const open = ()=>{ if(!isOpen()){ nav.classList.add('open'); btn.setAttribute('aria-expanded','true'); } };
-    const close= ()=>{ if(isOpen()){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } };
-    btn.addEventListener('click', ()=> isOpen()? close():open());
-    over.addEventListener('click', close);
-    menu.addEventListener('click', e=>{ if(e.target.closest('a')) close(); });
-    window.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
-    let lock=false; window.addEventListener('scroll', ()=>{ if(isOpen()&&!lock){ lock=true; setTimeout(()=>lock=false,150); close(); } }, {passive:true});
-    window.addEventListener('hashchange', close);
-    window.addEventListener('resize', ()=>{ if(window.innerWidth>900) close(); });
-  })();
-
-  // Manifest laden
-  async function loadManifest(){
-    try{
-      const r = await fetch('/images.json', { cache:'no-store' });
-      if(!r.ok) throw new Error('manifest not found');
-      return await r.json();
-    }catch(e){
-      console.warn('manifest load error:', e);
-      return {paintings:[], jewels:[]};
+    // manifest laden (voorkeur: /images.json; fallback GitHub API)
+    async function fetchManifest() {
+      try {
+        const r = await fetch('/images.json', {cache:'no-store'});
+        if (r.ok) return await r.json();
+      } catch {}
+      // Fallback: lees mappen via GitHub API
+      const GH = 'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
+      const get = async (p) => {
+        try {
+          const r = await fetch(GH + p);
+          if (!r.ok) return [];
+          const data = await r.json();
+          return (Array.isArray(data)?data:[])
+            .filter(f => f.type==='file' && /\.(jpe?g|png|webp)$/i.test(f.name))
+            .map(f => f.path);
+        } catch { return []; }
+      };
+      const a1 = await get('asset1'), a2 = await get('asset2'), s = await get('sieraden');
+      return { paintings:[...a1, ...a2], jewels:s };
     }
-  }
 
-  // Type bepalen
-  function detectType(path){
-    const name = path.split('/').pop().toLowerCase();
-    if(name.includes('acryl')) return 'acryl';
-    if(name.includes('olie')) return 'olie';
-    if(path.startsWith('asset1/')) return 'acryl';
-    if(path.startsWith('asset2/')) return 'olie';
-    return 'overig';
-  }
+    function makeTile(src){
+      const d = document.createElement('div'); d.className='tile';
+      const img = new Image(); img.loading='lazy'; img.decoding='async';
+      img.src = '/' + src.replace(/^\/+/, '');
+      img.alt = src.split('/').pop();
+      d.appendChild(img); return d;
+    }
 
-  // Schilderijen renderen
-  function renderPaintings(paths){
-    const root = document.getElementById('tiles-paintings');
-    root.innerHTML = '';
-    paths.sort((a,b)=> a.localeCompare(b,undefined,{numeric:true}));
-    paths.forEach(p=>{
-      const type = detectType(p);
-      const card = document.createElement('div');
-      card.className = 'tile';
-      card.dataset.type = type;
-      const img = new Image();
-      img.loading = 'lazy';
-      img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
-      img.src = '/' + p.replace(/^\/+/, '');
-      card.appendChild(img);
-      root.appendChild(card);
-    });
-    bindLightbox('tiles-paintings');
-  }
+    function renderList(rootId, paths){
+      const root = document.getElementById(rootId);
+      root.innerHTML = '';
+      paths.forEach(p => root.appendChild(makeTile(p)));
+    }
 
-  // Filteren
-  function applyPaintingFilter(filter){
-    const nodes = document.querySelectorAll('#tiles-paintings .tile');
-    nodes.forEach(n=>{
-      const t = n.dataset.type;
-      n.style.display = (filter==='all') || (t===filter) ? '' : 'none';
-    });
-  }
-  function setupFilters(){
-    const bar = document.getElementById('paint-filters');
-    if(!bar) return;
-    bar.addEventListener('click', e=>{
-      const chip = e.target.closest('.chip[data-filter]');
-      if(!chip) return;
-      bar.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-      chip.classList.add('active');
-      applyPaintingFilter(chip.dataset.filter);
-    });
-  }
+    (async () => {
+      const m = await fetchManifest();
 
-  // Sieraden renderen
-  function renderJewels(paths){
-    const root = document.getElementById('tiles-jewels');
-    root.innerHTML = '';
-    paths.sort((a,b)=> a.localeCompare(b,undefined,{numeric:true}));
-    paths.forEach(p=>{
-      const card = document.createElement('div');
-      card.className = 'tile';
-      const img = new Image();
-      img.loading = 'lazy';
-      img.alt = p.split('/').pop().replace(/[_-]/g,' ').replace(/\.(webp|jpe?g|png)$/i,'');
-      img.src = '/' + p.replace(/^\/+/, '');
-      card.appendChild(img);
-      root.appendChild(card);
-    });
-    bindLightbox('tiles-jewels');
-  }
+      // --- schilderijen (filters)
+      const allPaints = (m.paintings || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+      const tiles = document.getElementById('tiles-paintings');
+      const filt = document.getElementById('paintFilters');
 
-  // Lightbox binding
-  function bindLightbox(containerId){
-    const el = document.getElementById(containerId);
-    if(!el) return;
-    el.addEventListener('click', e => {
-      const img = e.target.closest('img');
-      if(!img) return;
-      toggleLightbox(true, img.currentSrc || img.src);
-    });
-  }
+      const byType = {
+        acryl: allPaints.filter(p => /^asset1\//i.test(p)),
+        olie:  allPaints.filter(p => /^asset2\//i.test(p)),
+      };
+      const allMap = { all: allPaints, ...byType };
 
-  // Init
-  (async ()=>{
-    const m = await loadManifest();
-    renderPaintings(m.paintings || []);
-    renderJewels(m.jewels || []);
-    setupFilters();
-  })();
-</script>
+      function applyPaintFilter(key){
+        renderList('tiles-paintings', allMap[key] || allPaints);
+        [...filt.querySelectorAll('.chip')].forEach(c => c.classList.toggle('active', c.dataset.filter===key));
+      }
+
+      filt.addEventListener('click', (e)=>{
+        const chip = e.target.closest('.chip'); if(!chip) return;
+        applyPaintFilter(chip.dataset.filter);
+      });
+
+      applyPaintFilter('all');
+
+      // --- sieraden
+      renderList('tiles-jewels', (m.jewels || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})));
+    })();
+  </script>
 </body>
 </html>
