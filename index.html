@@ -52,7 +52,7 @@
       background-image:url('/asset1/homepic.png');
       background-size:cover;
       background-position:50% 50%;
-      background-repeat:no-repeat; /* important: never tile */
+      background-repeat:no-repeat;
       transform:scale(1.05);
       animation:zoomPan 30s ease-in-out infinite alternate, driftPos 18s ease-in-out infinite alternate;
       filter:url(#liquid-waves);
@@ -98,24 +98,21 @@
 
     footer{margin:48px 0 20px;color:var(--muted);font-size:14px;text-align:center}
 
-    /* MOBILE hero: toon alleen het middelste deel, geen rode rand rechts; hoeken recht */
+    /* ==== MOBIEL: fix randen volledig ====
+       - Geen background-position animatie (die onthult randen)
+       - Groot overscan (background-size 320%)
+       - Beweging via transform (scale + kleine translateX) */
     @media (max-width:760px){
-      .hero{ border-radius:0; }
+      .hero{ border-radius:0; overflow:hidden; }
       .hero-bg{
-        background-size:260% auto;          /* zoom zodat zijkanten buiten beeld vallen */
-        background-position:50% 50%;         /* exact midden */
-        background-repeat:no-repeat;
-        animation:
-          zoomPanMobile 24s ease-in-out infinite alternate,
-          driftPosMobile 20s ease-in-out infinite alternate;
+        background-size:320% auto !important; /* royale overscan */
+        background-position:50% 50% !important;/* altijd het midden */
+        animation: mobileDrift 26s ease-in-out infinite alternate !important;
+        will-change:transform;
       }
-      @keyframes zoomPanMobile{
-        from { transform: scale(1.06); }
-        to   { transform: scale(1.12); }
-      }
-      @keyframes driftPosMobile{
-        from { background-position:49.8% 50%; }
-        to   { background-position:50.2% 50%; }
+      @keyframes mobileDrift{
+        from { transform: scale(1.18) translateX(-1%); }
+        to   { transform: scale(1.18) translateX(1%); }
       }
     }
   </style>
