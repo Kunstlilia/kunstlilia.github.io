@@ -13,7 +13,7 @@
     :root{
       --bg:#0f1430; --bg-2:#1a1f45; --card:#161b3a;
       --accent-2:#BBADFF; --text:#ffffff; --muted:#dfe4ffcc;
-      --line:#272e63; --radius:20px; --shadow:0 12px 32px rgba(0,0,0,.35);
+      --line:#272e63; --radius:8px; --shadow:0 12px 32px rgba(0,0,0,.35);
       --chip-bg:rgba(255,255,255,.06); --chip-br:rgba(255,255,255,.18);
     }
     *{box-sizing:border-box}
@@ -44,13 +44,16 @@
     .nav-pop.show{display:flex}
     @media (max-width:860px){ .navlinks{display:none} .hamb{display:flex} }
 
-    /* ===== HERO full-bleed ===== */
+    /* ===== HERO (container-breed, HOEKIG) ===== */
     .hero-wrap{position:relative;margin-top:16px}
-    /* maakt de hero 100vw breed binnen de container (full-bleed) */
-    .hero-bleed{position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;width:100vw;padding-inline:20px;}
-    .hero{position:relative;overflow:hidden;border-radius:28px;border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)}
+    .hero{
+      position:relative;overflow:hidden;
+      border-radius: var(--radius); /* hoekig (kleine radius) */
+      border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)
+    }
     .hero-bg{
-      position:absolute;inset:0;background-image:url('/asset1/homepic.png');background-size:cover;background-position:50% 50%;
+      position:absolute;inset:0;background-image:url('/asset1/homepic.png');
+      background-size:cover;background-position:50% 50%;
       transform:scale(1.05);
       animation:zoomPan 30s ease-in-out infinite alternate, driftPos 18s ease-in-out infinite alternate;
       filter:url(#liquid-waves);
@@ -94,18 +97,18 @@
     .lightbox img{max-width:95vw;max-height:92vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
     .lightbox .close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;width:44px;height:44px;font-size:22px;line-height:42px;text-align:center;cursor:pointer}
 
-    /* --- Mobile: hero alleen het blauwe deel tonen --- */
+    /* --- Mobile: alleen het MIDDELSTE (blauwe) deel van homepic tonen --- */
     @media (max-width: 640px) {
-      .hero { border-radius: 22px; }
+      .hero{ border-radius: 6px; } /* nog hoekiger op mobiel */
       .hero-bg{
-        background-position: 20% 50% !important;
-        animation: zoomPan 30s ease-in-out infinite alternate,
+        /* zoom extra in zodat linker/rechter paneel buiten beeld valt */
+        background-size: 180% auto !important;
+        background-position: 50% 50% !important; /* exact centrum (blauw) */
+        animation: zoomMobile 28s ease-in-out infinite alternate,
                    driftMobile 24s ease-in-out infinite alternate !important;
       }
-      @keyframes driftMobile{
-        from { background-position: 18% 49%; }
-        to   { background-position: 22% 51%; }
-      }
+      @keyframes zoomMobile { from{transform:scale(1.10)} to{transform:scale(1.16)} }
+      @keyframes driftMobile{ from{background-position: 48% 50%} to{background-position: 52% 50%} }
     }
   </style>
 </head>
@@ -138,27 +141,25 @@
   </header>
 
   <main class="container">
-    <!-- HERO (full-bleed) -->
+    <!-- HERO (hoekig) -->
     <section class="hero-wrap" aria-label="Intro">
-      <div class="hero-bleed">
-        <div class="hero">
-          <div class="hero-bg" aria-hidden="true"></div>
-          <div class="hero-inner">
-            <div>
-              <h1 class="hero-title stroke-strong">
-                schilderijen &<br>sieraden<br>
-                Lilia Guseva Dosti
-              </h1>
-            </div>
-            <div></div>
-            <div>
-              <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:900px;margin:0 0 10px;">
-                Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
-              </p>
-              <div class="badges">
-                <span class="badge">✓ Origineel werk</span>
-                <span class="badge">✓ Persoonlijke stijl</span>
-              </div>
+      <div class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div>
+            <h1 class="hero-title stroke-strong">
+              schilderijen &<br>sieraden<br>
+              Lilia Guseva Dosti
+            </h1>
+          </div>
+          <div></div>
+          <div>
+            <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:900px;margin:0 0 10px;">
+              Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
+            </p>
+            <div class="badges">
+              <span class="badge">✓ Origineel werk</span>
+              <span class="badge">✓ Persoonlijke stijl</span>
             </div>
           </div>
         </div>
@@ -188,7 +189,7 @@
     <section id="over" style="margin-top:34px">
       <h2 class="section">Over mij</h2>
       <div class="card" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;">
-        <img src="/Portfolio/IMG_0107.jpg" alt="Lilia Guseva Dosti" style="width:120px;height:120px;object-fit:cover;border-radius:14px;border:1px solid var(--line)">
+        <img src="/Portfolio/IMG_0107.jpg" alt="Lilia Guseva Dosti" style="width:120px;height:120px;object-fit:cover;border-radius:10px;border:1px solid var(--line)">
         <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
       </div>
     </section>
@@ -290,7 +291,6 @@
 
       // schilderijen + filters
       const allPaints = (m.paintings || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
-      const tiles = document.getElementById('tiles-paintings');
       const filt = document.getElementById('paintFilters');
       const byType = { acryl: allPaints.filter(p=>/^asset1\//i.test(p)), olie: allPaints.filter(p=>/^asset2\//i.test(p)) };
       const allMap = { all: allPaints, ...byType };
