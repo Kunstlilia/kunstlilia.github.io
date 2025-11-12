@@ -98,12 +98,12 @@
 
     footer{margin:48px 0 20px;color:var(--muted);font-size:14px;text-align:center}
 
-    /* MOBILE hero: show ONLY the middle (blue) panel, keep animation, no red edge */
+    /* MOBILE hero: toon alleen het middelste deel, geen rode rand rechts; hoeken recht */
     @media (max-width:760px){
       .hero{ border-radius:0; }
       .hero-bg{
-        background-size:260% auto;          /* strong zoom so side panels are out of frame */
-        background-position:50% 50%;         /* lock to center = blue panel */
+        background-size:260% auto;          /* zoom zodat zijkanten buiten beeld vallen */
+        background-position:50% 50%;         /* exact midden */
         background-repeat:no-repeat;
         animation:
           zoomPanMobile 24s ease-in-out infinite alternate,
