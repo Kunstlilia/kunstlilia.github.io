@@ -44,16 +44,19 @@
     .nav-pop.show{display:flex}
     @media (max-width:860px){ .navlinks{display:none} .hamb{display:flex} }
 
-    /* ===== HERO (container-breed, HOEKIG) ===== */
+    /* ===== HERO (container-breed, hoekig) ===== */
     .hero-wrap{position:relative;margin-top:16px}
     .hero{
       position:relative;overflow:hidden;
-      border-radius: var(--radius); /* hoekig (kleine radius) */
+      border-radius: var(--radius);
       border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)
     }
     .hero-bg{
-      position:absolute;inset:0;background-image:url('/asset1/homepic.png');
-      background-size:cover;background-position:50% 50%;
+      position:absolute;inset:0;
+      background-image:url('/asset1/homepic.png');
+      background-size:cover;
+      background-position:50% 50%;
+      background-repeat:no-repeat;
       transform:scale(1.05);
       animation:zoomPan 30s ease-in-out infinite alternate, driftPos 18s ease-in-out infinite alternate;
       filter:url(#liquid-waves);
@@ -97,18 +100,35 @@
     .lightbox img{max-width:95vw;max-height:92vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
     .lightbox .close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;width:44px;height:44px;font-size:22px;line-height:42px;text-align:center;cursor:pointer}
 
-    /* --- Mobile: alleen het MIDDELSTE (blauwe) deel van homepic tonen --- */
+    /* ===== MOBIEL FIXES =====
+       - hero echte 100vw (container-padding omzeilen)
+       - rechte hoeken (border-radius:0)
+       - alleen MIDDEN (blauwe) deel tonen
+       - geen animatie/geen stroken
+    */
     @media (max-width: 640px) {
-      .hero{ border-radius: 6px; } /* nog hoekiger op mobiel */
-      .hero-bg{
-        /* zoom extra in zodat linker/rechter paneel buiten beeld valt */
-        background-size: 180% auto !important;
-        background-position: 50% 50% !important; /* exact centrum (blauw) */
-        animation: zoomMobile 28s ease-in-out infinite alternate,
-                   driftMobile 24s ease-in-out infinite alternate !important;
+      .hero-wrap{
+        position:relative;
+        left:50%;
+        width:100vw;
+        transform:translateX(-50%);
+        padding-left:0; padding-right:0;
       }
-      @keyframes zoomMobile { from{transform:scale(1.10)} to{transform:scale(1.16)} }
-      @keyframes driftMobile{ from{background-position: 48% 50%} to{background-position: 52% 50%} }
+      .hero{
+        width:100vw;
+        border-radius:0 !important;
+        border-left:none; border-right:none;
+      }
+      .hero-bg{
+        background-repeat:no-repeat !important;
+        /* zoom zodat linker/rechter panel buiten beeld valt */
+        background-size: 200% auto !important;
+        /* exact het midden (blauw) */
+        background-position: 50% 50% !important;
+        /* animaties uit om “stroken” bij rand te voorkomen */
+        animation: none !important;
+        transform: none !important;
+      }
     }
   </style>
 </head>
@@ -141,7 +161,7 @@
   </header>
 
   <main class="container">
-    <!-- HERO (hoekig) -->
+    <!-- HERO -->
     <section class="hero-wrap" aria-label="Intro">
       <div class="hero">
         <div class="hero-bg" aria-hidden="true"></div>
@@ -206,7 +226,7 @@
     <footer>© <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden</footer>
   </main>
 
-  <!-- SVG filter voor subtiele golf-displacement -->
+  <!-- SVG filter -->
   <svg width="0" height="0" style="position:absolute">
     <filter id="liquid-waves">
       <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="8">
@@ -238,7 +258,7 @@
       if (!navPop.contains(e.target) && !hamb.contains(e.target)) navPop.classList.remove('show');
     });
 
-    // manifest laden
+    // manifest laden (fallback: GitHub API)
     async function fetchManifest() {
       try {
         const r = await fetch('/images.json', {cache:'no-store'});
