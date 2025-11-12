@@ -44,62 +44,39 @@
     .nav-pop.show{display:flex}
     @media (max-width:860px){ .navlinks{display:none} .hamb{display:flex} }
 
-    /* ===== HERO (full-bleed + animatie) ===== */
-
-    /* full-bleed techniek zodat hero 100vw wordt, ook binnen container */
-    .full-bleed{
-      position:relative;
-      left:50%;
-      right:50%;
-      margin-left:-50vw;
-      margin-right:-50vw;
-      width:100vw;
-    }
-
-    .hero{position:relative;overflow:hidden;border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)}
-    /* op desktop met afgeronde hoeken zoals jij had */
-    .hero{border-radius:28px}
-
+    /* HERO met ANIMATIE */
+    .hero-wrap{position:relative;margin-top:16px}
+    .hero{position:relative;overflow:hidden;border-radius:28px;border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)}
     .hero-bg{
       position:absolute;inset:0;
       background-image:url('/asset1/homepic.png');
-      background-size:cover;         /* desktop: hele compositie zoals je had */
+      background-size:cover;
       background-position:50% 50%;
+      background-repeat:no-repeat; /* important: never tile */
       transform:scale(1.05);
       animation:zoomPan 30s ease-in-out infinite alternate, driftPos 18s ease-in-out infinite alternate;
       filter:url(#liquid-waves);
       will-change:transform, background-position, filter;
     }
-    @keyframes zoomPan{ from{transform:scale(1.05)} to{transform:scale(1.10)} }
-    @keyframes driftPos{ from{background-position:48% 49%} to{background-position:52% 51%} }
+    @keyframes zoomPan{
+      from{transform:scale(1.05)}
+      to{transform:scale(1.10)}
+    }
+    @keyframes driftPos{
+      from{background-position:48% 49%}
+      to  {background-position:52% 51%}
+    }
 
     .hero-inner{position:relative;z-index:1;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:22px;padding:26px}
+
+    /* tekst-outline */
     .stroke-strong{color:#fff;-webkit-text-stroke:2px rgba(0,0,0,.55);paint-order:stroke fill;text-shadow:0 0 2px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.45),0 0 10px rgba(0,0,0,.25)}
     .stroke-body{color:#fff;-webkit-text-stroke:1px rgba(0,0,0,.45);paint-order:stroke fill;text-shadow:0 1px 3px rgba(0,0,0,.5),0 0 2px rgba(0,0,0,.45)}
     .hero-title{margin:0;line-height:1.03;font-size:clamp(38px,6.2vw,64px)}
     .badges{display:flex;gap:10px;flex-wrap:wrap}
     .badge{background:#10142a;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
 
-    /* ===== Mobiel: alleen het MIDDELSTE deel van homepic, full-bleed, rechte hoeken ===== */
-    @media (max-width: 760px){
-      .hero{border-radius:0} /* hoekvormig zoals je vroeg */
-      .hero-inner{padding:22px}
-      /* Crop naar het centrum en zoom iets in, zodat links (licht) en rechts (rood) niet zichtbaar zijn */
-      .hero-bg{
-        background-position:50% 50%;  /* puur het midden */
-        background-size:220% auto;    /* vergroot om randen weg te houden */
-        animation:
-          zoomPanMobile 26s ease-in-out infinite alternate,
-          driftPosMobile 22s ease-in-out infinite alternate; /* kleine subtiele drift zonder randen te onthullen */
-      }
-      @keyframes zoomPanMobile{ from{transform:scale(1.04)} to{transform:scale(1.12)} }
-      @keyframes driftPosMobile{
-        from{background-position:49% 50%}
-        to  {background-position:51% 50%}
-      }
-    }
-
-    /* SECTIES & GRIDS (ongewijzigd) */
+    /* sections & grids */
     h2.section{font-size:32px;margin:28px 0 12px;letter-spacing:.3px}
     .muted{color:var(--muted)}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
@@ -121,15 +98,25 @@
 
     footer{margin:48px 0 20px;color:var(--muted);font-size:14px;text-align:center}
 
-    /* LIGHTBOX voor fullscreen weergave */
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:20px;z-index:1000}
-    .lightbox.active{display:flex}
-    .lightbox img{max-width:95vw;max-height:92vh;display:block;border-radius:12px}
-    .lightbox .close{position:absolute;top:18px;right:18px;font-size:0;border:0;background:transparent;cursor:pointer}
-    .lightbox .close::before{
-      content:'✕'; font-size:26px; color:#fff;
-      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
-      width:44px;height:44px;display:grid;place-items:center;border-radius:10px;
+    /* MOBILE hero: show ONLY the middle (blue) panel, keep animation, no red edge */
+    @media (max-width:760px){
+      .hero{ border-radius:0; }
+      .hero-bg{
+        background-size:260% auto;          /* strong zoom so side panels are out of frame */
+        background-position:50% 50%;         /* lock to center = blue panel */
+        background-repeat:no-repeat;
+        animation:
+          zoomPanMobile 24s ease-in-out infinite alternate,
+          driftPosMobile 20s ease-in-out infinite alternate;
+      }
+      @keyframes zoomPanMobile{
+        from { transform: scale(1.06); }
+        to   { transform: scale(1.12); }
+      }
+      @keyframes driftPosMobile{
+        from { background-position:49.8% 50%; }
+        to   { background-position:50.2% 50%; }
+      }
     }
   </style>
 </head>
@@ -162,8 +149,8 @@
   </header>
 
   <main class="container">
-    <!-- ===== HERO (full-bleed) ===== -->
-    <section class="full-bleed" aria-label="Intro">
+    <!-- HERO -->
+    <section class="hero-wrap" aria-label="Intro">
       <div class="hero">
         <div class="hero-bg" aria-hidden="true"></div>
         <div class="hero-inner">
@@ -209,8 +196,7 @@
     <!-- Over mij -->
     <section id="over" style="margin-top:34px">
       <h2 class="section">Over mij</h2>
-      <div class="card" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center">
-        <img src="/Portfolio/IMG_0107.jpg" alt="Lilia Guseva Dosti" style="width:120px;height:120px;object-fit:cover;border-radius:14px;border:1px solid var(--line)">
+      <div class="card">
         <p>Mijn naam is Lilia Guseva Dosti. Vanuit passie voor vorm, kleur en expressie creëer ik werk dat gevoel vastlegt. Dit portfolio is bedoeld om mijn artistieke ontwikkeling en stijl te delen — los van verkoop of opdrachten.</p>
       </div>
     </section>
@@ -227,7 +213,7 @@
     <footer>© <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden</footer>
   </main>
 
-  <!-- Subtiele golf-displacement -->
+  <!-- SVG filter voor subtiele golf-displacement -->
   <svg width="0" height="0" style="position:absolute">
     <filter id="liquid-waves">
       <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="8">
@@ -241,13 +227,14 @@
     </filter>
   </svg>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="close" id="lbClose" aria-label="Sluiten"></button>
-    <img id="lbImg" alt="Vergrote weergave"/>
+  <!-- Lightbox (fullscreen) -->
+  <div id="lightbox" style="position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000">
+    <button id="lbClose" aria-label="Sluiten" style="position:absolute;top:16px;right:16px;border:none;background:rgba(255,255,255,.1);color:#fff;font-weight:700;padding:10px 14px;border-radius:10px;cursor:pointer">✕</button>
+    <img id="lbImg" alt="" style="max-width:96vw;max-height:90vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.6)" />
   </div>
 
   <script>
+    // jaar
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // hamburger
@@ -258,7 +245,16 @@
       if (!navPop.contains(e.target) && !hamb.contains(e.target)) navPop.classList.remove('show');
     });
 
-    // manifest laden (fallback via GitHub API)
+    // lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+    function openLB(src){ lbImg.src = src; lb.style.display='flex'; }
+    function closeLB(){ lb.style.display='none'; lbImg.src=''; }
+    lbClose.addEventListener('click', closeLB);
+    lb.addEventListener('click', e => { if(e.target === lb) closeLB(); });
+
+    // manifest laden
     async function fetchManifest() {
       try {
         const r = await fetch('/images.json', {cache:'no-store'});
@@ -283,27 +279,13 @@
       const d = document.createElement('div'); d.className='tile';
       const img = new Image(); img.loading='lazy'; img.decoding='async';
       img.src = '/' + src.replace(/^\/+/, ''); img.alt = src.split('/').pop();
+      img.addEventListener('click', () => openLB(img.currentSrc || img.src));
       d.appendChild(img); return d;
     }
     function renderList(rootId, paths){
       const root = document.getElementById(rootId); root.innerHTML='';
       paths.forEach(p => root.appendChild(makeTile(p)));
     }
-
-    // Lightbox bind
-    function bindLightbox(containerId){
-      const root = document.getElementById(containerId);
-      if(!root) return;
-      root.addEventListener('click', e=>{
-        const img = e.target.closest('img'); if(!img) return;
-        lbImg.src = img.currentSrc || img.src;
-        lightbox.classList.add('active');
-      });
-    }
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    document.getElementById('lbClose').addEventListener('click', ()=> lightbox.classList.remove('active'));
-    lightbox.addEventListener('click', e=>{ if(e.target===lightbox) lightbox.classList.remove('active'); });
 
     (async () => {
       const m = await fetchManifest();
@@ -313,14 +295,13 @@
       const filt = document.getElementById('paintFilters');
       const byType = {
         acryl: allPaints.filter(p=>/^asset1\//i.test(p)),
-        olie : allPaints.filter(p=>/^asset2\//i.test(p)),
+        olie:  allPaints.filter(p=>/^asset2\//i.test(p))
       };
       const allMap = { all: allPaints, ...byType };
 
       function applyPaintFilter(key){
         renderList('tiles-paintings', allMap[key] || allPaints);
         [...filt.querySelectorAll('.chip')].forEach(c => c.classList.toggle('active', c.dataset.filter===key));
-        bindLightbox('tiles-paintings');
       }
       filt.addEventListener('click', e => {
         const chip = e.target.closest('.chip'); if(!chip) return;
@@ -330,7 +311,6 @@
 
       // sieraden
       renderList('tiles-jewels', (m.jewels || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})));
-      bindLightbox('tiles-jewels');
     })();
   </script>
 </body>
