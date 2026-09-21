@@ -3,134 +3,650 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>KunstLilia – Portfolio van Lilia Guseva Dosti</title>
-  <meta name="description" content="Portfolio van Lilia Guseva Dosti. Bekijk schilderijen en sieraden, en neem contact op voor inspiratie en kennismaking." />
+
+  <meta
+    name="description"
+    content="Portfolio van Lilia Guseva Dosti. Bekijk schilderijen en sieraden, en neem contact op voor inspiratie en kennismaking."
+  />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     :root{
-      --bg:#0f1430; --bg-2:#1a1f45; --card:#161b3a;
-      --accent-2:#BBADFF; --text:#ffffff; --muted:#dfe4ffcc;
-      --line:#272e63; --radius:20px; --shadow:0 12px 32px rgba(0,0,0,.35);
-      --chip-bg:rgba(255,255,255,.06); --chip-br:rgba(255,255,255,.18);
+      --bg:#0f1430;
+      --bg-2:#1a1f45;
+      --card:#161b3a;
+      --accent-2:#BBADFF;
+      --text:#ffffff;
+      --muted:#dfe4ffcc;
+      --line:#272e63;
+      --radius:20px;
+      --shadow:0 12px 32px rgba(0,0,0,.35);
+      --chip-bg:rgba(255,255,255,.06);
+      --chip-br:rgba(255,255,255,.18);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    img{max-width:100%;display:block}
-    a{color:var(--accent-2);text-decoration:none}
-    .container{max-width:1200px;margin:0 auto;padding:20px}
 
-    /* HEADER */
-    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(8,10,26,.95),rgba(8,10,26,.65));backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
-    .mark{width:28px;height:28px;border-radius:12px;background:
-      radial-gradient(120% 90% at 20% 25%, #fff, rgba(255,255,255,.3) 30%, transparent 60%),
-      radial-gradient(90% 70% at 80% 80%, #DAB6FC, transparent 60%),
-      radial-gradient(90% 60% at 30% 80%, #8E94F2, transparent 60%),
-      linear-gradient(135deg, #BBADFF, #9FA0FF);
-      box-shadow:0 0 20px rgba(159,160,255,.55), inset 0 0 18px rgba(255,255,255,.35);
+    *{
+      box-sizing:border-box;
     }
-    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:600;background:var(--chip-bg);border:1px solid var(--chip-br);color:var(--text);transition:transform .15s,background .2s,border-color .2s}
-    .pill:hover{transform:translateY(-1px);background:rgba(255,255,255,.12);border-color:#9fa0ff66}
-    .hamb{display:none;align-items:center;justify-content:center;width:48px;height:48px;border-radius:14px;background:var(--chip-bg);border:1px solid var(--chip-br)}
-    .hamb span,.hamb span::before,.hamb span::after{content:"";display:block;width:22px;height:2px;background:#dfe2ff;border-radius:2px;position:relative}
-    .hamb span::before{position:absolute;top:-6px}
-    .hamb span::after{position:absolute;top:6px}
-    .nav-pop{position:absolute;right:20px;top:68px;display:none;flex-direction:column;gap:10px;background:rgba(8,10,26,.96);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow)}
-    .nav-pop.show{display:flex}
-    @media (max-width:860px){ .navlinks{display:none} .hamb{display:flex} }
 
-    /* HERO met ANIMATIE */
-    .hero-wrap{position:relative;margin-top:16px}
-    .hero{position:relative;overflow:hidden;border-radius:28px;border:1px solid var(--line);min-height:520px;background:#0b0f26;box-shadow:var(--shadow)}
+    html,body{
+      margin:0;
+      padding:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      color:var(--accent-2);
+      text-decoration:none;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:20px;
+    }
+
+
+    /* =========================
+       HEADER
+       ========================= */
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:linear-gradient(
+        180deg,
+        rgba(8,10,26,.95),
+        rgba(8,10,26,.65)
+      );
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .mark{
+      width:28px;
+      height:28px;
+      border-radius:12px;
+
+      background:
+        radial-gradient(
+          120% 90% at 20% 25%,
+          #fff,
+          rgba(255,255,255,.3) 30%,
+          transparent 60%
+        ),
+        radial-gradient(
+          90% 70% at 80% 80%,
+          #DAB6FC,
+          transparent 60%
+        ),
+        radial-gradient(
+          90% 60% at 30% 80%,
+          #8E94F2,
+          transparent 60%
+        ),
+        linear-gradient(
+          135deg,
+          #BBADFF,
+          #9FA0FF
+        );
+
+      box-shadow:
+        0 0 20px rgba(159,160,255,.55),
+        inset 0 0 18px rgba(255,255,255,.35);
+    }
+
+    .navlinks{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+
+      padding:10px 14px;
+      border-radius:999px;
+
+      font-weight:600;
+
+      background:var(--chip-bg);
+      border:1px solid var(--chip-br);
+      color:var(--text);
+
+      transition:
+        transform .15s,
+        background .2s,
+        border-color .2s;
+    }
+
+    .pill:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.12);
+      border-color:#9fa0ff66;
+    }
+
+    .hamb{
+      display:none;
+      align-items:center;
+      justify-content:center;
+
+      width:48px;
+      height:48px;
+
+      border-radius:14px;
+
+      background:var(--chip-bg);
+      border:1px solid var(--chip-br);
+    }
+
+    .hamb span,
+    .hamb span::before,
+    .hamb span::after{
+      content:"";
+      display:block;
+
+      width:22px;
+      height:2px;
+
+      background:#dfe2ff;
+      border-radius:2px;
+
+      position:relative;
+    }
+
+    .hamb span::before{
+      position:absolute;
+      top:-6px;
+    }
+
+    .hamb span::after{
+      position:absolute;
+      top:6px;
+    }
+
+    .nav-pop{
+      position:absolute;
+      right:20px;
+      top:68px;
+
+      display:none;
+      flex-direction:column;
+      gap:10px;
+
+      background:rgba(8,10,26,.96);
+
+      border:1px solid var(--line);
+      border-radius:18px;
+
+      padding:14px;
+
+      box-shadow:var(--shadow);
+    }
+
+    .nav-pop.show{
+      display:flex;
+    }
+
+    @media (max-width:860px){
+      .navlinks{
+        display:none;
+      }
+
+      .hamb{
+        display:flex;
+      }
+    }
+
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .hero-wrap{
+      position:relative;
+      margin-top:16px;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+
+      border-radius:28px;
+      border:1px solid var(--line);
+
+      min-height:520px;
+
+      background:#0b0f26;
+
+      box-shadow:var(--shadow);
+    }
+
     .hero-bg{
-      position:absolute;inset:0;
+      position:absolute;
+      inset:0;
+
       background-image:url('/asset1/homepic.png');
       background-size:cover;
       background-position:50% 50%;
       background-repeat:no-repeat;
+
       transform:scale(1.05);
-      animation:zoomPan 30s ease-in-out infinite alternate, driftPos 18s ease-in-out infinite alternate;
+
+      animation:
+        zoomPan 30s ease-in-out infinite alternate,
+        driftPos 18s ease-in-out infinite alternate;
+
       filter:url(#liquid-waves);
-      will-change:transform, background-position, filter;
+
+      will-change:
+        transform,
+        background-position,
+        filter;
     }
+
     @keyframes zoomPan{
-      from{transform:scale(1.05)}
-      to{transform:scale(1.10)}
+      from{
+        transform:scale(1.05);
+      }
+
+      to{
+        transform:scale(1.10);
+      }
     }
+
     @keyframes driftPos{
-      from{background-position:48% 49%}
-      to  {background-position:52% 51%}
+      from{
+        background-position:48% 49%;
+      }
+
+      to{
+        background-position:52% 51%;
+      }
     }
 
-    .hero-inner{position:relative;z-index:1;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:22px;padding:26px}
+    .hero-inner{
+      position:relative;
+      z-index:1;
 
-    /* tekst-outline */
-    .stroke-strong{color:#fff;-webkit-text-stroke:2px rgba(0,0,0,.55);paint-order:stroke fill;text-shadow:0 0 2px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.45),0 0 10px rgba(0,0,0,.25)}
-    .stroke-body{color:#fff;-webkit-text-stroke:1px rgba(0,0,0,.45);paint-order:stroke fill;text-shadow:0 1px 3px rgba(0,0,0,.5),0 0 2px rgba(0,0,0,.45)}
-    .hero-title{margin:0;line-height:1.03;font-size:clamp(38px,6.2vw,64px)}
-    .badges{display:flex;gap:10px;flex-wrap:wrap}
-    .badge{background:#10142a;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:14px}
+      height:100%;
 
-    /* sections & grids */
-    h2.section{font-size:32px;margin:28px 0 12px;letter-spacing:.3px}
-    .muted{color:var(--muted)}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+      display:grid;
+      grid-template-rows:auto 1fr auto;
 
-    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
-    .chip{display:inline-flex;align-items:center;gap:8px;font-weight:600;padding:8px 12px;border-radius:999px;background:var(--chip-bg);border:1px solid var(--chip-br);color:#fff;cursor:pointer;user-select:none;transition:background .2s,border-color .2s,transform .12s}
-    .chip:hover{background:rgba(255,255,255,.12);border-color:#9fa0ff66;transform:translateY(-1px)}
-    .chip.active{background:linear-gradient(180deg, rgba(180,175,255,.25), rgba(130,140,255,.18));border-color:#aab0ff;color:#fff}
+      gap:22px;
+      padding:26px;
+    }
 
-    .scroller{border:1px solid var(--line);border-radius:16px;background:var(--bg-2);padding:14px;max-height:560px;overflow:auto;box-shadow:var(--shadow)}
-    .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-    .tile{background:#0e1330;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .12s,border-color .12s;cursor:pointer}
-    .tile:hover{transform:translateY(-2px);border-color:#3a459a}
-    .tile img{width:100%;height:300px;object-fit:cover}
 
-    .scroller::-webkit-scrollbar{height:12px;width:12px}
-    .scroller::-webkit-scrollbar-thumb{background:#3b4185;border-radius:999px;border:3px solid transparent;background-clip:content-box}
-    .scroller::-webkit-scrollbar-track{background:transparent}
+    /* HERO TEKST */
 
-    #over .card p{
-  line-height:1.65;
-  margin:0 0 18px;
-}
+    .stroke-strong{
+      color:#fff;
 
-#over .card p:last-child{
-  margin-bottom:0;
-}
+      -webkit-text-stroke:2px rgba(0,0,0,.55);
 
-    footer{margin:48px 0 20px;color:var(--muted);font-size:14px;text-align:center}
+      paint-order:stroke fill;
 
-    /* ==== MOBIEL: fix randen volledig ====
-       - Geen background-position animatie (die onthult randen)
-       - Groot overscan (background-size 320%)
-       - Beweging via transform (scale + kleine translateX) */
+      text-shadow:
+        0 0 2px rgba(0,0,0,.55),
+        0 2px 6px rgba(0,0,0,.45),
+        0 0 10px rgba(0,0,0,.25);
+    }
+
+    .stroke-body{
+      color:#fff;
+
+      -webkit-text-stroke:1px rgba(0,0,0,.45);
+
+      paint-order:stroke fill;
+
+      text-shadow:
+        0 1px 3px rgba(0,0,0,.5),
+        0 0 2px rgba(0,0,0,.45);
+    }
+
+    .hero-title{
+      margin:0;
+      line-height:1.03;
+      font-size:clamp(38px,6.2vw,64px);
+    }
+
+    .badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      background:#10142a;
+      border:1px solid var(--line);
+
+      border-radius:999px;
+
+      padding:8px 12px;
+
+      color:var(--muted);
+      font-size:14px;
+    }
+
+
+    /* =========================
+       SECTIONS & GRIDS
+       ========================= */
+
+    h2.section{
+      font-size:32px;
+      margin:28px 0 12px;
+      letter-spacing:.3px;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+
+      border-radius:var(--radius);
+
+      padding:18px;
+
+      box-shadow:var(--shadow);
+    }
+
+
+    /* FILTERS */
+
+    .filters{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+
+      margin:10px 0 14px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+
+      font-weight:600;
+
+      padding:8px 12px;
+
+      border-radius:999px;
+
+      background:var(--chip-bg);
+      border:1px solid var(--chip-br);
+
+      color:#fff;
+
+      cursor:pointer;
+      user-select:none;
+
+      transition:
+        background .2s,
+        border-color .2s,
+        transform .12s;
+    }
+
+    .chip:hover{
+      background:rgba(255,255,255,.12);
+      border-color:#9fa0ff66;
+
+      transform:translateY(-1px);
+    }
+
+    .chip.active{
+      background:linear-gradient(
+        180deg,
+        rgba(180,175,255,.25),
+        rgba(130,140,255,.18)
+      );
+
+      border-color:#aab0ff;
+
+      color:#fff;
+    }
+
+
+    /* SCHILDERIJEN / SIERADEN */
+
+    .scroller{
+      border:1px solid var(--line);
+      border-radius:16px;
+
+      background:var(--bg-2);
+
+      padding:14px;
+
+      max-height:560px;
+
+      overflow:auto;
+
+      box-shadow:var(--shadow);
+    }
+
+    .tiles{
+      display:grid;
+
+      grid-template-columns:
+        repeat(auto-fill,minmax(240px,1fr));
+
+      gap:14px;
+    }
+
+    .tile{
+      background:#0e1330;
+
+      border:1px solid var(--line);
+      border-radius:14px;
+
+      overflow:hidden;
+
+      transition:
+        transform .12s,
+        border-color .12s;
+
+      cursor:pointer;
+    }
+
+    .tile:hover{
+      transform:translateY(-2px);
+      border-color:#3a459a;
+    }
+
+    .tile img{
+      width:100%;
+      height:300px;
+
+      object-fit:cover;
+    }
+
+    .scroller::-webkit-scrollbar{
+      height:12px;
+      width:12px;
+    }
+
+    .scroller::-webkit-scrollbar-thumb{
+      background:#3b4185;
+
+      border-radius:999px;
+
+      border:3px solid transparent;
+
+      background-clip:content-box;
+    }
+
+    .scroller::-webkit-scrollbar-track{
+      background:transparent;
+    }
+
+
+    /* =========================
+       OVER MIJ
+       ========================= */
+
+    #over .card{
+      padding:28px;
+    }
+
+    .about-layout{
+      display:grid;
+      grid-template-columns:300px 1fr;
+
+      gap:32px;
+
+      align-items:start;
+    }
+
+    .about-photo{
+      width:100%;
+      height:400px;
+
+      object-fit:cover;
+      object-position:center;
+
+      border-radius:18px;
+      border:1px solid var(--line);
+
+      box-shadow:var(--shadow);
+    }
+
+    .about-text p{
+      line-height:1.65;
+      margin:0 0 18px;
+    }
+
+    .about-text p:last-child{
+      margin-bottom:0;
+    }
+
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer{
+      margin:48px 0 20px;
+
+      color:var(--muted);
+
+      font-size:14px;
+
+      text-align:center;
+    }
+
+
+    /* =========================
+       MOBIEL
+       ========================= */
+
     @media (max-width:760px){
-      .hero{ border-radius:0; overflow:hidden; }
+
+      /* HERO */
+
+      .hero{
+        border-radius:0;
+        overflow:hidden;
+      }
+
       .hero-bg{
-        background-size:320% auto !important; /* royale overscan */
-        background-position:50% 50% !important;/* altijd het midden */
-        animation: mobileDrift 26s ease-in-out infinite alternate !important;
+        background-size:320% auto !important;
+
+        background-position:50% 50% !important;
+
+        animation:
+          mobileDrift 26s ease-in-out infinite alternate !important;
+
         will-change:transform;
       }
+
       @keyframes mobileDrift{
-        from { transform: scale(1.18) translateX(-1%); }
-        to   { transform: scale(1.18) translateX(1%); }
+        from{
+          transform:scale(1.18) translateX(-1%);
+        }
+
+        to{
+          transform:scale(1.18) translateX(1%);
+        }
+      }
+
+
+      /* OVER MIJ */
+
+      #over .card{
+        padding:18px;
+      }
+
+      .about-layout{
+        grid-template-columns:1fr;
+        gap:22px;
+      }
+
+      .about-photo{
+        width:100%;
+        height:auto;
+
+        max-height:500px;
+
+        object-fit:cover;
+
+        border-radius:14px;
       }
     }
+
   </style>
 </head>
+
+
 <body>
-  <!-- Header -->
+
+  <!-- =========================
+       HEADER
+       ========================= -->
+
   <header>
     <div class="container">
+
       <nav>
+
         <div class="brand">
           <span class="mark" aria-hidden="true"></span>
           <span>KunstLilia</span>
@@ -143,212 +659,803 @@
           <a class="pill" href="#contact">Contact</a>
         </div>
 
-        <button class="hamb" id="hamb" aria-label="Menu"><span></span></button>
-        <div class="nav-pop" id="navPop">
+        <button
+          class="hamb"
+          id="hamb"
+          aria-label="Menu"
+        >
+          <span></span>
+        </button>
+
+        <div
+          class="nav-pop"
+          id="navPop"
+        >
           <a class="pill" href="#schilderijen">Schilder collectie</a>
           <a class="pill" href="#sieraden">Sieraden</a>
           <a class="pill" href="#over">Over mij</a>
           <a class="pill" href="#contact">Contact</a>
         </div>
+
       </nav>
+
     </div>
   </header>
 
+
   <main class="container">
-    <!-- HERO -->
-    <section class="hero-wrap" aria-label="Intro">
+
+
+    <!-- =========================
+         HERO
+         ========================= -->
+
+    <section
+      class="hero-wrap"
+      aria-label="Intro"
+    >
+
       <div class="hero">
-        <div class="hero-bg" aria-hidden="true"></div>
+
+        <div
+          class="hero-bg"
+          aria-hidden="true"
+        ></div>
+
         <div class="hero-inner">
+
           <div>
+
             <h1 class="hero-title stroke-strong">
-              schilderijen &<br>sieraden<br>
+              schilderijen &<br>
+              sieraden<br>
               Lilia Guseva Dosti
             </h1>
+
           </div>
+
           <div></div>
+
           <div>
-            <p class="stroke-body" style="font-size:clamp(16px,2.6vw,20px);max-width:900px;margin:0 0 10px;">
-              Welkom op mijn portfolio. Een persoonlijke selectie — zonder commercieel doel — ter inspiratie en kennismaking.
+
+            <p
+              class="stroke-body"
+              style="
+                font-size:clamp(16px,2.6vw,20px);
+                max-width:900px;
+                margin:0 0 10px;
+              "
+            >
+              Welkom op mijn portfolio.
+              Een persoonlijke selectie —
+              zonder commercieel doel —
+              ter inspiratie en kennismaking.
             </p>
+
             <div class="badges">
               <span class="badge">✓ Origineel werk</span>
               <span class="badge">✓ Persoonlijke stijl</span>
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- Schilderijen -->
-    <section id="schilderijen" style="margin-top:30px">
-      <h2 class="section">Schilderijen</h2>
-      <p class="muted">Filter op type. (Acryl uit <code>asset1</code>, Olie uit <code>asset2</code>.)</p>
-      <div class="filters" id="paintFilters">
-        <div class="chip active" data-filter="all">Alles</div>
-        <div class="chip" data-filter="acryl">Acryl</div>
-        <div class="chip" data-filter="olie">Olie</div>
+
+    <!-- =========================
+         SCHILDERIJEN
+         ========================= -->
+
+    <section
+      id="schilderijen"
+      style="margin-top:30px"
+    >
+
+      <h2 class="section">
+        Schilderijen
+      </h2>
+
+      <p class="muted">
+        Filter op type.
+        (Acryl uit <code>asset1</code>,
+        Olie uit <code>asset2</code>.)
+      </p>
+
+      <div
+        class="filters"
+        id="paintFilters"
+      >
+
+        <div
+          class="chip active"
+          data-filter="all"
+        >
+          Alles
+        </div>
+
+        <div
+          class="chip"
+          data-filter="acryl"
+        >
+          Acryl
+        </div>
+
+        <div
+          class="chip"
+          data-filter="olie"
+        >
+          Olie
+        </div>
+
       </div>
-      <div class="scroller"><div class="tiles" id="tiles-paintings"></div></div>
+
+      <div class="scroller">
+        <div
+          class="tiles"
+          id="tiles-paintings"
+        ></div>
+      </div>
+
     </section>
 
-    <!-- Sieraden -->
-    <section id="sieraden" style="margin-top:34px">
-      <h2 class="section">Sieraden</h2>
-      <p class="muted">Een kleine verzameling sieraden. Er komen later meer stukken bij.</p>
-      <div class="scroller"><div class="tiles" id="tiles-jewels"></div></div>
+
+    <!-- =========================
+         SIERADEN
+         ========================= -->
+
+    <section
+      id="sieraden"
+      style="margin-top:34px"
+    >
+
+      <h2 class="section">
+        Sieraden
+      </h2>
+
+      <p class="muted">
+        Een kleine verzameling sieraden.
+        Er komen later meer stukken bij.
+      </p>
+
+      <div class="scroller">
+        <div
+          class="tiles"
+          id="tiles-jewels"
+        ></div>
+      </div>
+
     </section>
 
-<!-- Over mij -->
-<section id="over" style="margin-top:34px">
-  <h2 class="section">Over mij</h2>
 
-  <div class="card">
-    <p>
-      Ik ben Lilia Guseva Dosti, kunstenares en creatief maker. Kunst is voor mij een manier om mijn gevoel, verbeelding en kijk op de wereld zichtbaar te maken. Ik houd ervan om te experimenteren met kleur, vorm, structuur en verschillende materialen.
-    </p>
+    <!-- =========================
+         OVER MIJ
+         ========================= -->
 
-    <p>
-      Ik werk voornamelijk met acrylverf, maar mijn creativiteit beperkt zich niet tot één techniek. Ik schilder zowel abstract als figuratief en laat mij graag inspireren door de natuur, bloemen, dieren, landschappen en de menselijke vorm. Daarnaast werk ik met sculpturen, reliëf en sculpturale schilderkunst, waarbij ik schilderen combineer met structuur en materie.
-    </p>
+    <section
+      id="over"
+      style="margin-top:34px"
+    >
 
-    <p>
-      Wat mij bijzonder aanspreekt in kunst is de vrijheid om steeds iets nieuws te ontdekken. Soms begin ik met een duidelijk beeld in mijn hoofd, maar soms ontstaat een schilderij juist tijdens het werken. Ik speel met kleuren, lagen, contrasten en texturen totdat het werk voor mij de juiste sfeer en uitstraling krijgt.
-    </p>
+      <h2 class="section">
+        Over mij
+      </h2>
 
-    <p>
-      Mijn liefde voor kunst gaat hand in hand met mijn liefde voor mensen. Ik heb ongeveer negen jaar als leraar bij Piëzo gewerkt. In die periode heb ik veel mensen mogen begeleiden, inspireren en stimuleren om hun eigen talenten en mogelijkheden te ontdekken. Het werken met mensen heeft mij geleerd hoe belangrijk creativiteit, vertrouwen en persoonlijke ontwikkeling zijn.
-    </p>
-
-    <p>
-      Als persoon ben ik nieuwsgierig, gedreven, creatief en veelzijdig. Ik blijf graag leren en nieuwe technieken ontdekken. Ik vind het belangrijk om mezelf niet vast te leggen in één bepaalde stijl. Juist de vrijheid om verschillende vormen van kunst te onderzoeken geeft mij energie.
-    </p>
-
-    <p>
-      In mijn schilderijen probeer ik niet alleen een beeld neer te zetten, maar ook een gevoel, sfeer of verhaal mee te geven. Een bloem kan bijvoorbeeld staan voor schoonheid en kwetsbaarheid, een landschap voor rust en vrijheid, terwijl een abstract werk juist ruimte kan geven aan de verbeelding van de kijker.
-    </p>
-
-    <p>
-      Mijn kunst is een weerspiegeling van mijn persoonlijke ontwikkeling. Elk werk vertelt iets over een bepaalde periode, een inspiratiebron of een gevoel. Daarom zie ik mijn collectie niet alleen als losse schilderijen, maar als een artistieke reis waarin ik mezelf steeds opnieuw ontdek.
-    </p>
-
-    <p>
-      Ik wil met mijn kunst mensen raken, inspireren en uitnodigen om even stil te staan bij kleur, schoonheid, natuur en gevoel. Kunst is voor mij vrijheid – de vrijheid om te creëren, te experimenteren en mijn eigen verhaal te vertellen.
-    </p>
-  </div>
-</section>
-
-    <!-- Contact -->
-    <section id="contact" style="margin-top:34px">
-      <h2 class="section">Contact</h2>
       <div class="card">
-        <p class="muted">Voor vragen, samenwerkingen of gedachten over kunst: stuur gerust een bericht.</p>
-        <p><a class="pill" href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio">Contact opnemen</a></p>
+
+        <div class="about-layout">
+
+
+          <!-- FOTO VAN DE KUNSTENARES -->
+
+          <div class="about-image">
+
+            <img
+              class="about-photo"
+              src="/Portfolio/portfolio.jpeg"
+              alt="Lilia Guseva Dosti"
+            >
+
+          </div>
+
+
+          <!-- TEKST -->
+
+          <div class="about-text">
+
+            <p>
+              Ik ben Lilia Guseva Dosti, kunstenares en creatief maker.
+              Kunst is voor mij een manier om mijn gevoel, verbeelding
+              en kijk op de wereld zichtbaar te maken. Ik houd ervan om
+              te experimenteren met kleur, vorm, structuur en
+              verschillende materialen.
+            </p>
+
+            <p>
+              Ik werk voornamelijk met acrylverf, maar mijn creativiteit
+              beperkt zich niet tot één techniek. Ik schilder zowel
+              abstract als figuratief en laat mij graag inspireren door
+              de natuur, bloemen, dieren, landschappen en de menselijke
+              vorm. Daarnaast werk ik met sculpturen, reliëf en
+              sculpturale schilderkunst, waarbij ik schilderen combineer
+              met structuur en materie.
+            </p>
+
+            <p>
+              Wat mij bijzonder aanspreekt in kunst is de vrijheid om
+              steeds iets nieuws te ontdekken. Soms begin ik met een
+              duidelijk beeld in mijn hoofd, maar soms ontstaat een
+              schilderij juist tijdens het werken. Ik speel met kleuren,
+              lagen, contrasten en texturen totdat het werk voor mij de
+              juiste sfeer en uitstraling krijgt.
+            </p>
+
+            <p>
+              Mijn liefde voor kunst gaat hand in hand met mijn liefde
+              voor mensen. Ik heb ongeveer negen jaar als leraar bij
+              Piëzo gewerkt. In die periode heb ik veel mensen mogen
+              begeleiden, inspireren en stimuleren om hun eigen talenten
+              en mogelijkheden te ontdekken. Het werken met mensen heeft
+              mij geleerd hoe belangrijk creativiteit, vertrouwen en
+              persoonlijke ontwikkeling zijn.
+            </p>
+
+            <p>
+              Als persoon ben ik nieuwsgierig, gedreven, creatief en
+              veelzijdig. Ik blijf graag leren en nieuwe technieken
+              ontdekken. Ik vind het belangrijk om mezelf niet vast te
+              leggen in één bepaalde stijl. Juist de vrijheid om
+              verschillende vormen van kunst te onderzoeken geeft mij
+              energie.
+            </p>
+
+            <p>
+              In mijn schilderijen probeer ik niet alleen een beeld neer
+              te zetten, maar ook een gevoel, sfeer of verhaal mee te
+              geven. Een bloem kan bijvoorbeeld staan voor schoonheid en
+              kwetsbaarheid, een landschap voor rust en vrijheid, terwijl
+              een abstract werk juist ruimte kan geven aan de verbeelding
+              van de kijker.
+            </p>
+
+            <p>
+              Mijn kunst is een weerspiegeling van mijn persoonlijke
+              ontwikkeling. Elk werk vertelt iets over een bepaalde
+              periode, een inspiratiebron of een gevoel. Daarom zie ik
+              mijn collectie niet alleen als losse schilderijen, maar als
+              een artistieke reis waarin ik mezelf steeds opnieuw ontdek.
+            </p>
+
+            <p>
+              Ik wil met mijn kunst mensen raken, inspireren en uitnodigen
+              om even stil te staan bij kleur, schoonheid, natuur en
+              gevoel. Kunst is voor mij vrijheid – de vrijheid om te
+              creëren, te experimenteren en mijn eigen verhaal te
+              vertellen.
+            </p>
+
+          </div>
+
+        </div>
+
       </div>
+
     </section>
 
-    <footer>© <span id="year"></span> KunstLilia · Lilia Guseva Dosti — Alle rechten voorbehouden</footer>
+
+    <!-- =========================
+         CONTACT
+         ========================= -->
+
+    <section
+      id="contact"
+      style="margin-top:34px"
+    >
+
+      <h2 class="section">
+        Contact
+      </h2>
+
+      <div class="card">
+
+        <p class="muted">
+          Voor vragen, samenwerkingen of gedachten over kunst:
+          stuur gerust een bericht.
+        </p>
+
+        <p>
+          <a
+            class="pill"
+            href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio"
+          >
+            Contact opnemen
+          </a>
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+      © <span id="year"></span>
+      KunstLilia · Lilia Guseva Dosti —
+      Alle rechten voorbehouden
+    </footer>
+
   </main>
 
-  <!-- SVG filter voor subtiele golf-displacement -->
-  <svg width="0" height="0" style="position:absolute">
+
+  <!-- =========================
+       SVG GOLF FILTER
+       ========================= -->
+
+  <svg
+    width="0"
+    height="0"
+    style="position:absolute"
+  >
+
     <filter id="liquid-waves">
-      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="8">
-        <animate attributeName="baseFrequency"
-                 values="0.008 0.012;0.011 0.009;0.008 0.012"
-                 dur="20s" repeatCount="indefinite"/>
+
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.008 0.012"
+        numOctaves="2"
+        seed="8"
+      >
+
+        <animate
+          attributeName="baseFrequency"
+          values="
+            0.008 0.012;
+            0.011 0.009;
+            0.008 0.012
+          "
+          dur="20s"
+          repeatCount="indefinite"
+        />
+
       </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" scale="8" xChannelSelector="R" yChannelSelector="G">
-        <animate attributeName="scale" values="6;10;6" dur="18s" repeatCount="indefinite"/>
+
+      <feDisplacementMap
+        in="SourceGraphic"
+        scale="8"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      >
+
+        <animate
+          attributeName="scale"
+          values="6;10;6"
+          dur="18s"
+          repeatCount="indefinite"
+        />
+
       </feDisplacementMap>
+
     </filter>
+
   </svg>
 
-  <!-- Lightbox (fullscreen) -->
-  <div id="lightbox" style="position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000">
-    <button id="lbClose" aria-label="Sluiten" style="position:absolute;top:16px;right:16px;border:none;background:rgba(255,255,255,.1);color:#fff;font-weight:700;padding:10px 14px;border-radius:10px;cursor:pointer">✕</button>
-    <img id="lbImg" alt="" style="max-width:96vw;max-height:90vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.6)" />
+
+  <!-- =========================
+       LIGHTBOX
+       ========================= -->
+
+  <div
+    id="lightbox"
+    style="
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.85);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+    "
+  >
+
+    <button
+      id="lbClose"
+      aria-label="Sluiten"
+      style="
+        position:absolute;
+        top:16px;
+        right:16px;
+        border:none;
+        background:rgba(255,255,255,.1);
+        color:#fff;
+        font-weight:700;
+        padding:10px 14px;
+        border-radius:10px;
+        cursor:pointer;
+      "
+    >
+      ✕
+    </button>
+
+    <img
+      id="lbImg"
+      alt=""
+      style="
+        max-width:96vw;
+        max-height:90vh;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(0,0,0,.6);
+      "
+    >
+
   </div>
 
+
+  <!-- =========================
+       JAVASCRIPT
+       ========================= -->
+
   <script>
-    // jaar
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // hamburger
-    const hamb = document.getElementById('hamb');
-    const navPop = document.getElementById('navPop');
-    hamb.addEventListener('click', () => navPop.classList.toggle('show'));
-    document.addEventListener('click', (e) => {
-      if (!navPop.contains(e.target) && !hamb.contains(e.target)) navPop.classList.remove('show');
-    });
+    // JAAR
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
 
-    // lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbClose = document.getElementById('lbClose');
-    function openLB(src){ lbImg.src = src; lb.style.display='flex'; }
-    function closeLB(){ lb.style.display='none'; lbImg.src=''; }
-    lbClose.addEventListener('click', closeLB);
-    lb.addEventListener('click', e => { if(e.target === lb) closeLB(); });
 
-    // manifest laden
-    async function fetchManifest() {
-      try {
-        const r = await fetch('/images.json', {cache:'no-store'});
-        if (r.ok) return await r.json();
-      } catch {}
-      const GH = 'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
-      const get = async (p) => {
-        try {
-          const r = await fetch(GH + p);
-          if (!r.ok) return [];
-          const data = await r.json();
-          return (Array.isArray(data)?data:[])
-            .filter(f => f.type==='file' && /\.(jpe?g|png|webp)$/i.test(f.name))
-            .map(f => f.path);
-        } catch { return []; }
-      };
-      const a1 = await get('asset1'), a2 = await get('asset2'), s = await get('sieraden');
-      return { paintings:[...a1, ...a2], jewels:s };
+    // HAMBURGER MENU
+
+    const hamb =
+      document.getElementById('hamb');
+
+    const navPop =
+      document.getElementById('navPop');
+
+    hamb.addEventListener(
+      'click',
+      () => navPop.classList.toggle('show')
+    );
+
+    document.addEventListener(
+      'click',
+      (e) => {
+
+        if (
+          !navPop.contains(e.target) &&
+          !hamb.contains(e.target)
+        ) {
+          navPop.classList.remove('show');
+        }
+
+      }
+    );
+
+
+    // LIGHTBOX
+
+    const lb =
+      document.getElementById('lightbox');
+
+    const lbImg =
+      document.getElementById('lbImg');
+
+    const lbClose =
+      document.getElementById('lbClose');
+
+
+    function openLB(src){
+
+      lbImg.src = src;
+
+      lb.style.display = 'flex';
+
     }
+
+
+    function closeLB(){
+
+      lb.style.display = 'none';
+
+      lbImg.src = '';
+
+    }
+
+
+    lbClose.addEventListener(
+      'click',
+      closeLB
+    );
+
+
+    lb.addEventListener(
+      'click',
+      e => {
+
+        if(e.target === lb){
+          closeLB();
+        }
+
+      }
+    );
+
+
+    // =========================
+    // MANIFEST LADEN
+    // =========================
+
+    async function fetchManifest(){
+
+      try{
+
+        const r = await fetch(
+          '/images.json',
+          {cache:'no-store'}
+        );
+
+        if(r.ok){
+          return await r.json();
+        }
+
+      }catch{}
+
+
+      const GH =
+        'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
+
+
+      const get = async (p) => {
+
+        try{
+
+          const r =
+            await fetch(GH + p);
+
+          if(!r.ok){
+            return [];
+          }
+
+          const data =
+            await r.json();
+
+
+          return (
+            Array.isArray(data)
+              ? data
+              : []
+          )
+
+          .filter(
+            f =>
+              f.type === 'file' &&
+              /\.(jpe?g|png|webp)$/i.test(f.name)
+          )
+
+          .map(
+            f => f.path
+          );
+
+        }catch{
+
+          return [];
+
+        }
+
+      };
+
+
+      const a1 =
+        await get('asset1');
+
+      const a2 =
+        await get('asset2');
+
+      const s =
+        await get('sieraden');
+
+
+      return {
+
+        paintings:[
+          ...a1,
+          ...a2
+        ],
+
+        jewels:s
+
+      };
+
+    }
+
+
+    // =========================
+    // TILES
+    // =========================
 
     function makeTile(src){
-      const d = document.createElement('div'); d.className='tile';
-      const img = new Image(); img.loading='lazy'; img.decoding='async';
-      img.src = '/' + src.replace(/^\/+/, ''); img.alt = src.split('/').pop();
-      img.addEventListener('click', () => openLB(img.currentSrc || img.src));
-      d.appendChild(img); return d;
+
+      const d =
+        document.createElement('div');
+
+      d.className = 'tile';
+
+
+      const img =
+        new Image();
+
+      img.loading = 'lazy';
+
+      img.decoding = 'async';
+
+      img.src =
+        '/' + src.replace(/^\/+/, '');
+
+      img.alt =
+        src.split('/').pop();
+
+
+      img.addEventListener(
+        'click',
+        () =>
+          openLB(
+            img.currentSrc || img.src
+          )
+      );
+
+
+      d.appendChild(img);
+
+      return d;
+
     }
-    function renderList(rootId, paths){
-      const root = document.getElementById(rootId); root.innerHTML='';
-      paths.forEach(p => root.appendChild(makeTile(p)));
+
+
+    function renderList(
+      rootId,
+      paths
+    ){
+
+      const root =
+        document.getElementById(rootId);
+
+      root.innerHTML = '';
+
+
+      paths.forEach(
+        p =>
+          root.appendChild(
+            makeTile(p)
+          )
+      );
+
     }
+
+
+    // =========================
+    // SCHILDERIJEN + SIERADEN
+    // =========================
 
     (async () => {
-      const m = await fetchManifest();
 
-      // schilderijen + filters
-      const allPaints = (m.paintings || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
-      const filt = document.getElementById('paintFilters');
+      const m =
+        await fetchManifest();
+
+
+      // SCHILDERIJEN
+
+      const allPaints =
+        (m.paintings || [])
+        .sort(
+          (a,b) =>
+            a.localeCompare(
+              b,
+              undefined,
+              {numeric:true}
+            )
+        );
+
+
+      const filt =
+        document.getElementById(
+          'paintFilters'
+        );
+
+
       const byType = {
-        acryl: allPaints.filter(p=>/^asset1\//i.test(p)),
-        olie:  allPaints.filter(p=>/^asset2\//i.test(p))
+
+        acryl:
+          allPaints.filter(
+            p =>
+              /^asset1\//i.test(p)
+          ),
+
+        olie:
+          allPaints.filter(
+            p =>
+              /^asset2\//i.test(p)
+          )
+
       };
-      const allMap = { all: allPaints, ...byType };
+
+
+      const allMap = {
+
+        all:allPaints,
+
+        ...byType
+
+      };
+
 
       function applyPaintFilter(key){
-        renderList('tiles-paintings', allMap[key] || allPaints);
-        [...filt.querySelectorAll('.chip')].forEach(c => c.classList.toggle('active', c.dataset.filter===key));
+
+        renderList(
+          'tiles-paintings',
+          allMap[key] || allPaints
+        );
+
+
+        [
+          ...filt.querySelectorAll(
+            '.chip'
+          )
+        ].forEach(
+
+          c =>
+            c.classList.toggle(
+              'active',
+              c.dataset.filter === key
+            )
+
+        );
+
       }
-      filt.addEventListener('click', e => {
-        const chip = e.target.closest('.chip'); if(!chip) return;
-        applyPaintFilter(chip.dataset.filter);
-      });
+
+
+      filt.addEventListener(
+        'click',
+        e => {
+
+          const chip =
+            e.target.closest('.chip');
+
+          if(!chip){
+            return;
+          }
+
+          applyPaintFilter(
+            chip.dataset.filter
+          );
+
+        }
+      );
+
+
       applyPaintFilter('all');
 
-      // sieraden
-      renderList('tiles-jewels', (m.jewels || []).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})));
+
+      // SIERADEN
+
+      renderList(
+
+        'tiles-jewels',
+
+        (m.jewels || [])
+        .sort(
+          (a,b) =>
+            a.localeCompare(
+              b,
+              undefined,
+              {numeric:true}
+            )
+        )
+
+      );
+
     })();
+
   </script>
+
 </body>
 </html>
