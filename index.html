@@ -19,6 +19,7 @@
   >
 
   <style>
+
     :root{
       --bg:#0f1430;
       --bg-2:#1a1f45;
@@ -70,11 +71,13 @@
       position:sticky;
       top:0;
       z-index:50;
+
       background:linear-gradient(
         180deg,
         rgba(8,10,26,.95),
         rgba(8,10,26,.65)
       );
+
       backdrop-filter:blur(8px);
       border-bottom:1px solid var(--line);
     }
@@ -223,6 +226,7 @@
     }
 
     @media (max-width:860px){
+
       .navlinks{
         display:none;
       }
@@ -230,6 +234,7 @@
       .hamb{
         display:flex;
       }
+
     }
 
 
@@ -280,6 +285,7 @@
     }
 
     @keyframes zoomPan{
+
       from{
         transform:scale(1.05);
       }
@@ -287,9 +293,11 @@
       to{
         transform:scale(1.10);
       }
+
     }
 
     @keyframes driftPos{
+
       from{
         background-position:48% 49%;
       }
@@ -297,6 +305,7 @@
       to{
         background-position:52% 51%;
       }
+
     }
 
     .hero-inner{
@@ -313,7 +322,9 @@
     }
 
 
-    /* HERO TEKST */
+    /* =========================
+       HERO TEKST
+       ========================= */
 
     .stroke-strong{
       color:#fff;
@@ -366,7 +377,7 @@
 
 
     /* =========================
-       SECTIONS & GRIDS
+       SECTIONS
        ========================= */
 
     h2.section{
@@ -381,8 +392,8 @@
 
     .card{
       background:var(--card);
-      border:1px solid var(--line);
 
+      border:1px solid var(--line);
       border-radius:var(--radius);
 
       padding:18px;
@@ -391,7 +402,9 @@
     }
 
 
-    /* FILTERS */
+    /* =========================
+       FILTERS
+       ========================= */
 
     .filters{
       display:flex;
@@ -429,7 +442,6 @@
     .chip:hover{
       background:rgba(255,255,255,.12);
       border-color:#9fa0ff66;
-
       transform:translateY(-1px);
     }
 
@@ -446,7 +458,9 @@
     }
 
 
-    /* SCHILDERIJEN / SIERADEN */
+    /* =========================
+       SCHILDERIJEN / SIERADEN
+       ========================= */
 
     .scroller{
       border:1px solid var(--line);
@@ -527,28 +541,6 @@
       padding:28px;
     }
 
-    .about-layout{
-      display:grid;
-      grid-template-columns:300px 1fr;
-
-      gap:32px;
-
-      align-items:start;
-    }
-
-    .about-photo{
-      width:100%;
-      height:400px;
-
-      object-fit:cover;
-      object-position:center;
-
-      border-radius:18px;
-      border:1px solid var(--line);
-
-      box-shadow:var(--shadow);
-    }
-
     .about-text p{
       line-height:1.65;
       margin:0 0 18px;
@@ -556,6 +548,48 @@
 
     .about-text p:last-child{
       margin-bottom:0;
+    }
+
+
+    /* =========================
+       OVER MIJ - DESKTOP
+       Tekst loopt naast EN onder
+       de foto.
+       ========================= */
+
+    @media (min-width:761px){
+
+      .about-layout{
+        display:block;
+      }
+
+      .about-photo{
+        float:left;
+
+        width:300px;
+        height:400px;
+
+        object-fit:cover;
+        object-position:center;
+
+        margin:
+          0
+          32px
+          20px
+          0;
+
+        border-radius:18px;
+        border:1px solid var(--line);
+
+        box-shadow:var(--shadow);
+      }
+
+      .about-layout::after{
+        content:"";
+        display:block;
+        clear:both;
+      }
+
     }
 
 
@@ -599,6 +633,7 @@
       }
 
       @keyframes mobileDrift{
+
         from{
           transform:scale(1.18) translateX(-1%);
         }
@@ -606,16 +641,19 @@
         to{
           transform:scale(1.18) translateX(1%);
         }
+
       }
 
 
-      /* OVER MIJ */
+      /* OVER MIJ
+         Mobiele layout blijft zoals voorheen */
 
       #over .card{
         padding:18px;
       }
 
       .about-layout{
+        display:grid;
         grid-template-columns:1fr;
         gap:22px;
       }
@@ -630,34 +668,73 @@
 
         border-radius:14px;
       }
+
     }
 
   </style>
+
 </head>
 
 
 <body>
+
 
   <!-- =========================
        HEADER
        ========================= -->
 
   <header>
+
     <div class="container">
 
       <nav>
 
         <div class="brand">
-          <span class="mark" aria-hidden="true"></span>
-          <span>KunstLilia</span>
+
+          <span
+            class="mark"
+            aria-hidden="true"
+          ></span>
+
+          <span>
+            KunstLilia
+          </span>
+
         </div>
 
+
         <div class="navlinks">
-          <a class="pill" href="#schilderijen">Schilder collectie</a>
-          <a class="pill" href="#sieraden">Sieraden</a>
-          <a class="pill" href="#over">Over mij</a>
-          <a class="pill" href="#contact">Contact</a>
+
+          <a
+            class="pill"
+            href="#schilderijen"
+          >
+            Schilder collectie
+          </a>
+
+          <a
+            class="pill"
+            href="#sieraden"
+          >
+            Sieraden
+          </a>
+
+          <a
+            class="pill"
+            href="#over"
+          >
+            Over mij
+          </a>
+
+          <a
+            class="pill"
+            href="#contact"
+          >
+            Contact
+          </a>
+
         </div>
+
 
         <button
           class="hamb"
@@ -667,19 +744,46 @@
           <span></span>
         </button>
 
+
         <div
           class="nav-pop"
           id="navPop"
         >
-          <a class="pill" href="#schilderijen">Schilder collectie</a>
-          <a class="pill" href="#sieraden">Sieraden</a>
-          <a class="pill" href="#over">Over mij</a>
-          <a class="pill" href="#contact">Contact</a>
+
+          <a
+            class="pill"
+            href="#schilderijen"
+          >
+            Schilder collectie
+          </a>
+
+          <a
+            class="pill"
+            href="#sieraden"
+          >
+            Sieraden
+          </a>
+
+          <a
+            class="pill"
+            href="#over"
+          >
+            Over mij
+          </a>
+
+          <a
+            class="pill"
+            href="#contact"
+          >
+            Contact
+          </a>
+
         </div>
 
       </nav>
 
     </div>
+
   </header>
 
 
@@ -697,24 +801,31 @@
 
       <div class="hero">
 
+
         <div
           class="hero-bg"
           aria-hidden="true"
         ></div>
 
+
         <div class="hero-inner">
+
 
           <div>
 
             <h1 class="hero-title stroke-strong">
+
               schilderijen &<br>
               sieraden<br>
               Lilia Guseva Dosti
+
             </h1>
 
           </div>
 
+
           <div></div>
+
 
           <div>
 
@@ -732,12 +843,21 @@
               ter inspiratie en kennismaking.
             </p>
 
+
             <div class="badges">
-              <span class="badge">✓ Origineel werk</span>
-              <span class="badge">✓ Persoonlijke stijl</span>
+
+              <span class="badge">
+                ✓ Origineel werk
+              </span>
+
+              <span class="badge">
+                ✓ Persoonlijke stijl
+              </span>
+
             </div>
 
           </div>
+
 
         </div>
 
@@ -759,11 +879,13 @@
         Schilderijen
       </h2>
 
+
       <p class="muted">
         Filter op type.
         (Acryl uit <code>asset1</code>,
         Olie uit <code>asset2</code>.)
       </p>
+
 
       <div
         class="filters"
@@ -777,12 +899,14 @@
           Alles
         </div>
 
+
         <div
           class="chip"
           data-filter="acryl"
         >
           Acryl
         </div>
+
 
         <div
           class="chip"
@@ -793,11 +917,14 @@
 
       </div>
 
+
       <div class="scroller">
+
         <div
           class="tiles"
           id="tiles-paintings"
         ></div>
+
       </div>
 
     </section>
@@ -816,16 +943,20 @@
         Sieraden
       </h2>
 
+
       <p class="muted">
         Een kleine verzameling sieraden.
         Er komen later meer stukken bij.
       </p>
 
+
       <div class="scroller">
+
         <div
           class="tiles"
           id="tiles-jewels"
         ></div>
+
       </div>
 
     </section>
@@ -844,27 +975,26 @@
         Over mij
       </h2>
 
+
       <div class="card">
+
 
         <div class="about-layout">
 
 
           <!-- FOTO VAN DE KUNSTENARES -->
 
-          <div class="about-image">
-
-            <img
-              class="about-photo"
-              src="/Portfolio/portfolio.jpeg"
-              alt="Lilia Guseva Dosti"
-            >
-
-          </div>
+          <img
+            class="about-photo"
+            src="/Portfolio/portfolio.jpeg"
+            alt="Lilia Guseva Dosti"
+          >
 
 
           <!-- TEKST -->
 
           <div class="about-text">
+
 
             <p>
               Ik ben Lilia Guseva Dosti, kunstenares en creatief maker.
@@ -873,6 +1003,7 @@
               te experimenteren met kleur, vorm, structuur en
               verschillende materialen.
             </p>
+
 
             <p>
               Ik werk voornamelijk met acrylverf, maar mijn creativiteit
@@ -884,6 +1015,7 @@
               met structuur en materie.
             </p>
 
+
             <p>
               Wat mij bijzonder aanspreekt in kunst is de vrijheid om
               steeds iets nieuws te ontdekken. Soms begin ik met een
@@ -892,6 +1024,7 @@
               lagen, contrasten en texturen totdat het werk voor mij de
               juiste sfeer en uitstraling krijgt.
             </p>
+
 
             <p>
               Mijn liefde voor kunst gaat hand in hand met mijn liefde
@@ -903,6 +1036,7 @@
               persoonlijke ontwikkeling zijn.
             </p>
 
+
             <p>
               Als persoon ben ik nieuwsgierig, gedreven, creatief en
               veelzijdig. Ik blijf graag leren en nieuwe technieken
@@ -911,6 +1045,7 @@
               verschillende vormen van kunst te onderzoeken geeft mij
               energie.
             </p>
+
 
             <p>
               In mijn schilderijen probeer ik niet alleen een beeld neer
@@ -921,6 +1056,7 @@
               van de kijker.
             </p>
 
+
             <p>
               Mijn kunst is een weerspiegeling van mijn persoonlijke
               ontwikkeling. Elk werk vertelt iets over een bepaalde
@@ -928,6 +1064,7 @@
               mijn collectie niet alleen als losse schilderijen, maar als
               een artistieke reis waarin ik mezelf steeds opnieuw ontdek.
             </p>
+
 
             <p>
               Ik wil met mijn kunst mensen raken, inspireren en uitnodigen
@@ -937,9 +1074,12 @@
               vertellen.
             </p>
 
+
           </div>
 
+
         </div>
+
 
       </div>
 
@@ -959,6 +1099,7 @@
         Contact
       </h2>
 
+
       <div class="card">
 
         <p class="muted">
@@ -966,13 +1107,16 @@
           stuur gerust een bericht.
         </p>
 
+
         <p>
+
           <a
             class="pill"
             href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio"
           >
             Contact opnemen
           </a>
+
         </p>
 
       </div>
@@ -980,13 +1124,18 @@
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+         ========================= -->
 
     <footer>
+
       © <span id="year"></span>
       KunstLilia · Lilia Guseva Dosti —
       Alle rechten voorbehouden
+
     </footer>
+
 
   </main>
 
@@ -1003,6 +1152,7 @@
 
     <filter id="liquid-waves">
 
+
       <feTurbulence
         type="fractalNoise"
         baseFrequency="0.008 0.012"
@@ -1012,16 +1162,13 @@
 
         <animate
           attributeName="baseFrequency"
-          values="
-            0.008 0.012;
-            0.011 0.009;
-            0.008 0.012
-          "
+          values="0.008 0.012;0.011 0.009;0.008 0.012"
           dur="20s"
           repeatCount="indefinite"
         />
 
       </feTurbulence>
+
 
       <feDisplacementMap
         in="SourceGraphic"
@@ -1038,6 +1185,7 @@
         />
 
       </feDisplacementMap>
+
 
     </filter>
 
@@ -1061,6 +1209,7 @@
     "
   >
 
+
     <button
       id="lbClose"
       aria-label="Sluiten"
@@ -1080,6 +1229,7 @@
       ✕
     </button>
 
+
     <img
       id="lbImg"
       alt=""
@@ -1091,6 +1241,7 @@
       "
     >
 
+
   </div>
 
 
@@ -1100,12 +1251,16 @@
 
   <script>
 
+
     // JAAR
+
     document.getElementById('year').textContent =
       new Date().getFullYear();
 
 
-    // HAMBURGER MENU
+    // =========================
+    // HAMBURGER
+    // =========================
 
     const hamb =
       document.getElementById('hamb');
@@ -1113,19 +1268,21 @@
     const navPop =
       document.getElementById('navPop');
 
+
     hamb.addEventListener(
       'click',
       () => navPop.classList.toggle('show')
     );
 
+
     document.addEventListener(
       'click',
       (e) => {
 
-        if (
+        if(
           !navPop.contains(e.target) &&
           !hamb.contains(e.target)
-        ) {
+        ){
           navPop.classList.remove('show');
         }
 
@@ -1133,7 +1290,9 @@
     );
 
 
+    // =========================
     // LIGHTBOX
+    // =========================
 
     const lb =
       document.getElementById('lightbox');
@@ -1189,10 +1348,11 @@
 
       try{
 
-        const r = await fetch(
-          '/images.json',
-          {cache:'no-store'}
-        );
+        const r =
+          await fetch(
+            '/images.json',
+            {cache:'no-store'}
+          );
 
         if(r.ok){
           return await r.json();
@@ -1216,6 +1376,7 @@
             return [];
           }
 
+
           const data =
             await r.json();
 
@@ -1236,6 +1397,7 @@
             f => f.path
           );
 
+
         }catch{
 
           return [];
@@ -1255,7 +1417,7 @@
         await get('sieraden');
 
 
-      return {
+      return{
 
         paintings:[
           ...a1,
@@ -1270,7 +1432,7 @@
 
 
     // =========================
-    // TILES
+    // TILE MAKEN
     // =========================
 
     function makeTile(src){
@@ -1284,9 +1446,11 @@
       const img =
         new Image();
 
-      img.loading = 'lazy';
+      img.loading =
+        'lazy';
 
-      img.decoding = 'async';
+      img.decoding =
+        'async';
 
       img.src =
         '/' + src.replace(/^\/+/, '');
@@ -1319,14 +1483,17 @@
       const root =
         document.getElementById(rootId);
 
+
       root.innerHTML = '';
 
 
       paths.forEach(
+
         p =>
           root.appendChild(
             makeTile(p)
           )
+
       );
 
     }
@@ -1337,6 +1504,7 @@
     // =========================
 
     (async () => {
+
 
       const m =
         await fetchManifest();
@@ -1397,9 +1565,7 @@
 
 
         [
-          ...filt.querySelectorAll(
-            '.chip'
-          )
+          ...filt.querySelectorAll('.chip')
         ].forEach(
 
           c =>
@@ -1420,9 +1586,11 @@
           const chip =
             e.target.closest('.chip');
 
+
           if(!chip){
             return;
           }
+
 
           applyPaintFilter(
             chip.dataset.filter
@@ -1453,9 +1621,12 @@
 
       );
 
+
     })();
 
+
   </script>
+
 
 </body>
 </html>
