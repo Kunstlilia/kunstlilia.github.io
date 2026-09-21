@@ -13,6 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
     rel="stylesheet"
@@ -553,8 +554,6 @@
 
     /* =========================
        OVER MIJ - DESKTOP
-       Tekst loopt naast EN onder
-       de foto.
        ========================= */
 
     @media (min-width:761px){
@@ -582,6 +581,15 @@
         border:1px solid var(--line);
 
         box-shadow:var(--shadow);
+      }
+
+      /*
+        Vanaf "Mijn liefde voor kunst..."
+        begint de tekst volledig onder de foto.
+      */
+      .under-photo{
+        clear:both;
+        padding-top:6px;
       }
 
       .about-layout::after{
@@ -645,8 +653,7 @@
       }
 
 
-      /* OVER MIJ
-         Mobiele layout blijft zoals voorheen */
+      /* OVER MIJ - MOBIEL BLIJFT HETZELFDE */
 
       #over .card{
         padding:18px;
@@ -1026,7 +1033,12 @@
             </p>
 
 
-            <p>
+            <!--
+              VANAF HIER BEGINT DE TEKST
+              OP DESKTOP ONDER DE FOTO
+            -->
+
+            <p class="under-photo">
               Mijn liefde voor kunst gaat hand in hand met mijn liefde
               voor mensen. Ik heb ongeveer negen jaar als leraar bij
               Piëzo gewerkt. In die periode heb ik veel mensen mogen
