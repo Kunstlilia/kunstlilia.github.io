@@ -19,7 +19,6 @@
   >
 
   <style>
-
     :root{
       --bg:#0f1430;
       --bg-2:#1a1f45;
@@ -71,13 +70,11 @@
       position:sticky;
       top:0;
       z-index:50;
-
       background:linear-gradient(
         180deg,
         rgba(8,10,26,.95),
         rgba(8,10,26,.65)
       );
-
       backdrop-filter:blur(8px);
       border-bottom:1px solid var(--line);
     }
@@ -141,12 +138,9 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
-
       padding:10px 14px;
       border-radius:999px;
-
       font-weight:600;
-
       background:var(--chip-bg);
       border:1px solid var(--chip-br);
       color:var(--text);
@@ -167,12 +161,9 @@
       display:none;
       align-items:center;
       justify-content:center;
-
       width:48px;
       height:48px;
-
       border-radius:14px;
-
       background:var(--chip-bg);
       border:1px solid var(--chip-br);
     }
@@ -182,13 +173,10 @@
     .hamb span::after{
       content:"";
       display:block;
-
       width:22px;
       height:2px;
-
       background:#dfe2ff;
       border-radius:2px;
-
       position:relative;
     }
 
@@ -206,18 +194,13 @@
       position:absolute;
       right:20px;
       top:68px;
-
       display:none;
       flex-direction:column;
       gap:10px;
-
       background:rgba(8,10,26,.96);
-
       border:1px solid var(--line);
       border-radius:18px;
-
       padding:14px;
-
       box-shadow:var(--shadow);
     }
 
@@ -226,7 +209,6 @@
     }
 
     @media (max-width:860px){
-
       .navlinks{
         display:none;
       }
@@ -234,7 +216,6 @@
       .hamb{
         display:flex;
       }
-
     }
 
 
@@ -250,26 +231,20 @@
     .hero{
       position:relative;
       overflow:hidden;
-
       border-radius:28px;
       border:1px solid var(--line);
-
       min-height:520px;
-
       background:#0b0f26;
-
       box-shadow:var(--shadow);
     }
 
     .hero-bg{
       position:absolute;
       inset:0;
-
       background-image:url('/asset1/homepic.png');
       background-size:cover;
       background-position:50% 50%;
       background-repeat:no-repeat;
-
       transform:scale(1.05);
 
       animation:
@@ -285,7 +260,6 @@
     }
 
     @keyframes zoomPan{
-
       from{
         transform:scale(1.05);
       }
@@ -293,11 +267,9 @@
       to{
         transform:scale(1.10);
       }
-
     }
 
     @keyframes driftPos{
-
       from{
         background-position:48% 49%;
       }
@@ -305,18 +277,14 @@
       to{
         background-position:52% 51%;
       }
-
     }
 
     .hero-inner{
       position:relative;
       z-index:1;
-
       height:100%;
-
       display:grid;
       grid-template-rows:auto 1fr auto;
-
       gap:22px;
       padding:26px;
     }
@@ -328,9 +296,7 @@
 
     .stroke-strong{
       color:#fff;
-
       -webkit-text-stroke:2px rgba(0,0,0,.55);
-
       paint-order:stroke fill;
 
       text-shadow:
@@ -341,9 +307,7 @@
 
     .stroke-body{
       color:#fff;
-
       -webkit-text-stroke:1px rgba(0,0,0,.45);
-
       paint-order:stroke fill;
 
       text-shadow:
@@ -366,11 +330,8 @@
     .badge{
       background:#10142a;
       border:1px solid var(--line);
-
       border-radius:999px;
-
       padding:8px 12px;
-
       color:var(--muted);
       font-size:14px;
     }
@@ -392,12 +353,9 @@
 
     .card{
       background:var(--card);
-
       border:1px solid var(--line);
       border-radius:var(--radius);
-
       padding:18px;
-
       box-shadow:var(--shadow);
     }
 
@@ -409,33 +367,23 @@
     .scroller{
       border:1px solid var(--line);
       border-radius:16px;
-
       background:var(--bg-2);
-
       padding:14px;
-
       max-height:560px;
-
       overflow:auto;
-
       box-shadow:var(--shadow);
     }
 
     .tiles{
       display:grid;
-
-      grid-template-columns:
-        repeat(auto-fill,minmax(240px,1fr));
-
+      grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
       gap:14px;
     }
 
     .tile{
       background:#0e1330;
-
       border:1px solid var(--line);
       border-radius:14px;
-
       overflow:hidden;
 
       transition:
@@ -453,7 +401,6 @@
     .tile img{
       width:100%;
       height:300px;
-
       object-fit:cover;
     }
 
@@ -464,11 +411,8 @@
 
     .scroller::-webkit-scrollbar-thumb{
       background:#3b4185;
-
       border-radius:999px;
-
       border:3px solid transparent;
-
       background-clip:content-box;
     }
 
@@ -507,10 +451,8 @@
 
       .about-photo{
         float:left;
-
         width:300px;
         height:400px;
-
         object-fit:cover;
         object-position:center;
 
@@ -522,7 +464,6 @@
 
         border-radius:18px;
         border:1px solid var(--line);
-
         box-shadow:var(--shadow);
       }
 
@@ -536,7 +477,6 @@
         display:block;
         clear:both;
       }
-
     }
 
 
@@ -546,11 +486,8 @@
 
     footer{
       margin:48px 0 20px;
-
       color:var(--muted);
-
       font-size:14px;
-
       text-align:center;
     }
 
@@ -561,8 +498,6 @@
 
     @media (max-width:760px){
 
-      /* HERO */
-
       .hero{
         border-radius:0;
         overflow:hidden;
@@ -570,7 +505,6 @@
 
       .hero-bg{
         background-size:320% auto !important;
-
         background-position:50% 50% !important;
 
         animation:
@@ -580,7 +514,6 @@
       }
 
       @keyframes mobileDrift{
-
         from{
           transform:scale(1.18) translateX(-1%);
         }
@@ -588,11 +521,7 @@
         to{
           transform:scale(1.18) translateX(1%);
         }
-
       }
-
-
-      /* OVER MIJ */
 
       #over .card{
         padding:18px;
@@ -607,14 +536,10 @@
       .about-photo{
         width:100%;
         height:auto;
-
         max-height:500px;
-
         object-fit:cover;
-
         border-radius:14px;
       }
-
     }
 
   </style>
@@ -623,11 +548,7 @@
 
 <body>
 
-
-  <!-- =========================
-       HEADER
-       ========================= -->
-
+  <!-- HEADER -->
   <header>
 
     <div class="container">
@@ -635,46 +556,26 @@
       <nav>
 
         <div class="brand">
-
-          <span
-            class="mark"
-            aria-hidden="true"
-          ></span>
-
-          <span>
-            KunstLilia
-          </span>
-
+          <span class="mark" aria-hidden="true"></span>
+          <span>KunstLilia</span>
         </div>
 
 
         <div class="navlinks">
 
-          <a
-            class="pill"
-            href="#schilderijen"
-          >
+          <a class="pill" href="#schilderijen">
             Schilder collectie
           </a>
 
-          <a
-            class="pill"
-            href="#sieraden"
-          >
+          <a class="pill" href="#sieraden">
             Sieraden
           </a>
 
-          <a
-            class="pill"
-            href="#over"
-          >
+          <a class="pill" href="#over">
             Over mij
           </a>
 
-          <a
-            class="pill"
-            href="#contact"
-          >
+          <a class="pill" href="#contact">
             Contact
           </a>
 
@@ -723,9 +624,7 @@
   <main class="container">
 
 
-    <!-- =========================
-         HERO
-         ========================= -->
+    <!-- HERO -->
 
     <section
       class="hero-wrap"
@@ -752,9 +651,7 @@
 
           </div>
 
-
           <div></div>
-
 
           <div>
 
@@ -794,9 +691,7 @@
     </section>
 
 
-    <!-- =========================
-         SCHILDERIJEN
-         ========================= -->
+    <!-- SCHILDERIJEN -->
 
     <section
       id="schilderijen"
@@ -823,9 +718,7 @@
     </section>
 
 
-    <!-- =========================
-         SIERADEN
-         ========================= -->
+    <!-- SIERADEN -->
 
     <section
       id="sieraden"
@@ -853,9 +746,7 @@
     </section>
 
 
-    <!-- =========================
-         OVER MIJ
-         ========================= -->
+    <!-- OVER MIJ -->
 
     <section
       id="over"
@@ -968,9 +859,7 @@
     </section>
 
 
-    <!-- =========================
-         CONTACT
-         ========================= -->
+    <!-- CONTACT -->
 
     <section
       id="contact"
@@ -992,7 +881,7 @@
 
           <a
             class="pill"
-            href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio"
+            href="mailto:lilia-dosti@hotmail.com?subject=Bericht via portfolio"
           >
             Contact opnemen
           </a>
@@ -1014,9 +903,7 @@
   </main>
 
 
-  <!-- =========================
-       SVG GOLF FILTER
-       ========================= -->
+  <!-- SVG GOLF FILTER -->
 
   <svg
     width="0"
@@ -1064,9 +951,7 @@
   </svg>
 
 
-  <!-- =========================
-       LIGHTBOX
-       ========================= -->
+  <!-- LIGHTBOX -->
 
   <div
     id="lightbox"
@@ -1115,23 +1000,19 @@
   </div>
 
 
-  <!-- =========================
-       JAVASCRIPT
-       ========================= -->
-
   <script>
 
-    // =========================
-    // JAAR
-    // =========================
+    /* =========================
+       JAAR
+       ========================= */
 
     document.getElementById('year').textContent =
       new Date().getFullYear();
 
 
-    // =========================
-    // HAMBURGER
-    // =========================
+    /* =========================
+       HAMBURGER
+       ========================= */
 
     const hamb =
       document.getElementById('hamb');
@@ -1161,9 +1042,9 @@
     );
 
 
-    // =========================
-    // LIGHTBOX
-    // =========================
+    /* =========================
+       LIGHTBOX
+       ========================= */
 
     const lb =
       document.getElementById('lightbox');
@@ -1178,7 +1059,6 @@
     function openLB(src){
 
       lbImg.src = src;
-
       lb.style.display = 'flex';
 
     }
@@ -1187,7 +1067,6 @@
     function closeLB(){
 
       lb.style.display = 'none';
-
       lbImg.src = '';
 
     }
@@ -1211,192 +1090,159 @@
     );
 
 
-    // =========================
-    // AFBEELDINGEN LADEN
-    //
-    // Schilderijen komen nu
-    // ALLEEN uit:
-    //
-    // /schilderijen/
-    //
-    // Geen asset1/asset2 en
-    // geen acryl/olie filters.
-    // =========================
+    /* =========================
+       GITHUB MAPPEN LADEN
+       =========================
 
-    async function fetchManifest(){
+       Schilderijen:
+       /schilderijen/
 
-      /*
-        Eerst proberen we images.json.
+       Sieraden:
+       /sieraden/
 
-        Als images.json een "paintings"
-        array heeft, gebruiken we alleen
-        bestanden die daadwerkelijk uit
-        "schilderijen/" komen.
-      */
+       images.json is hiervoor
+       NIET meer nodig.
+       ========================= */
+
+
+    const GITHUB_API =
+      'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
+
+
+    function isImage(filename){
+
+      const name = filename.toLowerCase();
+
+      return (
+        name.endsWith('.jpg') ||
+        name.endsWith('.jpeg') ||
+        name.endsWith('.png') ||
+        name.endsWith('.webp') ||
+        name.endsWith('.gif')
+      );
+
+    }
+
+
+    async function getImagesFromFolder(folder){
 
       try{
 
-        const r =
-          await fetch(
-            '/images.json',
-            {cache:'no-store'}
-          );
-
-        if(r.ok){
-
-          const data = await r.json();
-
-          const paintings =
-            (data.paintings || [])
-              .filter(
-                p => /^schilderijen\//i.test(p)
-              );
-
-          const jewels =
-            data.jewels || [];
-
-
-          /*
-            Als er schilderijen gevonden
-            zijn in images.json, kunnen
-            we die direct gebruiken.
-          */
-
-          if(paintings.length > 0){
-
-            return {
-              paintings,
-              jewels
-            };
-
+        const response = await fetch(
+          GITHUB_API + encodeURIComponent(folder),
+          {
+            cache:'no-store',
+            headers:{
+              'Accept':'application/vnd.github+json'
+            }
           }
-
-        }
-
-      }catch{}
+        );
 
 
-      /*
-        FALLBACK:
-        rechtstreeks de GitHub-map lezen.
-      */
+        if(!response.ok){
 
-      const GH =
-        'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
-
-
-      const get = async (folder) => {
-
-        try{
-
-          const r =
-            await fetch(GH + folder);
-
-          if(!r.ok){
-            return [];
-          }
-
-
-          const data =
-            await r.json();
-
-
-          return (
-            Array.isArray(data)
-              ? data
-              : []
-          )
-
-          .filter(
-            f =>
-              f.type === 'file' &&
-              /\.(jpe?g|png|webp)$/i.test(f.name)
-          )
-
-          .map(
-            f => f.path
+          console.error(
+            'Kon GitHub-map niet laden:',
+            folder,
+            response.status
           );
-
-
-        }catch{
 
           return [];
 
         }
 
-      };
+
+        const files = await response.json();
 
 
-      /*
-        HIER WORDT NU DE NIEUWE MAP
-        "schilderijen" INGELADEN
-      */
-
-      const paintings =
-        await get('schilderijen');
-
-      const jewels =
-        await get('sieraden');
+        if(!Array.isArray(files)){
+          return [];
+        }
 
 
-      return {
-        paintings,
-        jewels
-      };
+        return files
+
+          .filter(file => {
+
+            return (
+              file.type === 'file' &&
+              isImage(file.name)
+            );
+
+          })
+
+          .map(file => {
+
+            return {
+              name:file.name,
+              url:file.download_url
+            };
+
+          });
+
+
+      }catch(error){
+
+        console.error(
+          'Fout bij laden van map:',
+          folder,
+          error
+        );
+
+        return [];
+
+      }
 
     }
 
 
-    // =========================
-    // TILE MAKEN
-    // =========================
+    /* =========================
+       TILE MAKEN
+       ========================= */
 
-    function makeTile(src){
+    function makeTile(image){
 
-      const d =
+      const tile =
         document.createElement('div');
 
-      d.className = 'tile';
+      tile.className = 'tile';
 
 
       const img =
-        new Image();
+        document.createElement('img');
+
 
       img.loading = 'lazy';
-
       img.decoding = 'async';
 
-      img.src =
-        '/' + src.replace(/^\/+/, '');
-
-      img.alt =
-        src.split('/').pop();
+      img.src = image.url;
+      img.alt = image.name;
 
 
       img.addEventListener(
         'click',
-        () =>
+        () => {
+
           openLB(
             img.currentSrc || img.src
-          )
+          );
+
+        }
       );
 
 
-      d.appendChild(img);
+      tile.appendChild(img);
 
-      return d;
+      return tile;
 
     }
 
 
-    // =========================
-    // LIJST TONEN
-    // =========================
+    /* =========================
+       LIJST TONEN
+       ========================= */
 
-    function renderList(
-      rootId,
-      paths
-    ){
+    function renderList(rootId, images){
 
       const root =
         document.getElementById(rootId);
@@ -1405,47 +1251,76 @@
       root.innerHTML = '';
 
 
-      paths.forEach(
+      images.forEach(image => {
 
-        p =>
-          root.appendChild(
-            makeTile(p)
+        root.appendChild(
+          makeTile(image)
+        );
+
+      });
+
+    }
+
+
+    /* =========================
+       NATUURLIJK SORTEREN
+       ========================= */
+
+    function sortImages(images){
+
+      return images.sort(
+        (a,b) =>
+          a.name.localeCompare(
+            b.name,
+            undefined,
+            {
+              numeric:true,
+              sensitivity:'base'
+            }
           )
-
       );
 
     }
 
 
-    // =========================
-    // SCHILDERIJEN + SIERADEN
-    // =========================
+    /* =========================
+       ALLES LADEN
+       ========================= */
 
-    (async () => {
-
-
-      const m =
-        await fetchManifest();
-
+    async function loadGallery(){
 
       /*
-        ALLE SCHILDERIJEN
-
-        Geen filtering meer.
-        Alles uit /schilderijen/
-        wordt direct weergegeven.
+        Beide mappen tegelijk ophalen.
       */
 
+      const results =
+        await Promise.all([
+
+          getImagesFromFolder('schilderijen'),
+
+          getImagesFromFolder('sieraden')
+
+        ]);
+
+
       const paintings =
-        (m.paintings || [])
-          .sort(
-            (a,b) =>
-              a.localeCompare(
-                b,
-                undefined,
-                {numeric:true}
-              )
-          );
+        sortImages(results[0]);
+
+
+      const jewels =
+        sortImages(results[1]);
+
+
+      console.log(
+        'Schilderijen gevonden:',
+        paintings.length
+      );
+
+
+      console.log(
+        'Sieraden gevonden:',
+        jewels.length
+      );
 
 
       renderList(
@@ -1454,29 +1329,15 @@
       );
 
 
-      /*
-        SIERADEN
-      */
-
-      const jewels =
-        (m.jewels || [])
-          .sort(
-            (a,b) =>
-              a.localeCompare(
-                b,
-                undefined,
-                {numeric:true}
-              )
-          );
-
-
       renderList(
         'tiles-jewels',
         jewels
       );
 
+    }
 
-    })();
+
+    loadGallery();
 
   </script>
 
