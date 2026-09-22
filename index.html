@@ -20,6 +20,7 @@
   >
 
   <style>
+
     :root{
       --bg:#0f1430;
       --bg-2:#1a1f45;
@@ -63,19 +64,21 @@
     }
 
 
-    /* =========================
+    /* ========================================
        HEADER
-       ========================= */
+       ======================================== */
 
     header{
       position:sticky;
       top:0;
       z-index:50;
+
       background:linear-gradient(
         180deg,
         rgba(8,10,26,.95),
         rgba(8,10,26,.65)
       );
+
       backdrop-filter:blur(8px);
       border-bottom:1px solid var(--line);
     }
@@ -139,9 +142,12 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
+
       padding:10px 14px;
       border-radius:999px;
+
       font-weight:600;
+
       background:var(--chip-bg);
       border:1px solid var(--chip-br);
       color:var(--text);
@@ -158,15 +164,25 @@
       border-color:#9fa0ff66;
     }
 
+
+    /* ========================================
+       MOBIEL MENU
+       ======================================== */
+
     .hamb{
       display:none;
       align-items:center;
       justify-content:center;
+
       width:48px;
       height:48px;
+
       border-radius:14px;
+
       background:var(--chip-bg);
       border:1px solid var(--chip-br);
+
+      cursor:pointer;
     }
 
     .hamb span,
@@ -174,10 +190,13 @@
     .hamb span::after{
       content:"";
       display:block;
+
       width:22px;
       height:2px;
+
       background:#dfe2ff;
       border-radius:2px;
+
       position:relative;
     }
 
@@ -195,13 +214,18 @@
       position:absolute;
       right:20px;
       top:68px;
+
       display:none;
       flex-direction:column;
       gap:10px;
+
       background:rgba(8,10,26,.96);
+
       border:1px solid var(--line);
       border-radius:18px;
+
       padding:14px;
+
       box-shadow:var(--shadow);
     }
 
@@ -210,6 +234,7 @@
     }
 
     @media (max-width:860px){
+
       .navlinks{
         display:none;
       }
@@ -220,9 +245,9 @@
     }
 
 
-    /* =========================
-       HERO
-       ========================= */
+    /* ========================================
+       HOMEPAGE / HERO
+       ======================================== */
 
     .hero-wrap{
       position:relative;
@@ -232,20 +257,31 @@
     .hero{
       position:relative;
       overflow:hidden;
+
       border-radius:28px;
       border:1px solid var(--line);
+
       min-height:520px;
+
       background:#0b0f26;
+
       box-shadow:var(--shadow);
     }
 
     .hero-bg{
       position:absolute;
       inset:0;
-      background-image:url('/asset1/homepic.png');
+
+      /*
+        NIEUWE LOCATIE:
+        homepic/homepic.png
+      */
+      background-image:url('/homepic/homepic.png');
+
       background-size:cover;
       background-position:50% 50%;
       background-repeat:no-repeat;
+
       transform:scale(1.05);
 
       animation:
@@ -261,6 +297,7 @@
     }
 
     @keyframes zoomPan{
+
       from{
         transform:scale(1.05);
       }
@@ -271,6 +308,7 @@
     }
 
     @keyframes driftPos{
+
       from{
         background-position:48% 49%;
       }
@@ -283,21 +321,26 @@
     .hero-inner{
       position:relative;
       z-index:1;
+
       height:100%;
+
       display:grid;
       grid-template-rows:auto 1fr auto;
+
       gap:22px;
       padding:26px;
     }
 
 
-    /* =========================
+    /* ========================================
        HERO TEKST
-       ========================= */
+       ======================================== */
 
     .stroke-strong{
       color:#fff;
+
       -webkit-text-stroke:2px rgba(0,0,0,.55);
+
       paint-order:stroke fill;
 
       text-shadow:
@@ -308,7 +351,9 @@
 
     .stroke-body{
       color:#fff;
+
       -webkit-text-stroke:1px rgba(0,0,0,.45);
+
       paint-order:stroke fill;
 
       text-shadow:
@@ -330,17 +375,21 @@
 
     .badge{
       background:#10142a;
+
       border:1px solid var(--line);
       border-radius:999px;
+
       padding:8px 12px;
+
       color:var(--muted);
+
       font-size:14px;
     }
 
 
-    /* =========================
-       SECTIONS
-       ========================= */
+    /* ========================================
+       ALGEMENE SECTIES
+       ======================================== */
 
     h2.section{
       font-size:32px;
@@ -354,93 +403,50 @@
 
     .card{
       background:var(--card);
+
       border:1px solid var(--line);
       border-radius:var(--radius);
+
       padding:18px;
+
       box-shadow:var(--shadow);
     }
 
 
-    /* =========================
-       FILTERS
-       ========================= */
-
-    .filters{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-
-      margin:10px 0 14px;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-
-      font-weight:600;
-
-      padding:8px 12px;
-
-      border-radius:999px;
-
-      background:var(--chip-bg);
-      border:1px solid var(--chip-br);
-
-      color:#fff;
-
-      cursor:pointer;
-      user-select:none;
-
-      transition:
-        background .2s,
-        border-color .2s,
-        transform .12s;
-    }
-
-    .chip:hover{
-      background:rgba(255,255,255,.12);
-      border-color:#9fa0ff66;
-      transform:translateY(-1px);
-    }
-
-    .chip.active{
-      background:linear-gradient(
-        180deg,
-        rgba(180,175,255,.25),
-        rgba(130,140,255,.18)
-      );
-
-      border-color:#aab0ff;
-
-      color:#fff;
-    }
-
-
-    /* =========================
-       SCHILDERIJEN / SIERADEN
-       ========================= */
+    /* ========================================
+       SCHILDERIJEN EN SIERADEN
+       ======================================== */
 
     .scroller{
       border:1px solid var(--line);
       border-radius:16px;
+
       background:var(--bg-2);
+
       padding:14px;
+
       max-height:560px;
+
       overflow:auto;
+
       box-shadow:var(--shadow);
     }
 
     .tiles{
       display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+
+      grid-template-columns:
+        repeat(auto-fill,minmax(240px,1fr));
+
       gap:14px;
     }
 
     .tile{
       background:#0e1330;
+
       border:1px solid var(--line);
       border-radius:14px;
+
       overflow:hidden;
 
       transition:
@@ -458,6 +464,7 @@
     .tile img{
       width:100%;
       height:300px;
+
       object-fit:cover;
     }
 
@@ -468,8 +475,11 @@
 
     .scroller::-webkit-scrollbar-thumb{
       background:#3b4185;
+
       border-radius:999px;
+
       border:3px solid transparent;
+
       background-clip:content-box;
     }
 
@@ -478,9 +488,9 @@
     }
 
 
-    /* =========================
+    /* ========================================
        OVER MIJ
-       ========================= */
+       ======================================== */
 
     #over .card{
       padding:28px;
@@ -496,9 +506,9 @@
     }
 
 
-    /* =========================
+    /* ========================================
        OVER MIJ - DESKTOP
-       ========================= */
+       ======================================== */
 
     @media (min-width:761px){
 
@@ -508,8 +518,10 @@
 
       .about-photo{
         float:left;
+
         width:300px;
         height:400px;
+
         object-fit:cover;
         object-position:center;
 
@@ -521,13 +533,10 @@
 
         border-radius:18px;
         border:1px solid var(--line);
+
         box-shadow:var(--shadow);
       }
 
-      /*
-        Vanaf "Mijn liefde voor kunst..."
-        begint de tekst volledig onder de foto.
-      */
       .under-photo{
         clear:both;
         padding-top:6px;
@@ -541,23 +550,31 @@
     }
 
 
-    /* =========================
+    /* ========================================
        FOOTER
-       ========================= */
+       ======================================== */
 
     footer{
       margin:48px 0 20px;
+
       color:var(--muted);
+
       font-size:14px;
+
       text-align:center;
     }
 
 
-    /* =========================
-       MOBIEL
-       ========================= */
+    /* ========================================
+       MOBIELE VERSIE
+       ======================================== */
 
     @media (max-width:760px){
+
+      /*
+        HERO MOBIEL
+        Dit blijft zoals eerder ingesteld.
+      */
 
       .hero{
         border-radius:0;
@@ -575,6 +592,7 @@
       }
 
       @keyframes mobileDrift{
+
         from{
           transform:scale(1.18) translateX(-1%);
         }
@@ -585,7 +603,9 @@
       }
 
 
-      /* OVER MIJ - MOBIEL BLIJFT HETZELFDE */
+      /*
+        OVER MIJ MOBIEL
+      */
 
       #over .card{
         padding:18px;
@@ -600,20 +620,26 @@
       .about-photo{
         width:100%;
         height:auto;
+
         max-height:500px;
+
         object-fit:cover;
+
         border-radius:14px;
       }
     }
 
   </style>
-
 </head>
 
 
 <body>
 
-  <!-- HEADER -->
+
+  <!-- ========================================
+       HEADER
+       ======================================== -->
+
   <header>
 
     <div class="container">
@@ -621,26 +647,46 @@
       <nav>
 
         <div class="brand">
-          <span class="mark" aria-hidden="true"></span>
-          <span>KunstLilia</span>
+
+          <span
+            class="mark"
+            aria-hidden="true"
+          ></span>
+
+          <span>
+            KunstLilia
+          </span>
+
         </div>
 
 
         <div class="navlinks">
 
-          <a class="pill" href="#schilderijen">
+          <a
+            class="pill"
+            href="#schilderijen"
+          >
             Schilder collectie
           </a>
 
-          <a class="pill" href="#sieraden">
+          <a
+            class="pill"
+            href="#sieraden"
+          >
             Sieraden
           </a>
 
-          <a class="pill" href="#over">
+          <a
+            class="pill"
+            href="#over"
+          >
             Over mij
           </a>
 
-          <a class="pill" href="#contact">
+          <a
+            class="pill"
+            href="#contact"
+          >
             Contact
           </a>
 
@@ -701,7 +747,9 @@
   <main class="container">
 
 
-    <!-- HERO -->
+    <!-- ========================================
+         HOMEPAGE
+         ======================================== -->
 
     <section
       class="hero-wrap"
@@ -710,7 +758,6 @@
 
       <div class="hero">
 
-
         <div
           class="hero-bg"
           aria-hidden="true"
@@ -718,7 +765,6 @@
 
 
         <div class="hero-inner">
-
 
           <div>
 
@@ -732,7 +778,9 @@
 
           </div>
 
+
           <div></div>
+
 
           <div>
 
@@ -744,10 +792,12 @@
                 margin:0 0 10px;
               "
             >
+
               Welkom op mijn portfolio.
               Een persoonlijke selectie —
               zonder commercieel doel —
               ter inspiratie en kennismaking.
+
             </p>
 
 
@@ -765,7 +815,6 @@
 
           </div>
 
-
         </div>
 
       </div>
@@ -773,7 +822,9 @@
     </section>
 
 
-    <!-- SCHILDERIJEN -->
+    <!-- ========================================
+         SCHILDERIJEN
+         ======================================== -->
 
     <section
       id="schilderijen"
@@ -786,41 +837,8 @@
 
 
       <p class="muted">
-        Filter op type.
-        (Acryl uit <code>asset1</code>,
-        Olie uit <code>asset2</code>.)
+        Een selectie van mijn schilderijen.
       </p>
-
-
-      <div
-        class="filters"
-        id="paintFilters"
-      >
-
-        <div
-          class="chip active"
-          data-filter="all"
-        >
-          Alles
-        </div>
-
-
-        <div
-          class="chip"
-          data-filter="acryl"
-        >
-          Acryl
-        </div>
-
-
-        <div
-          class="chip"
-          data-filter="olie"
-        >
-          Olie
-        </div>
-
-      </div>
 
 
       <div class="scroller">
@@ -835,7 +853,9 @@
     </section>
 
 
-    <!-- SIERADEN -->
+    <!-- ========================================
+         SIERADEN
+         ======================================== -->
 
     <section
       id="sieraden"
@@ -865,7 +885,9 @@
     </section>
 
 
-    <!-- OVER MIJ -->
+    <!-- ========================================
+         OVER MIJ
+         ======================================== -->
 
     <section
       id="over"
@@ -879,11 +901,8 @@
 
       <div class="card">
 
-
         <div class="about-layout">
 
-
-          <!-- FOTO VAN DE KUNSTENARES -->
 
           <img
             class="about-photo"
@@ -891,8 +910,6 @@
             alt="Lilia Guseva Dosti"
           >
 
-
-          <!-- TEKST -->
 
           <div class="about-text">
 
@@ -926,11 +943,6 @@
               juiste sfeer en uitstraling krijgt.
             </p>
 
-
-            <!--
-              VANAF HIER BEGINT DE TEKST
-              OP DESKTOP ONDER DE FOTO
-            -->
 
             <p class="under-photo">
               Mijn liefde voor kunst gaat hand in hand met mijn liefde
@@ -983,16 +995,16 @@
 
           </div>
 
-
         </div>
-
 
       </div>
 
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- ========================================
+         CONTACT
+         ======================================== -->
 
     <section
       id="contact"
@@ -1007,8 +1019,10 @@
       <div class="card">
 
         <p class="muted">
+
           Voor vragen, samenwerkingen of gedachten over kunst:
           stuur gerust een bericht.
+
         </p>
 
 
@@ -1028,9 +1042,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- ========================================
          FOOTER
-         ========================= -->
+         ======================================== -->
 
     <footer>
 
@@ -1044,7 +1058,9 @@
   </main>
 
 
-  <!-- SVG GOLF FILTER -->
+  <!-- ========================================
+       LIQUID EFFECT
+       ======================================== -->
 
   <svg
     width="0"
@@ -1094,7 +1110,9 @@
   </svg>
 
 
-  <!-- LIGHTBOX -->
+  <!-- ========================================
+       LIGHTBOX
+       ======================================== -->
 
   <div
     id="lightbox"
@@ -1141,22 +1159,27 @@
       "
     >
 
-
   </div>
 
+
+  <!-- ========================================
+       JAVASCRIPT
+       ======================================== -->
 
   <script>
 
 
-    // JAAR
+    /* ========================================
+       JAAR
+       ======================================== */
 
     document.getElementById('year').textContent =
       new Date().getFullYear();
 
 
-    /* =========================
-       HAMBURGER
-       ========================= */
+    /* ========================================
+       MOBIEL MENU
+       ======================================== */
 
     const hamb =
       document.getElementById('hamb');
@@ -1186,9 +1209,9 @@
     );
 
 
-    /* =========================
+    /* ========================================
        LIGHTBOX
-       ========================= */
+       ======================================== */
 
     const lb =
       document.getElementById('lightbox');
@@ -1203,6 +1226,7 @@
     function openLB(src){
 
       lbImg.src = src;
+
       lb.style.display = 'flex';
 
     }
@@ -1211,6 +1235,7 @@
     function closeLB(){
 
       lb.style.display = 'none';
+
       lbImg.src = '';
 
     }
@@ -1224,7 +1249,7 @@
 
     lb.addEventListener(
       'click',
-      e => {
+      (e) => {
 
         if(e.target === lb){
           closeLB();
@@ -1234,62 +1259,73 @@
     );
 
 
-    // =========================
-    // MANIFEST LADEN
-    // =========================
+    /* ========================================
+       GITHUB INSTELLINGEN
+       ========================================
 
-       Schilderijen:
-       /schilderijen/
+       We lezen nu rechtstreeks:
+
+       /Schilderijen/
+       /sieraden/
+
+       Er is dus GEEN images.json nodig
+       om de galerijen te laden.
+       ======================================== */
+
+
+    const GITHUB_API =
+      'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
+
+
+    /* ========================================
+       CONTROLEREN OF BESTAND EEN PLAATJE IS
+       ======================================== */
+
+    function isImage(filename){
+
+      const name =
+        filename.toLowerCase();
+
+
+      return (
+        name.endsWith('.jpg') ||
+        name.endsWith('.jpeg') ||
+        name.endsWith('.png') ||
+        name.endsWith('.webp') ||
+        name.endsWith('.gif')
+      );
+
+    }
+
+
+    /* ========================================
+       MAP VAN GITHUB LEZEN
+       ======================================== */
+
+    async function getImagesFromFolder(folder){
 
       try{
 
-        const r =
+        const url =
+          GITHUB_API + encodeURIComponent(folder);
+
+
+        const response =
           await fetch(
-            '/images.json',
-            {cache:'no-store'}
+            url,
+            {
+              cache:'no-store'
+            }
           );
 
-        if(r.ok){
-          return await r.json();
-        }
 
-      }catch{}
+        if(!response.ok){
 
-
-      const GH =
-        'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
-
-
-      const get = async (p) => {
-
-        try{
-
-          const r =
-            await fetch(GH + p);
-
-          if(!r.ok){
-            return [];
-          }
-
-
-          const data =
-            await r.json();
-
-
-          return (
-            Array.isArray(data)
-              ? data
-              : []
-          )
-
-          .filter(
-            f =>
-              f.type === 'file' &&
-              /\.(jpe?g|png|webp)$/i.test(f.name)
-          )
-
-          .map(
-            f => f.path
+          console.error(
+            'Map kon niet worden geladen:',
+            folder,
+            'HTTP:',
+            response.status
           );
 
           return [];
@@ -1297,43 +1333,80 @@
         }
 
 
-        const files = await response.json();
+        const files =
+          await response.json();
 
 
-      const a1 =
-        await get('asset1');
+        if(!Array.isArray(files)){
 
-      const a2 =
-        await get('asset2');
+          console.error(
+            'GitHub gaf geen bestandenlijst terug voor:',
+            folder
+          );
 
-      const s =
-        await get('sieraden');
+          return [];
+
+        }
 
 
-      return{
+        const images =
+          files
+            .filter(
+              file =>
+                file.type === 'file' &&
+                isImage(file.name)
+            )
+            .map(
+              file => ({
+                name:file.name,
 
-        paintings:[
-          ...a1,
-          ...a2
-        ],
+                /*
+                  download_url komt rechtstreeks
+                  van GitHub en wijst naar het
+                  daadwerkelijke afbeeldingsbestand.
+                */
+                url:file.download_url
+              })
+            );
 
-        jewels:s
 
-      };
+        console.log(
+          folder,
+          'gevonden afbeeldingen:',
+          images.length
+        );
+
+
+        return images;
+
+
+      }catch(error){
+
+        console.error(
+          'Fout bij het laden van:',
+          folder,
+          error
+        );
+
+        return [];
+
+      }
 
     }
 
 
-    /* =========================
-       TILE MAKEN
-       ========================= */
+    /* ========================================
+       AFBEELDING MAKEN
+       ======================================== */
 
     function makeTile(image){
 
       const tile =
         document.createElement('div');
 
-      tile.className = 'tile';
+
+      tile.className =
+        'tile';
 
 
       const img =
@@ -1343,11 +1416,17 @@
       img.loading =
         'lazy';
 
+
       img.decoding =
         'async';
 
-      img.src = image.url;
-      img.alt = image.name;
+
+      img.src =
+        image.url;
+
+
+      img.alt =
+        image.name;
 
 
       img.addEventListener(
@@ -1364,37 +1443,52 @@
 
       tile.appendChild(img);
 
+
       return tile;
 
     }
 
 
+    /* ========================================
+       GALERIJ WEERGEVEN
+       ======================================== */
+
     function renderList(
       rootId,
-      paths
+      images
     ){
 
       const root =
         document.getElementById(rootId);
 
 
-      root.innerHTML = '';
+      root.innerHTML =
+        '';
 
 
-      images.forEach(image => {
+      images.forEach(
+        image => {
 
-        root.appendChild(
-          makeTile(image)
-        );
+          root.appendChild(
+            makeTile(image)
+          );
 
-      });
+        }
+      );
 
     }
 
 
-    /* =========================
-       NATUURLIJK SORTEREN
-       ========================= */
+    /* ========================================
+       AFBEELDINGEN SORTEREN
+
+       1.jpg
+       2.jpg
+       3.jpg
+       10.jpg
+
+       wordt correct gesorteerd.
+       ======================================== */
 
     function sortImages(images){
 
@@ -1413,127 +1507,83 @@
     }
 
 
-    /* =========================
-       ALLES LADEN
-       ========================= */
+    /* ========================================
+       GALERIJEN LADEN
+       ======================================== */
 
-    async function loadGallery(){
+    async function loadGalleries(){
 
-      // SCHILDERIJEN
+      /*
+        LET OP:
 
-      const allPaints =
-        (m.paintings || [])
-        .sort(
-          (a,b) =>
-            a.localeCompare(
-              b,
-              undefined,
-              {numeric:true}
-            )
+        Schilderijen heeft een HOOFDLETTER S.
+
+        sieraden heeft een kleine s.
+      */
+
+
+      const paintingsPromise =
+        getImagesFromFolder(
+          'Schilderijen'
         );
 
 
-      const filt =
-        document.getElementById(
-          'paintFilters'
+      const jewelsPromise =
+        getImagesFromFolder(
+          'sieraden'
         );
 
 
-      const byType = {
-
-        acryl:
-          allPaints.filter(
-            p =>
-              /^asset1\//i.test(p)
-          ),
-
-        olie:
-          allPaints.filter(
-            p =>
-              /^asset2\//i.test(p)
-          )
-
-      };
+      const results =
+        await Promise.all([
+          paintingsPromise,
+          jewelsPromise
+        ]);
 
 
-      const allMap = {
-
-        all:allPaints,
-
-        ...byType
-
-      };
-
-
-      function applyPaintFilter(key){
-
-        renderList(
-          'tiles-paintings',
-          allMap[key] || allPaints
+      const paintings =
+        sortImages(
+          results[0]
         );
 
 
-        [
-          ...filt.querySelectorAll('.chip')
-        ].forEach(
-
-          c =>
-            c.classList.toggle(
-              'active',
-              c.dataset.filter === key
-            )
-
+      const jewels =
+        sortImages(
+          results[1]
         );
 
-      }
 
-
-      filt.addEventListener(
-        'click',
-        e => {
-
-          const chip =
-            e.target.closest('.chip');
-
-
-          if(!chip){
-            return;
-          }
-
-
-          applyPaintFilter(
-            chip.dataset.filter
-          );
-
-        }
+      console.log(
+        'Totaal schilderijen:',
+        paintings.length
       );
 
 
-      applyPaintFilter('all');
+      console.log(
+        'Totaal sieraden:',
+        jewels.length
+      );
 
-
-      // SIERADEN
 
       renderList(
+        'tiles-paintings',
+        paintings
+      );
 
+
+      renderList(
         'tiles-jewels',
-
-        (m.jewels || [])
-        .sort(
-          (a,b) =>
-            a.localeCompare(
-              b,
-              undefined,
-              {numeric:true}
-            )
-        )
-
+        jewels
       );
 
     }
 
 
-    loadGallery();
+    /* ========================================
+       START
+       ======================================== */
+
+    loadGalleries();
 
 
   </script>
