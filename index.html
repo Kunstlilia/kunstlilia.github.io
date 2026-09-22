@@ -13,7 +13,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
     rel="stylesheet"
@@ -404,62 +403,6 @@
 
 
     /* =========================
-       FILTERS
-       ========================= */
-
-    .filters{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-
-      margin:10px 0 14px;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-
-      font-weight:600;
-
-      padding:8px 12px;
-
-      border-radius:999px;
-
-      background:var(--chip-bg);
-      border:1px solid var(--chip-br);
-
-      color:#fff;
-
-      cursor:pointer;
-      user-select:none;
-
-      transition:
-        background .2s,
-        border-color .2s,
-        transform .12s;
-    }
-
-    .chip:hover{
-      background:rgba(255,255,255,.12);
-      border-color:#9fa0ff66;
-      transform:translateY(-1px);
-    }
-
-    .chip.active{
-      background:linear-gradient(
-        180deg,
-        rgba(180,175,255,.25),
-        rgba(130,140,255,.18)
-      );
-
-      border-color:#aab0ff;
-
-      color:#fff;
-    }
-
-
-    /* =========================
        SCHILDERIJEN / SIERADEN
        ========================= */
 
@@ -583,10 +526,6 @@
         box-shadow:var(--shadow);
       }
 
-      /*
-        Vanaf "Mijn liefde voor kunst..."
-        begint de tekst volledig onder de foto.
-      */
       .under-photo{
         clear:both;
         padding-top:6px;
@@ -653,7 +592,7 @@
       }
 
 
-      /* OVER MIJ - MOBIEL BLIJFT HETZELFDE */
+      /* OVER MIJ */
 
       #over .card{
         padding:18px;
@@ -679,7 +618,6 @@
     }
 
   </style>
-
 </head>
 
 
@@ -757,31 +695,19 @@
           id="navPop"
         >
 
-          <a
-            class="pill"
-            href="#schilderijen"
-          >
+          <a class="pill" href="#schilderijen">
             Schilder collectie
           </a>
 
-          <a
-            class="pill"
-            href="#sieraden"
-          >
+          <a class="pill" href="#sieraden">
             Sieraden
           </a>
 
-          <a
-            class="pill"
-            href="#over"
-          >
+          <a class="pill" href="#over">
             Over mij
           </a>
 
-          <a
-            class="pill"
-            href="#contact"
-          >
+          <a class="pill" href="#contact">
             Contact
           </a>
 
@@ -808,7 +734,6 @@
 
       <div class="hero">
 
-
         <div
           class="hero-bg"
           aria-hidden="true"
@@ -817,15 +742,12 @@
 
         <div class="hero-inner">
 
-
           <div>
 
             <h1 class="hero-title stroke-strong">
-
               schilderijen &<br>
               sieraden<br>
               Lilia Guseva Dosti
-
             </h1>
 
           </div>
@@ -865,7 +787,6 @@
 
           </div>
 
-
         </div>
 
       </div>
@@ -886,44 +807,9 @@
         Schilderijen
       </h2>
 
-
       <p class="muted">
-        Filter op type.
-        (Acryl uit <code>asset1</code>,
-        Olie uit <code>asset2</code>.)
+        Een selectie van mijn schilderijen.
       </p>
-
-
-      <div
-        class="filters"
-        id="paintFilters"
-      >
-
-        <div
-          class="chip active"
-          data-filter="all"
-        >
-          Alles
-        </div>
-
-
-        <div
-          class="chip"
-          data-filter="acryl"
-        >
-          Acryl
-        </div>
-
-
-        <div
-          class="chip"
-          data-filter="olie"
-        >
-          Olie
-        </div>
-
-      </div>
-
 
       <div class="scroller">
 
@@ -950,12 +836,10 @@
         Sieraden
       </h2>
 
-
       <p class="muted">
         Een kleine verzameling sieraden.
         Er komen later meer stukken bij.
       </p>
-
 
       <div class="scroller">
 
@@ -985,11 +869,8 @@
 
       <div class="card">
 
-
         <div class="about-layout">
 
-
-          <!-- FOTO VAN DE KUNSTENARES -->
 
           <img
             class="about-photo"
@@ -998,10 +879,7 @@
           >
 
 
-          <!-- TEKST -->
-
           <div class="about-text">
-
 
             <p>
               Ik ben Lilia Guseva Dosti, kunstenares en creatief maker.
@@ -1032,11 +910,6 @@
               juiste sfeer en uitstraling krijgt.
             </p>
 
-
-            <!--
-              VANAF HIER BEGINT DE TEKST
-              OP DESKTOP ONDER DE FOTO
-            -->
 
             <p class="under-photo">
               Mijn liefde voor kunst gaat hand in hand met mijn liefde
@@ -1086,12 +959,9 @@
               vertellen.
             </p>
 
-
           </div>
 
-
         </div>
-
 
       </div>
 
@@ -1111,7 +981,6 @@
         Contact
       </h2>
 
-
       <div class="card">
 
         <p class="muted">
@@ -1119,12 +988,11 @@
           stuur gerust een bericht.
         </p>
 
-
         <p>
 
           <a
             class="pill"
-            href="mailto:lilia-dosti@hotmail.com?subject=Bericht via portfolio"
+            href="mailto:info@kunstlilia.nl?subject=Bericht via portfolio"
           >
             Contact opnemen
           </a>
@@ -1136,16 +1004,10 @@
     </section>
 
 
-    <!-- =========================
-         FOOTER
-         ========================= -->
-
     <footer>
-
       © <span id="year"></span>
       KunstLilia · Lilia Guseva Dosti —
       Alle rechten voorbehouden
-
     </footer>
 
 
@@ -1163,7 +1025,6 @@
   >
 
     <filter id="liquid-waves">
-
 
       <feTurbulence
         type="fractalNoise"
@@ -1198,7 +1059,6 @@
 
       </feDisplacementMap>
 
-
     </filter>
 
   </svg>
@@ -1220,7 +1080,6 @@
       z-index:1000;
     "
   >
-
 
     <button
       id="lbClose"
@@ -1253,7 +1112,6 @@
       "
     >
 
-
   </div>
 
 
@@ -1263,8 +1121,9 @@
 
   <script>
 
-
+    // =========================
     // JAAR
+    // =========================
 
     document.getElementById('year').textContent =
       new Date().getFullYear();
@@ -1353,10 +1212,27 @@
 
 
     // =========================
-    // MANIFEST LADEN
+    // AFBEELDINGEN LADEN
+    //
+    // Schilderijen komen nu
+    // ALLEEN uit:
+    //
+    // /schilderijen/
+    //
+    // Geen asset1/asset2 en
+    // geen acryl/olie filters.
     // =========================
 
     async function fetchManifest(){
+
+      /*
+        Eerst proberen we images.json.
+
+        Als images.json een "paintings"
+        array heeft, gebruiken we alleen
+        bestanden die daadwerkelijk uit
+        "schilderijen/" komen.
+      */
 
       try{
 
@@ -1367,22 +1243,54 @@
           );
 
         if(r.ok){
-          return await r.json();
+
+          const data = await r.json();
+
+          const paintings =
+            (data.paintings || [])
+              .filter(
+                p => /^schilderijen\//i.test(p)
+              );
+
+          const jewels =
+            data.jewels || [];
+
+
+          /*
+            Als er schilderijen gevonden
+            zijn in images.json, kunnen
+            we die direct gebruiken.
+          */
+
+          if(paintings.length > 0){
+
+            return {
+              paintings,
+              jewels
+            };
+
+          }
+
         }
 
       }catch{}
 
 
+      /*
+        FALLBACK:
+        rechtstreeks de GitHub-map lezen.
+      */
+
       const GH =
         'https://api.github.com/repos/Kunstlilia/kunstlilia.github.io/contents/';
 
 
-      const get = async (p) => {
+      const get = async (folder) => {
 
         try{
 
           const r =
-            await fetch(GH + p);
+            await fetch(GH + folder);
 
           if(!r.ok){
             return [];
@@ -1419,25 +1327,21 @@
       };
 
 
-      const a1 =
-        await get('asset1');
+      /*
+        HIER WORDT NU DE NIEUWE MAP
+        "schilderijen" INGELADEN
+      */
 
-      const a2 =
-        await get('asset2');
+      const paintings =
+        await get('schilderijen');
 
-      const s =
+      const jewels =
         await get('sieraden');
 
 
-      return{
-
-        paintings:[
-          ...a1,
-          ...a2
-        ],
-
-        jewels:s
-
+      return {
+        paintings,
+        jewels
       };
 
     }
@@ -1458,11 +1362,9 @@
       const img =
         new Image();
 
-      img.loading =
-        'lazy';
+      img.loading = 'lazy';
 
-      img.decoding =
-        'async';
+      img.decoding = 'async';
 
       img.src =
         '/' + src.replace(/^\/+/, '');
@@ -1486,6 +1388,10 @@
 
     }
 
+
+    // =========================
+    // LIJST TONEN
+    // =========================
 
     function renderList(
       rootId,
@@ -1522,120 +1428,55 @@
         await fetchManifest();
 
 
-      // SCHILDERIJEN
+      /*
+        ALLE SCHILDERIJEN
 
-      const allPaints =
+        Geen filtering meer.
+        Alles uit /schilderijen/
+        wordt direct weergegeven.
+      */
+
+      const paintings =
         (m.paintings || [])
-        .sort(
-          (a,b) =>
-            a.localeCompare(
-              b,
-              undefined,
-              {numeric:true}
-            )
-        );
-
-
-      const filt =
-        document.getElementById(
-          'paintFilters'
-        );
-
-
-      const byType = {
-
-        acryl:
-          allPaints.filter(
-            p =>
-              /^asset1\//i.test(p)
-          ),
-
-        olie:
-          allPaints.filter(
-            p =>
-              /^asset2\//i.test(p)
-          )
-
-      };
-
-
-      const allMap = {
-
-        all:allPaints,
-
-        ...byType
-
-      };
-
-
-      function applyPaintFilter(key){
-
-        renderList(
-          'tiles-paintings',
-          allMap[key] || allPaints
-        );
-
-
-        [
-          ...filt.querySelectorAll('.chip')
-        ].forEach(
-
-          c =>
-            c.classList.toggle(
-              'active',
-              c.dataset.filter === key
-            )
-
-        );
-
-      }
-
-
-      filt.addEventListener(
-        'click',
-        e => {
-
-          const chip =
-            e.target.closest('.chip');
-
-
-          if(!chip){
-            return;
-          }
-
-
-          applyPaintFilter(
-            chip.dataset.filter
+          .sort(
+            (a,b) =>
+              a.localeCompare(
+                b,
+                undefined,
+                {numeric:true}
+              )
           );
 
-        }
+
+      renderList(
+        'tiles-paintings',
+        paintings
       );
 
 
-      applyPaintFilter('all');
+      /*
+        SIERADEN
+      */
 
+      const jewels =
+        (m.jewels || [])
+          .sort(
+            (a,b) =>
+              a.localeCompare(
+                b,
+                undefined,
+                {numeric:true}
+              )
+          );
 
-      // SIERADEN
 
       renderList(
-
         'tiles-jewels',
-
-        (m.jewels || [])
-        .sort(
-          (a,b) =>
-            a.localeCompare(
-              b,
-              undefined,
-              {numeric:true}
-            )
-        )
-
+        jewels
       );
 
 
     })();
-
 
   </script>
 
